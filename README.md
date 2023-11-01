@@ -3,13 +3,13 @@
 
 <p align="left"> <img src="https://komarev.com/ghpvc/?username=jaywesterlow&label=Profile%20views&color=0e75b6&style=flat" alt="jaywesterlow" /> </p>
 
-- 🔭 I’m currently working on **Xenturion**
+- 🔭 I’m currently working on **Eternal Bass**
 
 - 🌱 I'm currently learning **a more intermediate level of javascript.**
 
-- 👨‍💻 All of my projects are available at [Not yet availible](Not yet availible)
+- 👨‍💻 All of my projects are available at [https://jvvue.nl](jvvue.nl)
 
-- 📫 You can reach me by mail at: **jaywesterlow71@gmail.com**
+- 📫 You can reach me by mail at: **info@jvvue.nl**
 
 
 <h3 align="left">Languages and Tools:</h3>
