@@ -1,5 +1,5 @@
 <h1 align="center">Hi 👋, I'm Jaymar Westerlow</h1>
-<h3 align="center">I'm a starting front- and backend developer & crypto investor</h3>
+<h3 align="center">I'm a front-end developer & crypto investor</h3>
 
 <p align="left"> <img src="https://komarev.com/ghpvc/?username=jaywesterlow&label=Profile%20views&color=0e75b6&style=flat" alt="jaywesterlow" /> </p>
 
