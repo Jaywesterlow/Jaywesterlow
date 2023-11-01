@@ -7,7 +7,7 @@
 
 - 🌱 I'm currently learning **a more intermediate level of javascript.**
 
-- 👨‍💻 All of my projects are available at [https://jvvue.nl](jvvue.nl)
+- 👨‍💻 All of my projects are available at [jvvue.nl]([jvvue.nl](https://jvvue.nl))
 
 - 📫 You can reach me by mail at: **info@jvvue.nl**
 
