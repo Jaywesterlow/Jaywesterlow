@@ -42,7 +42,7 @@ Walk up to the business with a finished, live, provably better product (logos, s
 3. **Two samples of your own writing** (any two paragraphs). Voice is grounded in samples, not adjectives.
 4. **Anything you already know** about them beyond the flyer: resort, country, who posted it, their Instagram account if the flyer came from one.
 
-Phase 0 competitor research can start now from the flyer alone.
+Phase 0 competitor research can start now from the flyer alone. Until answers arrive, `00-brief.md` holds labeled placeholders for every unknown.
 
 ---
 
