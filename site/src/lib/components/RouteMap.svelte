@@ -80,7 +80,8 @@
 		font-weight: 700;
 	}
 	.dist {
-		font-family: var(--font-mono);
+		font-family: var(--font-label);
+		font-weight: 500;
 		font-size: 11px;
 		fill: var(--stone-2);
 	}

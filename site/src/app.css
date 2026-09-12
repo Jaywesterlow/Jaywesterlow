@@ -12,12 +12,6 @@
 	font-weight: 400 700;
 	font-display: swap;
 }
-@font-face {
-	font-family: 'JetBrains Mono';
-	src: url('/fonts/jetbrainsmono.woff2') format('woff2');
-	font-weight: 400 800;
-	font-display: swap;
-}
 
 :root {
 	/* surfaces */
@@ -37,7 +31,7 @@
 	/* type */
 	--font-display: 'Bricolage Grotesque', 'Arial Narrow', Impact, sans-serif;
 	--font-body: 'Instrument Sans', 'Helvetica Neue', Arial, sans-serif;
-	--font-mono: 'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace;
+	--font-label: var(--font-body); /* labels 700 caps, meta 500; no mono */
 	--fs-display: clamp(2.75rem, 1.5rem + 5.5vw, 6.5rem);
 	--fs-h1: clamp(2.25rem, 1.4rem + 3.5vw, 4.25rem);
 	--fs-h2: clamp(1.75rem, 1.25rem + 2vw, 3.25rem);
@@ -172,15 +166,15 @@ ol {
 	margin-top: var(--s-6);
 }
 .label {
-	font-family: var(--font-mono);
+	font-family: var(--font-label);
 	font-size: var(--fs-label);
 	letter-spacing: 0.08em;
 	text-transform: uppercase;
 	color: var(--stone-2);
-	font-weight: 600;
+	font-weight: 700;
 }
-.mono {
-	font-family: var(--font-mono);
+.meta {
+	font-family: var(--font-label);
 	font-size: 0.8125rem;
 	letter-spacing: 0.01em;
 	font-weight: 500;
@@ -287,7 +281,8 @@ ol {
 	padding: 0 10px;
 	border-radius: var(--r-pill);
 	border: 1px solid var(--stone);
-	font-family: var(--font-mono);
+	font-family: var(--font-label);
+	font-weight: 500;
 	font-size: 0.75rem;
 	letter-spacing: 0.04em;
 	color: var(--ink-2);
@@ -379,7 +374,8 @@ ol {
 	position: absolute;
 	left: 12px;
 	bottom: 10px;
-	font-family: var(--font-mono);
+	font-family: var(--font-label);
+	font-weight: 500;
 	font-size: 0.6875rem;
 	letter-spacing: 0.06em;
 	text-transform: uppercase;

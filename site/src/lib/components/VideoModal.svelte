@@ -36,7 +36,7 @@
 	>
 		<source src="/video/huis-hinterglemm-720.mp4" type="video/mp4" />
 	</video>
-	<p class="mono">Beelden en muziek zijn AI-voorbeelden tot er echte opnames zijn.</p>
+	<p class="meta">Beelden en muziek zijn AI-voorbeelden tot er echte opnames zijn.</p>
 </dialog>
 
 <style>
@@ -76,7 +76,7 @@
 		color: var(--snow);
 		cursor: pointer;
 	}
-	.mono {
+	.meta {
 		padding: 10px 14px;
 		font-size: 0.6875rem;
 		color: var(--ink-3);

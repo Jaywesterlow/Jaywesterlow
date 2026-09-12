@@ -110,7 +110,8 @@
 		stroke-width: 1;
 	}
 	.tick {
-		font-family: var(--font-mono);
+		font-family: var(--font-label);
+		font-weight: 500;
 		font-size: 12px;
 		fill: var(--stone-2);
 	}
@@ -173,7 +174,8 @@
 		fill: var(--snow);
 	}
 	.tipb {
-		font-family: var(--font-mono);
+		font-family: var(--font-label);
+		font-weight: 500;
 		font-size: 11px;
 		fill: var(--ice);
 	}

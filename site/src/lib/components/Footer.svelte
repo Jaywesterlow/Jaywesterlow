@@ -77,7 +77,7 @@
 				>
 			</div>
 		</div>
-		<div class="legal mono">
+		<div class="legal meta">
 			<span>© {year} {site.name} · {site.kvk}</span>
 			<span
 				><a href={DEMO}>Privacy</a> · <a href={DEMO}>Huisregels</a> ·

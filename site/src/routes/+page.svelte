@@ -205,7 +205,7 @@
 						<div class="body">
 							<div class="row">
 								<h3>{a.name}</h3>
-								<span class="mono">{a.liftMeters} m → lift</span>
+								<span class="meta">{a.liftMeters} m → lift</span>
 							</div>
 							<ul class="pills">
 								<li class="pill">{a.sleeps} pers.</li>
@@ -220,7 +220,7 @@
 					</a>
 				{/each}
 			</div>
-			<p class="mono muted note">
+			<p class="meta muted note">
 				Prijzen per week, alles inbegrepen behalve toeristenbelasting. Seizoenstabel onder
 				“Prijzen”.
 			</p>
@@ -234,13 +234,13 @@
 					<h2>300 meter lopen, dan 750 meter omhoog.</h2>
 					<p class="sub">
 						Geen skibus, geen parkeerplaats zoeken. Om negen uur sta je op ruim 1.800 meter.
-						<span class="mono">[hoogtes verifiëren]</span>
+						<span class="meta">[hoogtes verifiëren]</span>
 					</p>
 				</div>
 				<div class="chart">
 					<div class="row">
 						<span class="label">Hoogteprofiel · afstand vanaf de voordeur</span>
-						<span class="mono muted">hover: hoogte + looptijd</span>
+						<span class="meta muted">hover: hoogte + looptijd</span>
 					</div>
 					<Elevation />
 				</div>
@@ -288,19 +288,19 @@
 				<div class="bar-wrap" use:reveal>
 					<div class="row">
 						<span class="label">Pistekilometers per kleur</span>
-						<span class="mono muted">{facts.pistes} km totaal</span>
+						<span class="meta muted">{facts.pistes} km totaal</span>
 					</div>
 					<div class="bar">
 						<div class="b" style:width={pct(facts.blue)}></div>
 						<div class="r" style:width={pct(facts.red)}></div>
 						<div class="k" style:width={pct(facts.black)}></div>
 					</div>
-					<div class="legend mono">
+					<div class="legend meta">
 						<span><i class="b"></i>blauw {facts.blue} km</span>
 						<span><i class="r"></i>rood {facts.red} km</span>
 						<span><i class="k"></i>zwart {facts.black} km</span>
 					</div>
-					<p class="mono src">Cijfers: saalbach.com, {facts.checked}.</p>
+					<p class="meta src">Cijfers: saalbach.com, {facts.checked}.</p>
 				</div>
 			</div>
 			<div class="three">
@@ -359,7 +359,7 @@
 				{#each seasons as [name, dates, key] (key)}
 					<div class="tr" role="row">
 						<b role="cell">{name}</b>
-						<span role="cell" class="mono muted dates">{dates}</span>
+						<span role="cell" class="meta muted dates">{dates}</span>
 						{#each apartments as a (a.slug)}
 							<b role="cell" class="num amount"
 								><span class="apt-m">{a.name} </span>{euro(a.price[key])}</b
@@ -501,7 +501,7 @@
 				<button type="submit" class="btn primary"
 					>Stuur aanvraag <Icon name="arrow" size={18} /></button
 				>
-				<span class="mono muted">Binnen 24 uur antwoord. Geen account, geen betaling nu.</span>
+				<span class="meta muted">Binnen 24 uur antwoord. Geen account, geen betaling nu.</span>
 			</form>
 		</section>
 
@@ -565,7 +565,8 @@
 		transform: translateY(calc(var(--p, 0) * -40px));
 	}
 	.kicker {
-		font-family: var(--font-mono);
+		font-family: var(--font-label);
+		font-weight: 500;
 		font-size: 0.75rem;
 		letter-spacing: 0.08em;
 		text-transform: uppercase;
@@ -991,7 +992,8 @@
 	.tr.th {
 		border-top: 0;
 		padding: 0 0 12px;
-		font-family: var(--font-mono);
+		font-family: var(--font-label);
+		font-weight: 500;
 		font-size: var(--fs-label);
 		letter-spacing: 0.08em;
 		text-transform: uppercase;
@@ -1265,7 +1267,7 @@
 		border-color: var(--piste);
 		outline: none;
 	}
-	.form .mono {
+	.form .meta {
 		font-size: 0.75rem;
 	}
 	@media (max-width: 900px) {

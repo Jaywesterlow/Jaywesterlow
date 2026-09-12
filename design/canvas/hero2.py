@@ -83,8 +83,8 @@ def make(ctx):
         line = 'M'+' L'.join(f'{X(d):.1f},{Y(a):.1f}' for d,a in pts)
         area = line + f' L{X(2600):.1f},{Y(1000):.1f} L{X(0):.1f},{Y(1000):.1f} Z'
         walk = f'M{X(0):.1f},{Y(1060):.1f} L{X(300):.1f},{Y(1070):.1f}'
-        grid = ''.join(f'<line x1="{pl}" x2="{W-pr}" y1="{Y(a):.1f}" y2="{Y(a):.1f}" stroke="var(--stone)" stroke-width="1"/><text x="{pl-8}" y="{Y(a)+4:.1f}" text-anchor="end" font-family="JetBrains Mono" font-size="12" fill="var(--stone-2)">{a}</text>' for a in (1000,1300,1600,1900))
-        xt = ''.join(f'<text x="{X(d):.1f}" y="{H-pb+18}" text-anchor="middle" font-family="JetBrains Mono" font-size="12" fill="var(--stone-2)">{lbl}</text>' for d,lbl in ((0,'0 m'),(300,'300 m'),(1300,'1,3 km'),(2600,'2,6 km')))
+        grid = ''.join(f'<line x1="{pl}" x2="{W-pr}" y1="{Y(a):.1f}" y2="{Y(a):.1f}" stroke="var(--stone)" stroke-width="1"/><text x="{pl-8}" y="{Y(a)+4:.1f}" text-anchor="end" font-family="Instrument Sans" font-weight="500" font-size="12" fill="var(--stone-2)">{a}</text>' for a in (1000,1300,1600,1900))
+        xt = ''.join(f'<text x="{X(d):.1f}" y="{H-pb+18}" text-anchor="middle" font-family="Instrument Sans" font-weight="500" font-size="12" fill="var(--stone-2)">{lbl}</text>' for d,lbl in ((0,'0 m'),(300,'300 m'),(1300,'1,3 km'),(2600,'2,6 km')))
         mark = lambda d,a,label,dy=-14,anchor='start',dx=0: f'<circle cx="{X(d):.1f}" cy="{Y(a):.1f}" r="5" fill="var(--snow)" stroke="var(--piste)" stroke-width="2"/><text x="{X(d)+dx+(8 if anchor=="start" else -8):.1f}" y="{Y(a)+dy:.1f}" text-anchor="{anchor}" font-family="Instrument Sans" font-size="14" font-weight="600" fill="var(--ink)">{label}</text>'
         return f'''<svg viewBox="0 0 {W} {H}" style="width:100%;height:auto" role="img" aria-label="Hoogteprofiel van de voordeur tot het bergstation">
           {grid}

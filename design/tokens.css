@@ -17,14 +17,14 @@
   /* type */
   --font-display: "Bricolage Grotesque", "Arial Narrow", Impact, sans-serif;
   --font-body:    "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
-  --font-mono:    "JetBrains Mono", "SF Mono", Menlo, Consolas, monospace;  /* labels 600, meta 500 */
+  --font-label:   var(--font-body);   /* labels 700 caps tracked, meta 500. No mono. */
   --fs-display: clamp(2.75rem, 1.5rem + 5.5vw, 6.5rem);
   --fs-h1:      clamp(2.25rem, 1.4rem + 3.5vw, 4.25rem);
   --fs-h2:      clamp(1.75rem, 1.25rem + 2vw,   2.75rem);
   --fs-h3:      clamp(1.25rem, 1.1rem + 0.6vw,  1.5rem);
   --fs-body:    1.0625rem;
   --fs-small:   0.9375rem;
-  --fs-label:   0.75rem;      /* mono, uppercase, tracking .08em */
+  --fs-label:   0.75rem;      /* uppercase, tracking .08em, 700 */
   --fs-floor:   0.75rem;      /* 12px hard minimum in production */
   --lh-tight: 0.95; --lh-snug: 1.15; --lh-body: 1.55;
   --track-display: -0.03em; --track-label: 0.08em;

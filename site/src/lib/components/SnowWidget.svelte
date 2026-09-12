@@ -49,7 +49,8 @@
 	}
 	.src,
 	.sub {
-		font-family: var(--font-mono);
+		font-family: var(--font-label);
+		font-weight: 500;
 		font-size: 0.6875rem;
 		color: var(--ice);
 	}
