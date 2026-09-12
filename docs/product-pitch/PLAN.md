@@ -1,6 +1,6 @@
 # Product Pitch Plan — brand, site, content, before first contact
 
-Status: **Phases 0–1 done, Phase 2–4 design v1 on the canvas (2026-09-12). No build yet.** Canvas: https://claude.ai/code/artifact/cacb6c3a-5b0e-4032-b741-618a1cf0f1f1
+Status: **Phases 0–4 done, Phase 5 build of Landing v3 live in `site/` (2026-09-12).** Deploys from this repo via Vercel project `huis-hinterglemm` (root `site`). Canvas: https://claude.ai/code/artifact/cacb6c3a-5b0e-4032-b741-618a1cf0f1f1
 Working rule: **design system → design → your approval → build.** Every phase ends at a gate you sign off. Nothing crosses a gate without your yes.
 
 ---
