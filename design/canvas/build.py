@@ -446,6 +446,9 @@ def carousel_boards():
     return tile_board('Carrousel · cover', cover, 'Cover = leesbare tegel in het raster. Voortgangsbalk op elke slide, laatste slide zonder pijl.', 360, 450), tile_board('Carrousel · slide', slide, 'Slides wisselen snow / snow-2 / ink voor ritme. Nummer in pisteblauw mono.', 360, 450)
 
 # --- build ---------------------------------------------------------------
+import hero as _hero
+HERO_FILES = _hero.make({'doc':doc,'nav':nav,'ridge_svg':ridge_svg,'svgfile':svgfile,'icon':icon,'ridge_path':ridge_path})
+
 files = {
   'LogoA.dc.html': logo_board('a-venster','A · Venster','Huis en berg in één teken: een raam met twee toppen erin. Leest op 16 px, werkt als app-icoon en favicon, blauwe zon als accent.','Rasterachtig; met te veel stroke voelt het als een spreadsheet-icoon. Wordmark op twee regels vraagt ruimte.'),
   'LogoB.dc.html': logo_board('b-dak','B · Dak','Eén doorlopende dunne lijn: gevel wordt bergkam. Zelfde lijn als de signatuur op de site en in het Instagram-raster. Strak, technisch, leest als een pistekaart.','Dunne lijn vraagt ruimte op kleine maat (favicon = dikkere variant). Blauwe deur is het enige kleuraccent.'),
@@ -467,6 +470,7 @@ files = {
 c1, c2 = carousel_boards()
 files['CarrouselCover.dc.html'] = c1
 files['CarrouselSlide.dc.html'] = c2
+files.update(HERO_FILES)
 
 for name, html in files.items():
     open(os.path.join(HERE, name), 'w').write(html)
@@ -498,14 +502,15 @@ artboards = [
   ab('Story.dc.html', 1920, 1240, 400, 759, 'instagram', 'Story'),
 ]
 canvas = {
-  'pages': [{'id':'merk','name':'Merk'},{'id':'website','name':'Website'},{'id':'instagram','name':'Instagram'}],
-  'artboards': artboards,
+  'pages': [{'id':'hero','name':'Hero-concepten'},{'id':'merk','name':'Merk'},{'id':'website','name':'Website'},{'id':'instagram','name':'Instagram'}],
+  'artboards': artboards + _hero.artboards(ab),
   'annotations': [
+    *[{'id':i,'x':x,'y':y,'w':640,'page':'hero','text':t} for i,x,y,t in _hero.NOTES],
     {'id':'n-merk','x':0,'y':-160,'w':520,'page':'merk','text':'v2: ski-palet (wit, gletsjer, piste, nacht). Logo B strakker (dunne lijn, scherpe hoeken); mockups gebruiken nu B. Alle wordmarks zijn echte vectorpaden (design/brand/logos).'},
     {'id':'n-web','x':0,'y':-160,'w':560,'page':'website','text':'Alle teksten zijn placeholder (docs/product-pitch/00-brief.md). Grijze vlakken = foto-slots met shotlist-label. [haakjes] = feiten die van de klant moeten komen.'},
     {'id':'n-ig','x':0,'y':-160,'w':560,'page':'instagram','text':'Optie a: elke tegel leesbaar op zichzelf, bergkam als achtergrondlaag over 2×3. Tegels zijn HTML, export 1080×1350 via Playwright.'},
   ],
-  'launch': {'view':'canvas','page':'merk'},
+  'launch': {'view':'canvas','page':'hero'},
 }
 json.dump(canvas, open(os.path.join(HERE,'canvas.json'),'w'), indent=1, ensure_ascii=False)
 print('wrote', len(files), 'artboards')

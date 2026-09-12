@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&amp;family=Instrument+Sans:ital,wght@0,400..700;1,400..700&amp;family=Geist+Mono:wght@400;500;600&amp;display=swap">
+  <style>
+:root{--snow:oklch(0.985 0.004 240);--snow-2:oklch(0.945 0.020 230);--stone:oklch(0.87 0.030 235);--stone-2:oklch(0.56 0.035 250);
+--ink:oklch(0.24 0.050 255);--ink-2:oklch(0.38 0.045 255);--ink-3:oklch(0.74 0.035 245);--piste:oklch(0.56 0.160 250);--piste-2:oklch(0.48 0.160 250);--ice:oklch(0.82 0.070 225);
+--glacier:oklch(0.930 0.035 228);--glacier-2:oklch(0.80 0.06 228);
+--fd:"Bricolage Grotesque","Arial Narrow",sans-serif;--fb:"Instrument Sans","Helvetica Neue",Arial,sans-serif;--fm:"Geist Mono","SF Mono",Menlo,monospace;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--snow);color:var(--ink);font-family:var(--fb);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:var(--ink);text-decoration:none} a:hover{color:var(--piste)}
+h1,h2,h3,.display{font-family:var(--fd);font-weight:700;letter-spacing:-0.03em;line-height:0.95;margin:0;text-wrap:balance}
+h2{font-size:34px;line-height:1.02} h3{font-size:22px;line-height:1.1;letter-spacing:-0.02em;font-weight:600}
+p{margin:0}
+.label{font-family:var(--fm);font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:var(--stone-2);font-weight:500}
+.mono{font-family:var(--fm);font-size:13px;letter-spacing:0.01em}
+.muted{color:var(--stone-2)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:52px;padding:0 22px;border-radius:4px;font-weight:600;font-size:16px;line-height:1;white-space:nowrap;border:1.5px solid transparent}
+.btn.primary{background:var(--piste);color:#fff} .btn.secondary{background:transparent;color:var(--ink);border-color:var(--ink)} .btn.ghost{background:transparent;color:var(--ink);padding:0;height:auto;border:0;border-bottom:1.5px solid var(--ink);border-radius:0}
+.btn.sm{height:44px;padding:0 16px;font-size:15px}
+.hair{border-top:1px solid var(--stone)}
+.card{background:var(--snow-2);border-radius:12px;overflow:hidden}
+.photo{position:relative;background:var(--snow-2);background-image:repeating-linear-gradient(135deg,transparent 0 14px,oklch(0.90 0.030 230) 14px 15px);overflow:hidden}
+.photo .cap{position:absolute;left:12px;bottom:10px;font-family:var(--fm);font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink-2);background:var(--snow);padding:4px 8px;border-radius:3px}
+.pill{display:inline-flex;align-items:center;height:28px;padding:0 10px;border-radius:999px;border:1px solid var(--stone);font-family:var(--fm);font-size:12px;letter-spacing:0.04em;color:var(--ink-2);background:var(--snow)}
+.facts{display:grid;gap:0;border-top:1px solid var(--stone);border-bottom:1px solid var(--stone)}
+.fact{padding:14px 0;display:flex;flex-direction:column;gap:4px;border-right:1px solid var(--stone);padding-right:14px}
+.fact:last-child{border-right:0}
+.fact b{font-family:var(--fd);font-weight:700;font-size:24px;letter-spacing:-0.02em;line-height:1}
+.input{height:52px;border:1.5px solid var(--stone);border-radius:4px;background:#fff;padding:0 14px;display:flex;align-items:center;color:var(--stone-2);font-size:16px}
+.ridge{display:block;width:100%;height:auto}
+.dark{background:var(--ink);color:var(--snow)} .dark .label{color:var(--ink-3)} .dark .muted{color:var(--ink-3)} .dark .hair{border-color:oklch(0.36 0.05 255)} .dark a{color:var(--snow)}
+.spruce{background:var(--glacier);color:var(--ink)} .spruce .label{color:var(--stone-2)} .spruce .hair{border-color:var(--glacier-2)}
+.ico{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;flex:none}
+</style>
+</helmet>
+<div style="width:1440px;background:var(--snow);min-height:100%;display:flex;flex-direction:column;">
+<div style="position:relative;width:1440px;height:900px;overflow:hidden;background:var(--snow)"><span class="mono" style="position:absolute;left:50%;bottom:8px;transform:translateX(-50%);z-index:20;background:var(--ink);color:var(--snow);padding:6px 10px;border-radius:999px;font-size:11px;border:1px solid var(--snow)">scroll 50%</span><div style="position:absolute;left:48px;top:96px;display:flex;flex-direction:column;gap:20px;max-width:560px"><span class="label">Hinterglemm · Salzburgerland · Oostenrijk</span><h1 class="display" style="font-size:96px">Wakker worden aan de piste.</h1></div><div style="position:absolute;left:660px;top:64px;width:732px;height:560px;border-radius:16px;overflow:hidden"><img src="01-piste-ochtend.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"></div><div style="position:absolute;left:48px;right:48px;bottom:40px"><svg viewBox="0 0 1200 300" preserveAspectRatio="none" style="width:100%;height:180px" aria-hidden="true"><path d="M0,230 L90,190 L150,205 L230,120 L300,150 L360,95 L420,140 L470,125 L540,60 L600,110" fill="none" stroke="var(--ink)" stroke-width="2" vector-effect="non-scaling-stroke" stroke-linejoin="round" stroke-linecap="round"/></svg></div></div>
+</div>
+</x-dc>
+</body>
+</html>

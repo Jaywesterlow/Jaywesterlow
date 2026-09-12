@@ -1,6 +1,10 @@
 {
  "pages": [
   {
+   "id": "hero",
+   "name": "Hero-concepten"
+  },
+  {
    "id": "merk",
    "name": "Merk"
   },
@@ -175,9 +179,185 @@
    "h": 759,
    "page": "instagram",
    "title": "Story"
+  },
+  {
+   "file": "HeroA0.dc.html",
+   "x": 0,
+   "y": 0,
+   "w": 1440,
+   "h": 924,
+   "page": "hero",
+   "title": "A · Kaart · scroll 0%"
+  },
+  {
+   "file": "HeroA1.dc.html",
+   "x": 1520,
+   "y": 0,
+   "w": 1440,
+   "h": 924,
+   "page": "hero",
+   "title": "A · Kaart · scroll 50%"
+  },
+  {
+   "file": "HeroA2.dc.html",
+   "x": 3040,
+   "y": 0,
+   "w": 1440,
+   "h": 924,
+   "page": "hero",
+   "title": "A · Kaart · scroll 100%"
+  },
+  {
+   "file": "HeroAMobiel.dc.html",
+   "x": 4560,
+   "y": 0,
+   "w": 390,
+   "h": 868,
+   "page": "hero",
+   "title": "A · Kaart · mobiel"
+  },
+  {
+   "file": "HeroB0.dc.html",
+   "x": 0,
+   "y": 1100,
+   "w": 1440,
+   "h": 924,
+   "page": "hero",
+   "title": "B · Van de deur naar de lift · scroll 0%"
+  },
+  {
+   "file": "HeroB1.dc.html",
+   "x": 1520,
+   "y": 1100,
+   "w": 1440,
+   "h": 924,
+   "page": "hero",
+   "title": "B · Van de deur naar de lift · scroll 50%"
+  },
+  {
+   "file": "HeroB2.dc.html",
+   "x": 3040,
+   "y": 1100,
+   "w": 1440,
+   "h": 924,
+   "page": "hero",
+   "title": "B · Van de deur naar de lift · scroll 100%"
+  },
+  {
+   "file": "HeroBMobiel.dc.html",
+   "x": 4560,
+   "y": 1100,
+   "w": 390,
+   "h": 868,
+   "page": "hero",
+   "title": "B · Van de deur naar de lift · mobiel"
+  },
+  {
+   "file": "HeroC0.dc.html",
+   "x": 0,
+   "y": 2200,
+   "w": 1440,
+   "h": 924,
+   "page": "hero",
+   "title": "C · Lagen · scroll 0%"
+  },
+  {
+   "file": "HeroC1.dc.html",
+   "x": 1520,
+   "y": 2200,
+   "w": 1440,
+   "h": 924,
+   "page": "hero",
+   "title": "C · Lagen · scroll 50%"
+  },
+  {
+   "file": "HeroC2.dc.html",
+   "x": 3040,
+   "y": 2200,
+   "w": 1440,
+   "h": 924,
+   "page": "hero",
+   "title": "C · Lagen · scroll 100%"
+  },
+  {
+   "file": "HeroCMobiel.dc.html",
+   "x": 4560,
+   "y": 2200,
+   "w": 390,
+   "h": 868,
+   "page": "hero",
+   "title": "C · Lagen · mobiel"
+  },
+  {
+   "file": "HeroD0.dc.html",
+   "x": 0,
+   "y": 3300,
+   "w": 1440,
+   "h": 924,
+   "page": "hero",
+   "title": "D · Masker · scroll 0%"
+  },
+  {
+   "file": "HeroD1.dc.html",
+   "x": 1520,
+   "y": 3300,
+   "w": 1440,
+   "h": 924,
+   "page": "hero",
+   "title": "D · Masker · scroll 50%"
+  },
+  {
+   "file": "HeroD2.dc.html",
+   "x": 3040,
+   "y": 3300,
+   "w": 1440,
+   "h": 924,
+   "page": "hero",
+   "title": "D · Masker · scroll 100%"
+  },
+  {
+   "file": "HeroDMobiel.dc.html",
+   "x": 4560,
+   "y": 3300,
+   "w": 390,
+   "h": 868,
+   "page": "hero",
+   "title": "D · Masker · mobiel"
   }
  ],
  "annotations": [
+  {
+   "id": "n-hero-a",
+   "x": 0,
+   "y": -140,
+   "w": 640,
+   "page": "hero",
+   "text": "A · Kaart. Full-bleed foto (later: video-loop) vouwt bij scrollen op tot een kaart rechts; de kop schuift naar links, de bergkam tekent onder de naad. CSS scroll-driven animation, geen JS nodig, statische fallback. Laagste risico, video-loop past er 1-op-1 in."
+  },
+  {
+   "id": "n-hero-b",
+   "x": 0,
+   "y": 960,
+   "w": 640,
+   "page": "hero",
+   "text": "B · Van de deur naar de lift. POV-video scrubt met scroll: 0 → 250 m, teller telt mee, aan het eind verschijnt de CTA. Het merkbelofte-verhaal in één beweging. Vraagt een echte POV-opname (of Veo image-to-video) en frame-sequentie voor iOS; fallback = poster + fade."
+  },
+  {
+   "id": "n-hero-c",
+   "x": 0,
+   "y": 2060,
+   "w": 640,
+   "page": "hero",
+   "text": "C · Lagen. Vectorbergen in merkblauw schuiven met verschillende snelheid; het huis-silhouet uit het logo groeit en “landt” linksboven als logo. Geen foto nodig, werkt overal, extreem licht. Nadeel: minder emotie dan een foto, en parallax is bekend terrein."
+  },
+  {
+   "id": "n-hero-d",
+   "x": 0,
+   "y": 3160,
+   "w": 640,
+   "page": "hero",
+   "text": "D · Masker. De foto zit in de huisvorm van het logo en groeit bij scrollen tot full-bleed; de kop blijft staan tot het beeld eroverheen schuift. clip-path animatie, werkt met foto én video. Sterk merkmoment, iets meer ontwikkelwerk dan A."
+  },
   {
    "id": "n-merk",
    "x": 0,
@@ -205,6 +385,6 @@
  ],
  "launch": {
   "view": "canvas",
-  "page": "merk"
+  "page": "hero"
  }
 }
