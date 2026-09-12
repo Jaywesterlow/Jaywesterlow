@@ -14,7 +14,7 @@ Working name for the wintersport-apartments pitch. Everything here is placeholde
 
 ## System in one paragraph
 
-Cool white and glacier-blue surfaces, night-blue text, piste blue for actions and the logo door. Skiing first: hero and host photos are on the piste, apartment photos are interiors. Bricolage Grotesque for display (tight, wide, 700), Instrument Sans for body, Geist Mono for facts and labels so the site reads like an honest spec sheet: metres to the lift, m², persons, price per week. One signature graphic: a continuous ridge line, used on the site, in the footer and as the background layer across Instagram tiles. No drop shadows, one hairline, radius 4 on controls and 12 on cards. Photos are placeholder frames with a shot-list label until real photos exist.
+Cool white and glacier-blue surfaces, night-blue text, piste blue for actions and the logo door. Skiing first: hero and host photos are on the piste, apartment photos are interiors. Bricolage Grotesque for display (tight, wide, 700), Instrument Sans for body, JetBrains Mono for facts and labels so the site reads like an honest spec sheet: metres to the lift, m², persons, price per week. One signature graphic: a continuous ridge line, used on the site, in the footer and as the background layer across Instagram tiles. No drop shadows, one hairline, radius 4 on controls and 12 on cards. Photos are placeholder frames with a shot-list label until real photos exist.
 
 ## Instagram tiles
 

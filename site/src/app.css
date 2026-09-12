@@ -13,9 +13,9 @@
 	font-display: swap;
 }
 @font-face {
-	font-family: 'Geist Mono';
-	src: url('/fonts/geistmono.woff2') format('woff2');
-	font-weight: 300 700;
+	font-family: 'JetBrains Mono';
+	src: url('/fonts/jetbrainsmono.woff2') format('woff2');
+	font-weight: 400 800;
 	font-display: swap;
 }
 
@@ -37,7 +37,7 @@
 	/* type */
 	--font-display: 'Bricolage Grotesque', 'Arial Narrow', Impact, sans-serif;
 	--font-body: 'Instrument Sans', 'Helvetica Neue', Arial, sans-serif;
-	--font-mono: 'Geist Mono', 'SF Mono', Menlo, Consolas, monospace;
+	--font-mono: 'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace;
 	--fs-display: clamp(2.75rem, 1.5rem + 5.5vw, 6.5rem);
 	--fs-h1: clamp(2.25rem, 1.4rem + 3.5vw, 4.25rem);
 	--fs-h2: clamp(1.75rem, 1.25rem + 2vw, 3.25rem);
@@ -177,12 +177,13 @@ ol {
 	letter-spacing: 0.08em;
 	text-transform: uppercase;
 	color: var(--stone-2);
-	font-weight: 500;
+	font-weight: 600;
 }
 .mono {
 	font-family: var(--font-mono);
 	font-size: 0.8125rem;
 	letter-spacing: 0.01em;
+	font-weight: 500;
 }
 .muted {
 	color: var(--stone-2);

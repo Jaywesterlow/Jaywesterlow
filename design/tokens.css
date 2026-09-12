@@ -17,7 +17,7 @@
   /* type */
   --font-display: "Bricolage Grotesque", "Arial Narrow", Impact, sans-serif;
   --font-body:    "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
-  --font-mono:    "Geist Mono", "SF Mono", Menlo, Consolas, monospace;
+  --font-mono:    "JetBrains Mono", "SF Mono", Menlo, Consolas, monospace;  /* labels 600, meta 500 */
   --fs-display: clamp(2.75rem, 1.5rem + 5.5vw, 6.5rem);
   --fs-h1:      clamp(2.25rem, 1.4rem + 3.5vw, 4.25rem);
   --fs-h2:      clamp(1.75rem, 1.25rem + 2vw,   2.75rem);
