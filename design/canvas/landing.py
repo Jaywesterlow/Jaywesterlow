@@ -131,8 +131,8 @@ def make(ctx, P):
     # 9 · hosts + story card
     def hosts(m):
         story = f'''<a href="#" class="card" style="position:relative;display:flex;flex-direction:column;justify-content:flex-end;min-height:{"280px" if m else "100%"};color:var(--snow);background:var(--ink)">
-          {img("09-pov-deur.jpg","opacity:.55")}<div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,oklch(0.24 0.05 255 / 0.85) 100%)"></div>
-          <div style="position:relative;padding:24px;display:flex;flex-direction:column;gap:10px"><span class="label" style="color:var(--ice)">Video · 0:32</span><h3 style="font-size:{"24px" if m else "28px"}">Van de deur naar de lift, in één take.</h3><span style="display:inline-flex;align-items:center;gap:8px;font-weight:600">{ico("play",18)} Bekijk de route</span></div></a>'''
+          {img("12-aerial-dorp.jpg","opacity:.7")}<div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,oklch(0.24 0.05 255 / 0.85) 100%)"></div>
+          <div style="position:relative;padding:24px;display:flex;flex-direction:column;gap:10px"><span class="label" style="color:var(--ice)">Video · 0:24</span><h3 style="font-size:{"24px" if m else "28px"}">Hinterglemm van boven, op een ochtend in januari.</h3><span style="display:inline-flex;align-items:center;gap:8px;font-weight:600">{ico("play",18)} Bekijk de video</span></div></a>'''
         return f'''<section style="padding:{pad(m)};display:grid;grid-template-columns:{"1fr" if m else "1.4fr 1fr"};gap:{"20px" if m else "32px"}">
           <div class="card" style="display:grid;grid-template-columns:{"1fr" if m else "1fr 1.2fr"};background:var(--glacier)">
             <div style="position:relative;height:{"240px" if m else "auto"};min-height:{"240px" if m else "420px"}">{img("02-gondel.jpg")}<span style="position:absolute;left:12px;bottom:10px;font-family:var(--fm);font-size:10px;letter-spacing:.06em;text-transform:uppercase;background:var(--snow);color:var(--ink-2);padding:4px 8px;border-radius:3px">[host] · voorbeeld (ai)</span></div>
