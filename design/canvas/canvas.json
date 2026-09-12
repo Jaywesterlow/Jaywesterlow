@@ -1,0 +1,210 @@
+{
+ "pages": [
+  {
+   "id": "merk",
+   "name": "Merk"
+  },
+  {
+   "id": "website",
+   "name": "Website"
+  },
+  {
+   "id": "instagram",
+   "name": "Instagram"
+  }
+ ],
+ "artboards": [
+  {
+   "file": "LogoA.dc.html",
+   "x": 0,
+   "y": 0,
+   "w": 760,
+   "h": 766,
+   "page": "merk",
+   "title": "Logo A · Venster"
+  },
+  {
+   "file": "LogoB.dc.html",
+   "x": 840,
+   "y": 0,
+   "w": 760,
+   "h": 789,
+   "page": "merk",
+   "title": "Logo B · Dak"
+  },
+  {
+   "file": "LogoC.dc.html",
+   "x": 1680,
+   "y": 0,
+   "w": 760,
+   "h": 766,
+   "page": "merk",
+   "title": "Logo C · HH"
+  },
+  {
+   "file": "Tokens.dc.html",
+   "x": 0,
+   "y": 900,
+   "w": 1240,
+   "h": 1104,
+   "page": "merk",
+   "title": "Design system"
+  },
+  {
+   "file": "Main.dc.html",
+   "x": 0,
+   "y": 0,
+   "w": 390,
+   "h": 7414,
+   "page": "website",
+   "title": "Home · mobiel"
+  },
+  {
+   "file": "HomeDesktop.dc.html",
+   "x": 480,
+   "y": 0,
+   "w": 1440,
+   "h": 5617,
+   "page": "website",
+   "title": "Home · desktop"
+  },
+  {
+   "file": "AppartementMobiel.dc.html",
+   "x": 0,
+   "y": 7574,
+   "w": 390,
+   "h": 3472,
+   "page": "website",
+   "title": "Appartement · mobiel"
+  },
+  {
+   "file": "AppartementDesktop.dc.html",
+   "x": 480,
+   "y": 7574,
+   "w": 1440,
+   "h": 2757,
+   "page": "website",
+   "title": "Appartement · desktop"
+  },
+  {
+   "file": "Aanvraag.dc.html",
+   "x": 2010,
+   "y": 0,
+   "w": 390,
+   "h": 1728,
+   "page": "website",
+   "title": "Aanvraag · mobiel"
+  },
+  {
+   "file": "AltDense.dc.html",
+   "x": 2010,
+   "y": 1888,
+   "w": 600,
+   "h": 354,
+   "page": "website",
+   "title": "Alt · spec-sheet (lo-fi)"
+  },
+  {
+   "file": "AltPhoto.dc.html",
+   "x": 2010,
+   "y": 2448,
+   "w": 600,
+   "h": 300,
+   "page": "website",
+   "title": "Alt · full-bleed foto (lo-fi)"
+  },
+  {
+   "file": "Raster.dc.html",
+   "x": 0,
+   "y": 0,
+   "w": 384,
+   "h": 953,
+   "page": "instagram",
+   "title": "Profiel · raster"
+  },
+  {
+   "file": "Compositie.dc.html",
+   "x": 480,
+   "y": 0,
+   "w": 1136,
+   "h": 1066,
+   "page": "instagram",
+   "title": "Compositie 2×3"
+  },
+  {
+   "file": "TegelEnkel.dc.html",
+   "x": 0,
+   "y": 1093,
+   "w": 400,
+   "h": 591,
+   "page": "instagram",
+   "title": "Tegel · enkel"
+  },
+  {
+   "file": "CarrouselCover.dc.html",
+   "x": 480,
+   "y": 1200,
+   "w": 400,
+   "h": 591,
+   "page": "instagram",
+   "title": "Carrousel · cover"
+  },
+  {
+   "file": "CarrouselSlide.dc.html",
+   "x": 960,
+   "y": 1200,
+   "w": 400,
+   "h": 591,
+   "page": "instagram",
+   "title": "Carrousel · slide"
+  },
+  {
+   "file": "Reel.dc.html",
+   "x": 1440,
+   "y": 1200,
+   "w": 400,
+   "h": 781,
+   "page": "instagram",
+   "title": "Reel · cover"
+  },
+  {
+   "file": "Story.dc.html",
+   "x": 1920,
+   "y": 1200,
+   "w": 400,
+   "h": 735,
+   "page": "instagram",
+   "title": "Story"
+  }
+ ],
+ "annotations": [
+  {
+   "id": "n-merk",
+   "x": 0,
+   "y": -160,
+   "w": 520,
+   "page": "merk",
+   "text": "Drie logorichtingen voor Huis Hinterglemm. Kies er één; de site-mockups gebruiken voorlopig A. Alle wordmarks zijn echte vectorpaden (design/brand/logos)."
+  },
+  {
+   "id": "n-web",
+   "x": 0,
+   "y": -160,
+   "w": 560,
+   "page": "website",
+   "text": "Alle teksten zijn placeholder (docs/product-pitch/00-brief.md). Grijze vlakken = foto-slots met shotlist-label. [haakjes] = feiten die van de klant moeten komen."
+  },
+  {
+   "id": "n-ig",
+   "x": 0,
+   "y": -160,
+   "w": 560,
+   "page": "instagram",
+   "text": "Optie a: elke tegel leesbaar op zichzelf, bergkam als achtergrondlaag over 2×3. Tegels zijn HTML, export 1080×1350 via Playwright."
+  }
+ ],
+ "launch": {
+  "view": "canvas",
+  "page": "merk"
+ }
+}

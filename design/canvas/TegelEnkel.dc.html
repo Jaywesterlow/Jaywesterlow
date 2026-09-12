@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&amp;family=Instrument+Sans:ital,wght@0,400..700;1,400..700&amp;family=Geist+Mono:wght@400;500;600&amp;display=swap">
+  <style>
+:root{--snow:oklch(0.975 0.006 80);--snow-2:oklch(0.945 0.010 80);--stone:oklch(0.86 0.012 80);--stone-2:oklch(0.62 0.02 70);
+--ink:oklch(0.25 0.025 260);--ink-2:oklch(0.36 0.02 260);--ink-3:oklch(0.70 0.02 260);--orange:oklch(0.66 0.19 42);--orange-2:oklch(0.59 0.185 42);
+--spruce:oklch(0.40 0.07 165);--spruce-2:oklch(0.92 0.03 165);
+--fd:"Bricolage Grotesque","Arial Narrow",sans-serif;--fb:"Instrument Sans","Helvetica Neue",Arial,sans-serif;--fm:"Geist Mono","SF Mono",Menlo,monospace;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--snow);color:var(--ink);font-family:var(--fb);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:var(--ink);text-decoration:none} a:hover{color:var(--orange)}
+h1,h2,h3,.display{font-family:var(--fd);font-weight:700;letter-spacing:-0.03em;line-height:0.95;margin:0;text-wrap:balance}
+h2{font-size:34px;line-height:1.02} h3{font-size:22px;line-height:1.1;letter-spacing:-0.02em;font-weight:600}
+p{margin:0}
+.label{font-family:var(--fm);font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:var(--stone-2);font-weight:500}
+.mono{font-family:var(--fm);font-size:13px;letter-spacing:0.01em}
+.muted{color:var(--stone-2)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:52px;padding:0 22px;border-radius:4px;font-weight:600;font-size:16px;line-height:1;white-space:nowrap;border:1.5px solid transparent}
+.btn.primary{background:var(--orange);color:#fff} .btn.secondary{background:transparent;color:var(--ink);border-color:var(--ink)} .btn.ghost{background:transparent;color:var(--ink);padding:0;height:auto;border:0;border-bottom:1.5px solid var(--ink);border-radius:0}
+.btn.sm{height:44px;padding:0 16px;font-size:15px}
+.hair{border-top:1px solid var(--stone)}
+.card{background:var(--snow-2);border-radius:12px;overflow:hidden}
+.photo{position:relative;background:var(--snow-2);background-image:repeating-linear-gradient(135deg,transparent 0 14px,oklch(0.90 0.012 80) 14px 15px);overflow:hidden}
+.photo .cap{position:absolute;left:12px;bottom:10px;font-family:var(--fm);font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink-2);background:var(--snow);padding:4px 8px;border-radius:3px}
+.pill{display:inline-flex;align-items:center;height:28px;padding:0 10px;border-radius:999px;border:1px solid var(--stone);font-family:var(--fm);font-size:12px;letter-spacing:0.04em;color:var(--ink-2);background:var(--snow)}
+.facts{display:grid;gap:0;border-top:1px solid var(--stone);border-bottom:1px solid var(--stone)}
+.fact{padding:14px 0;display:flex;flex-direction:column;gap:4px;border-right:1px solid var(--stone);padding-right:14px}
+.fact:last-child{border-right:0}
+.fact b{font-family:var(--fd);font-weight:700;font-size:24px;letter-spacing:-0.02em;line-height:1}
+.input{height:52px;border:1.5px solid var(--stone);border-radius:4px;background:#fff;padding:0 14px;display:flex;align-items:center;color:var(--stone-2);font-size:16px}
+.ridge{display:block;width:100%;height:auto}
+.dark{background:var(--ink);color:var(--snow)} .dark .label{color:var(--ink-3)} .dark .muted{color:var(--ink-3)} .dark .hair{border-color:oklch(0.35 0.02 260)} .dark a{color:var(--snow)}
+.spruce{background:var(--spruce);color:var(--snow)} .spruce .label{color:oklch(0.80 0.05 165)} .spruce .hair{border-color:oklch(0.50 0.06 165)}
+.ico{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;flex:none}
+</style>
+</helmet>
+<div style="width:400px;background:var(--snow);min-height:100%;display:flex;flex-direction:column;">
+<div style="padding:20px;display:flex;flex-direction:column;gap:12px;align-items:flex-start"><span class="label">Enkele tegel · aanbieding</span><div style="position:relative;width:360px;height:450px;background:var(--snow);color:var(--ink);overflow:hidden;font-family:var(--fb)">
+  
+  <div style="position:absolute;inset:0;padding:22.0px;display:flex;flex-direction:column;justify-content:space-between">
+    <div style="display:flex;justify-content:space-between;align-items:center"><span class="label" style="font-size:10.0px;color:var(--stone-2)">Aanbieding</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" height="28"><g transform="translate(0,0)"><rect x="4.8" y="4.8" width="118.4" height="118.4" rx="15.36" fill="none" stroke="#1F2430" stroke-width="9.6"/><rect x="59.2" y="4.8" width="9.6" height="118.4" fill="#1F2430"/><rect x="4.8" y="59.2" width="118.4" height="9.6" fill="#1F2430"/><path d="M15.36,48.64 L38.4,20.48 L48.64,48.64 Z" fill="#1F2430"/><path d="M79.36,48.64 L94.72,25.6 L112.64,48.64 Z" fill="#1F2430"/><circle cx="78.08" cy="34.56" r="5.76" fill="#E8651F"/></g></svg></div>
+    <div style="display:flex;flex-direction:column;gap:10.0px"><div class="display" style="font-size:38.0px;line-height:0.95;">Vroegboek­korting tot 1 november</div><p style="font-size:14.0px;line-height:1.35;color:var(--ink-2);max-width:280.0px">10% op alle weken in januari en maart. Aanvragen via de link in bio.</p></div>
+  </div></div><span class="mono muted" style="font-size:11px;max-width:360px">Titel Bricolage 38 px, tag mono, merkteken rechtsboven. Export 1080×1350 met device-scale 3.</span></div>
+</div>
+</x-dc>
+</body>
+</html>

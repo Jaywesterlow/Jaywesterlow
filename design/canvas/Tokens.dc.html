@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&amp;family=Instrument+Sans:ital,wght@0,400..700;1,400..700&amp;family=Geist+Mono:wght@400;500;600&amp;display=swap">
+  <style>
+:root{--snow:oklch(0.975 0.006 80);--snow-2:oklch(0.945 0.010 80);--stone:oklch(0.86 0.012 80);--stone-2:oklch(0.62 0.02 70);
+--ink:oklch(0.25 0.025 260);--ink-2:oklch(0.36 0.02 260);--ink-3:oklch(0.70 0.02 260);--orange:oklch(0.66 0.19 42);--orange-2:oklch(0.59 0.185 42);
+--spruce:oklch(0.40 0.07 165);--spruce-2:oklch(0.92 0.03 165);
+--fd:"Bricolage Grotesque","Arial Narrow",sans-serif;--fb:"Instrument Sans","Helvetica Neue",Arial,sans-serif;--fm:"Geist Mono","SF Mono",Menlo,monospace;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--snow);color:var(--ink);font-family:var(--fb);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:var(--ink);text-decoration:none} a:hover{color:var(--orange)}
+h1,h2,h3,.display{font-family:var(--fd);font-weight:700;letter-spacing:-0.03em;line-height:0.95;margin:0;text-wrap:balance}
+h2{font-size:34px;line-height:1.02} h3{font-size:22px;line-height:1.1;letter-spacing:-0.02em;font-weight:600}
+p{margin:0}
+.label{font-family:var(--fm);font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:var(--stone-2);font-weight:500}
+.mono{font-family:var(--fm);font-size:13px;letter-spacing:0.01em}
+.muted{color:var(--stone-2)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:52px;padding:0 22px;border-radius:4px;font-weight:600;font-size:16px;line-height:1;white-space:nowrap;border:1.5px solid transparent}
+.btn.primary{background:var(--orange);color:#fff} .btn.secondary{background:transparent;color:var(--ink);border-color:var(--ink)} .btn.ghost{background:transparent;color:var(--ink);padding:0;height:auto;border:0;border-bottom:1.5px solid var(--ink);border-radius:0}
+.btn.sm{height:44px;padding:0 16px;font-size:15px}
+.hair{border-top:1px solid var(--stone)}
+.card{background:var(--snow-2);border-radius:12px;overflow:hidden}
+.photo{position:relative;background:var(--snow-2);background-image:repeating-linear-gradient(135deg,transparent 0 14px,oklch(0.90 0.012 80) 14px 15px);overflow:hidden}
+.photo .cap{position:absolute;left:12px;bottom:10px;font-family:var(--fm);font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink-2);background:var(--snow);padding:4px 8px;border-radius:3px}
+.pill{display:inline-flex;align-items:center;height:28px;padding:0 10px;border-radius:999px;border:1px solid var(--stone);font-family:var(--fm);font-size:12px;letter-spacing:0.04em;color:var(--ink-2);background:var(--snow)}
+.facts{display:grid;gap:0;border-top:1px solid var(--stone);border-bottom:1px solid var(--stone)}
+.fact{padding:14px 0;display:flex;flex-direction:column;gap:4px;border-right:1px solid var(--stone);padding-right:14px}
+.fact:last-child{border-right:0}
+.fact b{font-family:var(--fd);font-weight:700;font-size:24px;letter-spacing:-0.02em;line-height:1}
+.input{height:52px;border:1.5px solid var(--stone);border-radius:4px;background:#fff;padding:0 14px;display:flex;align-items:center;color:var(--stone-2);font-size:16px}
+.ridge{display:block;width:100%;height:auto}
+.dark{background:var(--ink);color:var(--snow)} .dark .label{color:var(--ink-3)} .dark .muted{color:var(--ink-3)} .dark .hair{border-color:oklch(0.35 0.02 260)} .dark a{color:var(--snow)}
+.spruce{background:var(--spruce);color:var(--snow)} .spruce .label{color:oklch(0.80 0.05 165)} .spruce .hair{border-color:oklch(0.50 0.06 165)}
+.ico{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;flex:none}
+</style>
+</helmet>
+<div style="width:1240px;background:var(--snow);min-height:100%;display:flex;flex-direction:column;">
+
+<div style="padding:40px 44px;display:flex;flex-direction:column;gap:40px">
+  <div style="display:flex;justify-content:space-between;align-items:baseline"><h2>Design system</h2><span class="mono muted">tokens.css · v0.1 · 2026-09-12</span></div>
+  <section style="display:flex;flex-direction:column;gap:16px"><span class="label">Kleur · OKLCH, lightness per rol vast, alleen tint en verzadiging draaien</span>
+    <div style="display:grid;grid-template-columns:repeat(6, minmax(0, 1fr));gap:16px">
+      <div style="display:flex;flex-direction:column;gap:8px"><div style="height:72px;border-radius:8px;background:var(--snow);border:1px solid var(--stone)"></div><b style="font-size:14px">Snow</b><span class="mono muted" style="font-size:11px">0.975 0.006 80</span></div><div style="display:flex;flex-direction:column;gap:8px"><div style="height:72px;border-radius:8px;background:var(--snow-2);border:1px solid var(--stone)"></div><b style="font-size:14px">Snow 2</b><span class="mono muted" style="font-size:11px">0.945 0.010 80</span></div><div style="display:flex;flex-direction:column;gap:8px"><div style="height:72px;border-radius:8px;background:var(--stone);border:1px solid var(--stone)"></div><b style="font-size:14px">Stone</b><span class="mono muted" style="font-size:11px">0.860 0.012 80</span></div>
+      <div style="display:flex;flex-direction:column;gap:8px"><div style="height:72px;border-radius:8px;background:var(--ink);border:1px solid var(--stone)"></div><b style="font-size:14px">Ink</b><span class="mono muted" style="font-size:11px">0.250 0.025 260</span></div><div style="display:flex;flex-direction:column;gap:8px"><div style="height:72px;border-radius:8px;background:var(--orange);border:1px solid var(--stone)"></div><b style="font-size:14px">Oranje</b><span class="mono muted" style="font-size:11px">0.660 0.190 42</span></div><div style="display:flex;flex-direction:column;gap:8px"><div style="height:72px;border-radius:8px;background:var(--spruce);border:1px solid var(--stone)"></div><b style="font-size:14px">Spar</b><span class="mono muted" style="font-size:11px">0.400 0.070 165</span></div>
+    </div></section>
+  <section style="display:grid;grid-template-columns:1.4fr 1fr;gap:40px">
+    <div style="display:flex;flex-direction:column;gap:18px"><span class="label">Type · Bricolage Grotesque / Instrument Sans / Geist Mono</span>
+      <div class="display" style="font-size:88px;line-height:0.92">Wakker worden aan de piste.</div>
+      <h2>Vier appartementen, 250 tot 400 m van de lift.</h2>
+      <h3>Reiterkogel · 6 personen · 80 m²</h3>
+      <p style="max-width:56ch">Body, 17 px, 1.55. Ruime appartementen in Hinterglemm van Nederlandse eigenaren die er zelf ook skiën. Prijzen per week, geen verrassingen.</p>
+      <span class="label">Label · mono 12 px · 0.08em</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:18px"><span class="label">Componenten</span>
+      <div style="display:flex;gap:12px;flex-wrap:wrap"><a href="#" class="btn primary">Bekijk beschikbaarheid</a><a href="#" class="btn secondary">Appartementen</a><a href="#" class="btn ghost">Skigebied <svg class="ico" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+      <div class="input">Aankomst</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap"><span class="pill">6 pers.</span><span class="pill">80 m²</span><span class="pill">3 slaapk.</span><span class="pill">sauna</span></div>
+      <div class="facts" style="grid-template-columns:repeat(3, minmax(0, 1fr));gap:14px"><div class="fact"><span class="label">Tot de lift</span><b>300 m</b></div><div class="fact"><span class="label">Personen</span><b>2–8</b></div><div class="fact"><span class="label">Piste</span><b>270 km</b></div></div>
+      <svg class="ridge" viewBox="0 0 1200 300" preserveAspectRatio="none" style="width:100%;" aria-hidden="true"><path d="M0,230 L90,190 L150,205 L230,120 L300,150 L360,95 L420,140 L470,125 L540,60 L600,110 L660,90 L740,150 L800,130 L870,170 L940,120 L1010,160 L1090,140 L1160,190 L1200,180" fill="none" stroke="var(--ink)" stroke-width="2" vector-effect="non-scaling-stroke" stroke-linejoin="round" stroke-linecap="round"/></svg>
+      <span class="mono muted">Signatuur: één doorlopende bergkam-lijn. Tekent zich in bij scrollen (1400 ms), rust bij reduced motion.</span>
+    </div>
+  </section>
+  <section style="display:flex;flex-direction:column;gap:12px"><span class="label">Ruimte · 4 8 12 16 24 32 48 64 96 128 · radius 4 / 12 / pil · geen slagschaduw op snow, één hairline</span>
+    <div style="display:flex;align-items:flex-end;gap:8px"><div style="width:4px;height:4px;background:var(--stone)"></div><div style="width:8px;height:8px;background:var(--stone)"></div><div style="width:12px;height:12px;background:var(--stone)"></div><div style="width:16px;height:16px;background:var(--stone)"></div><div style="width:24px;height:24px;background:var(--stone)"></div><div style="width:32px;height:32px;background:var(--stone)"></div><div style="width:48px;height:48px;background:var(--stone)"></div><div style="width:64px;height:64px;background:var(--stone)"></div><div style="width:96px;height:96px;background:var(--stone)"></div><div style="width:128px;height:128px;background:var(--stone)"></div></div></section>
+</div>
+</div>
+</x-dc>
+</body>
+</html>

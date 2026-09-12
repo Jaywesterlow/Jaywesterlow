@@ -1,6 +1,6 @@
 # Product Pitch Plan — brand, site, content, before first contact
 
-Status: **plan only. Nothing designed or built yet.**
+Status: **Phases 0–1 done, Phase 2–4 design v1 on the canvas (2026-09-12). No build yet.** Canvas: https://claude.ai/code/artifact/cacb6c3a-5b0e-4032-b741-618a1cf0f1f1
 Working rule: **design system → design → your approval → build.** Every phase ends at a gate you sign off. Nothing crosses a gate without your yes.
 
 ---
