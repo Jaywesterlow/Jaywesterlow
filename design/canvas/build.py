@@ -73,8 +73,17 @@ def icon(name):
     }[name]
     return f'<svg class="ico" viewBox="0 0 24 24">{d}</svg>'
 
-def photo(w='100%', h=240, cap='foto', radius=12, style=''):
+IMG = {   # photo-slot caption fragment -> generated example image (design/images, downsampled copy in design/canvas/img)
+  'eerste afdaling': '01-piste-ochtend.jpg', 'bij de gondel': '02-gondel.jpg', 'Skischool': '03-skischool.jpg', 'dorp': '04-dorp-blauwuur.jpg',
+  'woonkamer': '05-woonkamer.jpg', 'slaapkamer': '06-slaapkamer.jpg', 'sauna': '07-sauna.jpg', 'balkon': '08-balkon.jpg', 'piste, 08:40': '01-piste-ochtend.jpg',
+}
+def photo(w='100%', h=240, cap='foto', radius=12, style='', img=None):
     hh = h if isinstance(h, str) else f'{h}px'
+    if img is None:
+        for k, v in IMG.items():
+            if k.lower() in cap.lower(): img = v; break
+    if img and os.path.exists(os.path.join(HERE, img)):
+        return f'<div class="photo" style="width:{w};height:{hh};border-radius:{radius}px;background:url(./{img}) center/cover no-repeat;{style}"><span class="cap">{cap} · voorbeeld (ai)</span></div>'
     return f'<div class="photo" style="width:{w};height:{hh};border-radius:{radius}px;{style}"><span class="cap">{cap}</span></div>'
 
 def doc(body, w, bg='var(--snow)', extra_css=''):
@@ -108,7 +117,7 @@ APTS = [
 def apt_card(a, w='100%', ph=200):
     n,p,m2,br,lift,lo,mid,hi = a
     return f'''<a href="#" class="card" style="display:flex;flex-direction:column;width:{w};color:inherit">
-  {photo('100%',ph,f'foto · {n}, woonkamer',0)}
+  {photo('100%',ph,f'foto · {n}, ' + {'Kohlmais':'slaapkamer','Reiterkogel':'woonkamer','Zwölferkogel':'balkon','Schattberg':'sauna'}[n],0)}
   <div style="padding:16px 18px 18px;display:flex;flex-direction:column;gap:10px">
     <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px"><h3>{n}</h3><span class="mono">{lift} m → lift</span></div>
     <div style="display:flex;gap:8px;flex-wrap:wrap"><span class="pill">{p} pers.</span><span class="pill">{m2} m²</span><span class="pill">{br} slaapk.</span></div>
@@ -347,7 +356,10 @@ def tile(kind, title, tag, s=1.0, ridge_vb=None, sub=None, dark=False):
     ridge = ''
     if ridge_vb:
         ridge = f'<svg viewBox="{ridge_vb}" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%" aria-hidden="true"><path d="{ridge_path_big()}" fill="none" stroke="{"var(--ice)" if dark else "var(--ink)"}" stroke-width="3" vector-effect="non-scaling-stroke" stroke-linejoin="round"/></svg>'
-    photo_area = '' if kind!='photo' else f'<div class="photo" style="position:absolute;inset:0;border-radius:0"><span class="cap" style="left:{fs(16)};bottom:{fs(16)};font-size:{fs(10)}">foto</span></div>'
+    timg = {'Reiterkogel': '05-woonkamer.jpg', 'Wij zijn': '02-gondel.jpg'}
+    tsrc = next((v for k, v in timg.items() if k in title), None)
+    tbg = f'background:url(./{tsrc}) center/cover no-repeat;' if tsrc and os.path.exists(os.path.join(HERE,tsrc)) else ''
+    photo_area = '' if kind!='photo' else f'<div class="photo" style="position:absolute;inset:0;border-radius:0;{tbg}"><span class="cap" style="left:{fs(16)};bottom:{fs(16)};font-size:{fs(10)}">foto · voorbeeld (ai)</span></div>'
     mark = svgfile('b-dak-mark.svg', height=round(28*s)) if not dark else svgfile('b-dak-mark-reversed.svg', height=round(30*s))
     subhtml = f'<p style="font-size:{fs(14)};line-height:1.35;color:{"var(--ink-3)" if dark else "var(--ink-2)"};max-width:{fs(280)}">{sub}</p>' if sub else ''
     return f'''<div style="position:relative;width:{W}px;height:{H}px;background:{bg};color:{fg};overflow:hidden;font-family:var(--fb)">
@@ -410,7 +422,7 @@ def reel_board():
     W,H=360,640
     body=f'''<div style="padding:20px;display:flex;flex-direction:column;gap:12px;align-items:flex-start"><span class="label">Reel-cover · 9:16 met 4:5 veilig gebied</span>
 <div style="position:relative;width:{W}px;height:{H}px;background:var(--ink);color:var(--snow);overflow:hidden">
-  <div class="photo" style="position:absolute;inset:0;border-radius:0;background-color:oklch(0.32 0.05 255);background-image:repeating-linear-gradient(135deg,transparent 0 14px,oklch(0.36 0.05 255) 14px 15px)"></div>
+  <div class="photo" style="position:absolute;inset:0;border-radius:0;background:url(./01-piste-ochtend.jpg) center/cover no-repeat"></div><div style="position:absolute;inset:0;background:linear-gradient(180deg,oklch(0.24 0.05 255 / 0.15) 0%,oklch(0.24 0.05 255 / 0.75) 100%)"></div>
   <div style="position:absolute;left:0;right:0;top:{(H-450)//2}px;height:450px;border-top:1px dashed var(--piste);border-bottom:1px dashed var(--piste)"></div>
   <div style="position:absolute;left:24px;right:24px;top:{(H-450)//2+24}px;display:flex;justify-content:space-between;align-items:center"><span class="label" style="color:var(--ink-3)">Appartement</span>{svgfile('b-dak-mark-reversed.svg', height=30)}</div>
   <div style="position:absolute;left:24px;right:24px;bottom:{(H-450)//2+24}px;display:flex;flex-direction:column;gap:10px"><div class="display" style="font-size:40px">Van de deur naar de lift in 3 minuten.</div><span class="mono" style="color:var(--ink-3);font-size:12px;display:flex;align-items:center;gap:6px"><svg class="ico" viewBox="0 0 24 24" style="width:14px;height:14px"><path d="M7 4l12 8-12 8z"/></svg>0:32 · Reiterkogel</span></div>
