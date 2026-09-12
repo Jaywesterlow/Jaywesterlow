@@ -30,11 +30,11 @@ Availability of domains, handles and trademarks is **unchecked**. Check before p
 
 | | Name | Feel | Logo direction hint | Risk |
 |---|---|---|---|---|
-| a | **Bergnest** | Warm, family, "your nest in the mountains" | Roofline that becomes a peak; soft wordmark | Common word, likely domain competition |
+| a | **Huis Hinterglemm** | Warm, family, "your nest in the mountains" | Roofline that becomes a peak; soft wordmark | Common word, likely domain competition |
 | b | **Pistekant** | Direct, functional, a location promise ("at the piste side") | Single diagonal piste line as mark; sharp grotesque wordmark | Only works if the apartments really are near a lift |
-| c | **Huis Hinterglemm** | Place-based, honest, easy to say | Wordmark + small crest (peak + window) | Village name must be real; swap to the real village |
+| c | **Huis Hinterglemm** ✅ chosen | Place-based, honest, easy to say | Three logo directions built in Phase 1 | Village name must be real; swap to the real village |
 
-Working name for all placeholder copy below: **Bergnest**. One config value + one SVG to swap.
+**Decision 2026-09-12: working name = Huis Hinterglemm** (your pick, option c). Domains checked via Vercel on 2026-09-12: `huishinterglemm.nl`, `.com`, `huis-hinterglemm.nl`, `.com` and `.at` all available (.com $11.25/yr). Instagram handle `@huishinterglemm` unchecked. Trademark unchecked. Copy below uses it; one config value + one SVG to swap.
 
 ---
 
@@ -54,10 +54,10 @@ Working name for all placeholder copy below: **Bergnest**. One config value + on
 
 | Apartment | Sleeps | m² | Bedrooms | Features | To lift | Low / Mid / High €/week |
 |---|---|---|---|---|---|---|
-| **Nest 1 · Kohlmais** | 4 | 55 | 2 | Balcony south, ski storage, dishwasher | 250 m | 850 / 1,150 / 1,500 |
-| **Nest 2 · Reiterkogel** | 6 | 80 | 3 | Sauna, 2 bathrooms, big table, balcony | 300 m | 1,100 / 1,500 / 2,000 |
-| **Nest 3 · Zwölferkogel** | 8 | 105 | 4 | Sauna, drying room, 2 bathrooms, fireplace | 400 m | 1,400 / 1,900 / 2,600 |
-| **Nest 4 · Schattberg** | 2 to 3 | 40 | 1 | Studio, kitchenette, balcony | 250 m | 600 / 800 / 1,050 |
+| **Kohlmais** | 4 | 55 | 2 | Balcony south, ski storage, dishwasher | 250 m | 850 / 1,150 / 1,500 |
+| **Reiterkogel** | 6 | 80 | 3 | Sauna, 2 bathrooms, big table, balcony | 300 m | 1,100 / 1,500 / 2,000 |
+| **Zwölferkogel** | 8 | 105 | 4 | Sauna, drying room, 2 bathrooms, fireplace | 400 m | 1,400 / 1,900 / 2,600 |
+| **Schattberg** | 2 to 3 | 40 | 1 | Studio, kitchenette, balcony | 250 m | 600 / 800 / 1,050 |
 
 Names are Saalbach lift/peak names so they swap cleanly for the real resort. Add per apartment for design: 8 to 12 photo slots, floor plan slot, "Wat is inbegrepen" (linen, final cleaning, Wi-Fi, parking), "Extra" (tourist tax p.p.p.n., pets), check-in 16:00 / check-out 10:00.
 
@@ -75,7 +75,7 @@ Season table (placeholder): Low = 10 Jan to 6 Feb and 14 Mar to close · Mid = o
 - Sections: Appartementen (4 cards) → Waarom hier (3 attributes) → Het skigebied (Skicircus facts) → Zo werkt boeken (3 steps: kies datum → stuur aanvraag → wij bevestigen binnen 24 uur) → Reviews (placeholder: "Nog geen reviews: dit wordt de eerste winter.") → FAQ (5) → Contact/aanvraag.
 
 **Appartement detail** (template)
-- H1: *Nest 2 · Reiterkogel — 6 personen, 80 m², 300 m van de lift*
+- H1: *Reiterkogel — 6 personen, 80 m², 300 m van de lift*
 - Blocks: gallery · key facts row · Indeling · Wat is inbegrepen · Prijzen per seizoen (table) · Beschikbaarheid (calendar) · Aanvraag form (sticky on desktop) · Andere appartementen.
 
 **Skigebied**
@@ -108,7 +108,7 @@ Season table (placeholder): Low = 10 Jan to 6 Feb and 14 Mar to close · Mid = o
 
 ## 7. Instagram (placeholder)
 
-- Handle: `@bergnest.saalbach` (unchecked). Bio: *Ruime appartementen aan de piste in Saalbach-Hinterglemm 🇳🇱 hosts · 250 m tot de lift · Boek direct ↓*
+- Handle: `@huishinterglemm` (unchecked). Bio: *Ruime appartementen aan de piste in Saalbach-Hinterglemm 🇳🇱 hosts · 250 m tot de lift · Boek direct ↓*
 - Link-in-bio: `/link` on the site (apartments, availability, offers, WhatsApp).
 - Pillars: apartments · resort · practical · offers · guests.
 
@@ -116,13 +116,13 @@ Season table (placeholder): Low = 10 Jan to 6 Feb and 14 Mar to close · Mid = o
 
 | Row | Left | Middle | Right |
 |---|---|---|---|
-| Top (1–3) | Offer: *Vroegboekkorting tot 1 nov* | Apartment: *Nest 2 in 5 foto's* (carousel) | Resort: *270 km piste, 70 liften* |
+| Top (1–3) | Offer: *Vroegboekkorting tot 1 nov* | Apartment: *Reiterkogel in 5 foto's* (carousel) | Resort: *270 km piste, 70 liften* |
 | Mid (4–6) | Practical: *Autoroute NL → Saalbach in 10 u* | Brand: *Wie zijn wij* (host) | Apartment: *Wakker worden met dit uitzicht* (reel cover) |
 | Bottom (7–9) | Resort: *Skischool voor kinderen* | Offer: *Voorjaarsvakantie: 1 appartement vrij* | Practical: *Inpaklijst* (carousel) |
 
 Composite layer (option a): one mountain-ridge line drawing runs across the bottom row and continues up the middle column, tile edges aligned; every tile still carries its own title and pillar tag.
 
-**Caption sample** (Nest 2 carousel): *Nest 2 in vijf foto's. 80 m², drie slaapkamers, sauna, en 300 meter lopen naar de Reiterkogelbahn. Zes personen, vanaf €1.100 per week. Beschikbaarheid staat in de link in bio. #saalbach #wintersport #appartementhuren*
+**Caption sample** (Reiterkogel carousel): *Reiterkogel in vijf foto's. 80 m², drie slaapkamers, sauna, en 300 meter lopen naar de Reiterkogelbahn. Zes personen, vanaf €1.100 per week. Beschikbaarheid staat in de link in bio. #saalbach #wintersport #appartementhuren*
 
 ---
 

@@ -1,0 +1,47 @@
+/* Huis Hinterglemm — design tokens (source of truth mirrored in Figma variables)
+   Colour model: OKLCH, lightness fixed per role. Change hue/chroma only. */
+:root {
+  /* surfaces */
+  --snow:      oklch(0.975 0.006 80);   /* page background, warm off-white */
+  --snow-2:    oklch(0.945 0.010 80);   /* raised surface / card */
+  --stone:     oklch(0.860 0.012 80);   /* hairlines, borders */
+  --stone-2:   oklch(0.620 0.020 70);   /* muted text, meta */
+  /* ink */
+  --ink:       oklch(0.250 0.025 260);  /* text, dark surfaces */
+  --ink-2:     oklch(0.360 0.020 260);  /* secondary text on snow */
+  --ink-3:     oklch(0.700 0.020 260);  /* muted text on ink */
+  /* accents */
+  --orange:    oklch(0.660 0.190 42);   /* primary action, piste marker */
+  --orange-2:  oklch(0.590 0.185 42);   /* hover / pressed */
+  --spruce:    oklch(0.400 0.070 165);  /* resort / nature sections */
+  --spruce-2:  oklch(0.920 0.030 165);  /* spruce tint */
+  /* type */
+  --font-display: "Bricolage Grotesque", "Arial Narrow", Impact, sans-serif;
+  --font-body:    "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
+  --font-mono:    "Geist Mono", "SF Mono", Menlo, Consolas, monospace;
+  --fs-display: clamp(2.75rem, 1.5rem + 5.5vw, 6.5rem);
+  --fs-h1:      clamp(2.25rem, 1.4rem + 3.5vw, 4.25rem);
+  --fs-h2:      clamp(1.75rem, 1.25rem + 2vw,   2.75rem);
+  --fs-h3:      clamp(1.25rem, 1.1rem + 0.6vw,  1.5rem);
+  --fs-body:    1.0625rem;
+  --fs-small:   0.9375rem;
+  --fs-label:   0.75rem;      /* mono, uppercase, tracking .08em */
+  --fs-floor:   0.75rem;      /* 12px hard minimum in production */
+  --lh-tight: 0.95; --lh-snug: 1.15; --lh-body: 1.55;
+  --track-display: -0.03em; --track-label: 0.08em;
+  /* space (8-step) */
+  --s-1: 4px; --s-2: 8px; --s-3: 12px; --s-4: 16px; --s-5: 24px;
+  --s-6: 32px; --s-7: 48px; --s-8: 64px; --s-9: 96px; --s-10: 128px;
+  --gutter: clamp(16px, 4vw, 48px);
+  --measure: 62ch;
+  /* radius */
+  --r-control: 4px; --r-card: 12px; --r-pill: 999px;
+  /* motion */
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --t-fast: 160ms; --t-base: 260ms; --t-reveal: 700ms; --t-draw: 1400ms;
+  /* elevation: one hairline, no drop shadows on snow */
+  --hairline: 1px solid var(--stone);
+}
+@media (prefers-reduced-motion: reduce) {
+  :root { --t-fast: 0ms; --t-base: 0ms; --t-reveal: 0ms; --t-draw: 0ms; }
+}
