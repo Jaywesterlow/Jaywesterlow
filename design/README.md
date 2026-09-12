@@ -6,15 +6,15 @@ Working name for the wintersport-apartments pitch. Everything here is placeholde
 
 - `tokens.css` — source of truth for colour (OKLCH, lightness fixed per role), type, spacing, radius, motion. The build reads this file; Figma variables mirror it.
 - `brand/logos/` — three directions, all vector paths (no live text):
-  - `a-venster-*` window grid with two peaks (leading candidate, used in mockups)
-  - `b-dak-*` one monoline: gable becomes ridge
+  - `a-venster-*` window grid with two peaks
+  - `b-dak-*` one thin line, sharp joins: gable becomes ridge (chosen direction, used in mockups)
   - `c-monogram-*` HH with a ridge crossbar
   - variants per direction: `lockup`, `stacked`, `mark`, `lockup-mono`, `lockup-reversed`, `mark-reversed`, `mark-orange`
 - `canvas/build.py` — generates the design-canvas artboards (`*.dc.html` + `canvas.json`). Re-run after editing; then re-seed and save the canvas.
 
 ## System in one paragraph
 
-Warm snow surfaces, ink text, one orange accent for actions and one spruce band for resort content. Bricolage Grotesque for display (tight, wide, 700), Instrument Sans for body, Geist Mono for facts and labels so the site reads like an honest spec sheet: metres to the lift, m², persons, price per week. One signature graphic: a continuous ridge line, used on the site, in the footer and as the background layer across Instagram tiles. No drop shadows, one hairline, radius 4 on controls and 12 on cards. Photos are placeholder frames with a shot-list label until real photos exist.
+Cool white and glacier-blue surfaces, night-blue text, piste blue for actions and the logo door. Skiing first: hero and host photos are on the piste, apartment photos are interiors. Bricolage Grotesque for display (tight, wide, 700), Instrument Sans for body, Geist Mono for facts and labels so the site reads like an honest spec sheet: metres to the lift, m², persons, price per week. One signature graphic: a continuous ridge line, used on the site, in the footer and as the background layer across Instagram tiles. No drop shadows, one hairline, radius 4 on controls and 12 on cards. Photos are placeholder frames with a shot-list label until real photos exist.
 
 ## Instagram tiles
 

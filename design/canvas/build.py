@@ -15,13 +15,13 @@ def svgfile(name, height=None, width=None):
 FONTS = '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&amp;family=Instrument+Sans:ital,wght@0,400..700;1,400..700&amp;family=Geist+Mono:wght@400;500;600&amp;display=swap">'
 
 CSS = """
-:root{--snow:oklch(0.975 0.006 80);--snow-2:oklch(0.945 0.010 80);--stone:oklch(0.86 0.012 80);--stone-2:oklch(0.62 0.02 70);
---ink:oklch(0.25 0.025 260);--ink-2:oklch(0.36 0.02 260);--ink-3:oklch(0.70 0.02 260);--orange:oklch(0.66 0.19 42);--orange-2:oklch(0.59 0.185 42);
---spruce:oklch(0.40 0.07 165);--spruce-2:oklch(0.92 0.03 165);
+:root{--snow:oklch(0.985 0.004 240);--snow-2:oklch(0.945 0.020 230);--stone:oklch(0.87 0.030 235);--stone-2:oklch(0.56 0.035 250);
+--ink:oklch(0.24 0.050 255);--ink-2:oklch(0.38 0.045 255);--ink-3:oklch(0.74 0.035 245);--piste:oklch(0.56 0.160 250);--piste-2:oklch(0.48 0.160 250);--ice:oklch(0.82 0.070 225);
+--glacier:oklch(0.930 0.035 228);--glacier-2:oklch(0.80 0.06 228);
 --fd:"Bricolage Grotesque","Arial Narrow",sans-serif;--fb:"Instrument Sans","Helvetica Neue",Arial,sans-serif;--fm:"Geist Mono","SF Mono",Menlo,monospace;}
 *{box-sizing:border-box}
 body{margin:0;background:var(--snow);color:var(--ink);font-family:var(--fb);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
-a{color:var(--ink);text-decoration:none} a:hover{color:var(--orange)}
+a{color:var(--ink);text-decoration:none} a:hover{color:var(--piste)}
 h1,h2,h3,.display{font-family:var(--fd);font-weight:700;letter-spacing:-0.03em;line-height:0.95;margin:0;text-wrap:balance}
 h2{font-size:34px;line-height:1.02} h3{font-size:22px;line-height:1.1;letter-spacing:-0.02em;font-weight:600}
 p{margin:0}
@@ -29,11 +29,11 @@ p{margin:0}
 .mono{font-family:var(--fm);font-size:13px;letter-spacing:0.01em}
 .muted{color:var(--stone-2)}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:52px;padding:0 22px;border-radius:4px;font-weight:600;font-size:16px;line-height:1;white-space:nowrap;border:1.5px solid transparent}
-.btn.primary{background:var(--orange);color:#fff} .btn.secondary{background:transparent;color:var(--ink);border-color:var(--ink)} .btn.ghost{background:transparent;color:var(--ink);padding:0;height:auto;border:0;border-bottom:1.5px solid var(--ink);border-radius:0}
+.btn.primary{background:var(--piste);color:#fff} .btn.secondary{background:transparent;color:var(--ink);border-color:var(--ink)} .btn.ghost{background:transparent;color:var(--ink);padding:0;height:auto;border:0;border-bottom:1.5px solid var(--ink);border-radius:0}
 .btn.sm{height:44px;padding:0 16px;font-size:15px}
 .hair{border-top:1px solid var(--stone)}
 .card{background:var(--snow-2);border-radius:12px;overflow:hidden}
-.photo{position:relative;background:var(--snow-2);background-image:repeating-linear-gradient(135deg,transparent 0 14px,oklch(0.90 0.012 80) 14px 15px);overflow:hidden}
+.photo{position:relative;background:var(--snow-2);background-image:repeating-linear-gradient(135deg,transparent 0 14px,oklch(0.90 0.030 230) 14px 15px);overflow:hidden}
 .photo .cap{position:absolute;left:12px;bottom:10px;font-family:var(--fm);font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink-2);background:var(--snow);padding:4px 8px;border-radius:3px}
 .pill{display:inline-flex;align-items:center;height:28px;padding:0 10px;border-radius:999px;border:1px solid var(--stone);font-family:var(--fm);font-size:12px;letter-spacing:0.04em;color:var(--ink-2);background:var(--snow)}
 .facts{display:grid;gap:0;border-top:1px solid var(--stone);border-bottom:1px solid var(--stone)}
@@ -42,8 +42,8 @@ p{margin:0}
 .fact b{font-family:var(--fd);font-weight:700;font-size:24px;letter-spacing:-0.02em;line-height:1}
 .input{height:52px;border:1.5px solid var(--stone);border-radius:4px;background:#fff;padding:0 14px;display:flex;align-items:center;color:var(--stone-2);font-size:16px}
 .ridge{display:block;width:100%;height:auto}
-.dark{background:var(--ink);color:var(--snow)} .dark .label{color:var(--ink-3)} .dark .muted{color:var(--ink-3)} .dark .hair{border-color:oklch(0.35 0.02 260)} .dark a{color:var(--snow)}
-.spruce{background:var(--spruce);color:var(--snow)} .spruce .label{color:oklch(0.80 0.05 165)} .spruce .hair{border-color:oklch(0.50 0.06 165)}
+.dark{background:var(--ink);color:var(--snow)} .dark .label{color:var(--ink-3)} .dark .muted{color:var(--ink-3)} .dark .hair{border-color:oklch(0.36 0.05 255)} .dark a{color:var(--snow)}
+.spruce{background:var(--glacier);color:var(--ink)} .spruce .label{color:var(--stone-2)} .spruce .hair{border-color:var(--glacier-2)}
 .ico{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;flex:none}
 """
 
@@ -55,9 +55,9 @@ def ridge_path():
 def ridge_svg(stroke='var(--ink)', width='100%', sw=2, extra='', vb='0 0 1200 300', cls='ridge', style=''):
     return f'<svg class="{cls}" viewBox="{vb}" preserveAspectRatio="none" style="width:{width};{style}" aria-hidden="true"><path d="{ridge_path()}" fill="none" stroke="{stroke}" stroke-width="{sw}" vector-effect="non-scaling-stroke" stroke-linejoin="round" stroke-linecap="round"/>{extra}</svg>'
 
-LOGO_A = svgfile('a-venster-lockup.svg', height=44)
-LOGO_A_REV = svgfile('a-venster-lockup-reversed.svg', height=44)
-MARK_A = svgfile('a-venster-mark.svg', height=40)
+LOGO_A = svgfile('b-dak-lockup.svg', height=40)
+LOGO_A_REV = svgfile('b-dak-lockup-reversed.svg', height=40)
+MARK_A = svgfile('b-dak-mark.svg', height=40)
 
 def icon(name):
     d = {
@@ -127,7 +127,7 @@ def footer(mobile=True):
     pad = '32px 20px' if mobile else '48px 48px 32px'
     cols = 'grid-template-columns:1fr' if mobile else 'grid-template-columns:2fr 1fr 1fr 1fr'
     return f'''<footer class="dark" style="padding:{pad};display:flex;flex-direction:column;gap:28px">
-  {ridge_svg('oklch(0.45 0.03 260)', '100%', 1.5)}
+  {ridge_svg('var(--ink-3)', '100%', 1.5)}
   <div style="display:grid;{cols};gap:28px">
     <div style="display:flex;flex-direction:column;gap:12px">{LOGO_A_REV}<p class="muted" style="max-width:38ch;font-size:15px">Vier appartementen in Hinterglemm, verhuurd door Nederlandse eigenaren. Vragen? Stuur een WhatsApp, je hoort binnen 24 uur van ons.</p></div>
     <div style="display:flex;flex-direction:column;gap:8px;font-size:15px"><span class="label">Appartementen</span><a href="#">Kohlmais · 4 pers.</a><a href="#">Reiterkogel · 6 pers.</a><a href="#">Zwölferkogel · 8 pers.</a><a href="#">Schattberg · 2–3 pers.</a></div>
@@ -167,10 +167,10 @@ def tokens_board():
     body = f'''
 <div style="padding:40px 44px;display:flex;flex-direction:column;gap:40px">
   <div style="display:flex;justify-content:space-between;align-items:baseline"><h2>Design system</h2><span class="mono muted">tokens.css · v0.1 · 2026-09-12</span></div>
-  <section style="display:flex;flex-direction:column;gap:16px"><span class="label">Kleur · OKLCH, lightness per rol vast, alleen tint en verzadiging draaien</span>
+  <section style="display:flex;flex-direction:column;gap:16px"><span class="label">Kleur · wit, gletsjerblauw, pisteblauw, nachtblauw · OKLCH, lightness per rol vast</span>
     <div style="display:grid;grid-template-columns:repeat(6, minmax(0, 1fr));gap:16px">
-      {sw('Snow','var(--snow)','0.975 0.006 80')}{sw('Snow 2','var(--snow-2)','0.945 0.010 80')}{sw('Stone','var(--stone)','0.860 0.012 80')}
-      {sw('Ink','var(--ink)','0.250 0.025 260')}{sw('Oranje','var(--orange)','0.660 0.190 42')}{sw('Spar','var(--spruce)','0.400 0.070 165')}
+      {sw('Wit','var(--snow)','0.985 0.004 240')}{sw('Gletsjer','var(--glacier)','0.930 0.035 228')}{sw('IJs','var(--ice)','0.820 0.070 225')}
+      {sw('Piste','var(--piste)','0.560 0.160 250')}{sw('Nacht','var(--ink)','0.240 0.050 255')}{sw('Rand','var(--stone)','0.870 0.030 235')}
     </div></section>
   <section style="display:grid;grid-template-columns:1.4fr 1fr;gap:40px">
     <div style="display:flex;flex-direction:column;gap:18px"><span class="label">Type · Bricolage Grotesque / Instrument Sans / Geist Mono</span>
@@ -186,7 +186,7 @@ def tokens_board():
       <div style="display:flex;gap:8px;flex-wrap:wrap"><span class="pill">6 pers.</span><span class="pill">80 m²</span><span class="pill">3 slaapk.</span><span class="pill">sauna</span></div>
       <div class="facts" style="grid-template-columns:repeat(3, minmax(0, 1fr));gap:14px"><div class="fact"><span class="label">Tot de lift</span><b>300 m</b></div><div class="fact"><span class="label">Personen</span><b>2–8</b></div><div class="fact"><span class="label">Piste</span><b>270 km</b></div></div>
       {ridge_svg('var(--ink)','100%',2)}
-      <span class="mono muted">Signatuur: één doorlopende bergkam-lijn. Tekent zichzelf bij scrollen (1400 ms), rust bij reduced motion.</span>
+      <span class="mono muted">Signatuur: één doorlopende bergkam-lijn, zelfde lijn als het logo. Tekent zichzelf bij scrollen (1400 ms), rust bij reduced motion.</span>
     </div>
   </section>
   <section style="display:flex;flex-direction:column;gap:12px"><span class="label">Ruimte · 4 8 12 16 24 32 48 64 96 128 · radius 4 / 12 / pil · geen slagschaduw op snow, één hairline</span>
@@ -200,15 +200,15 @@ def hero_mobile():
 <section style="padding:36px 20px 28px;display:flex;flex-direction:column;gap:20px">
   <span class="label">Hinterglemm · Salzburgerland · Oostenrijk</span>
   <h1 style="font-size:52px">Wakker worden aan de piste.</h1>
-  <p style="font-size:17px;color:var(--ink-2)">Vier ruime appartementen in Hinterglemm, 250 tot 400 meter van de lift. Nederlandse eigenaren die je vragen binnen 24 uur beantwoorden.</p>
+  <p style="font-size:17px;color:var(--ink-2)">Ski-in, bijna ski-out: vier ruime appartementen in Hinterglemm, 250 tot 400 meter van de gondel. Nederlandse eigenaren die er zelf elke winter skiën.</p>
   <div style="display:flex;flex-direction:column;gap:10px"><a href="#" class="btn primary">Bekijk beschikbaarheid {icon('arrow')}</a><a href="#" class="btn secondary">De vier appartementen</a></div>
 </section>
-<div style="padding:0 20px">{photo('100%',300,'foto · balkon, ochtendzon op de Zwölferkogel')}</div>
+<div style="padding:0 20px">{photo('100%',300,'foto · eerste afdaling, Reiterkogel, 08:40')}</div>
 <div class="facts" style="margin:24px 20px 0;grid-template-columns:repeat(3, minmax(0, 1fr));gap:12px"><div class="fact"><span class="label">Tot de lift</span><b>250–400 m</b></div><div class="fact"><span class="label">Personen</span><b>2–8</b></div><div class="fact"><span class="label">Piste</span><b>270 km</b></div></div>'''
 
 def why_block(mobile):
     items = [('Ruim','Twee tot acht personen. Slaapkamers voor iedereen, één grote tafel, en een droogruimte voor de skischoenen.'),
-             ('Dichtbij','Lopen naar de Reiterkogelbahn. Geen skibus, geen parkeerstress, om vier uur zit je op het balkon.'),
+             ('Dichtbij','Lopen naar de Reiterkogelbahn. Geen skibus, geen parkeerstress, om negen uur sta je boven.'),
              ('Eerlijk','Eén prijs per week, alles inbegrepen. Vrij of bezet staat gewoon op de site. Vragen gaan via WhatsApp.')]
     cols = '1fr' if mobile else 'repeat(3, minmax(0, 1fr))'
     return f'''<section style="padding:{'48px 20px' if mobile else '96px 48px'};display:flex;flex-direction:column;gap:{'28px' if mobile else '48px'}">
@@ -220,10 +220,10 @@ def resort_band(mobile):
     return f'''<section class="spruce" style="padding:{'48px 20px' if mobile else '96px 48px'};display:flex;flex-direction:column;gap:28px;position:relative;overflow:hidden">
   <div style="display:grid;grid-template-columns:{'1fr' if mobile else '1fr 1fr'};gap:{'24px' if mobile else '64px'};align-items:end">
     <div style="display:flex;flex-direction:column;gap:14px"><span class="label">Skicircus Saalbach Hinterglemm Leogang Fieberbrunn</span><h2 style="{'' if mobile else 'font-size:52px'}">270 kilometer piste, en je stapt de deur uit.</h2></div>
-    <div style="display:flex;flex-direction:column;gap:14px"><p style="font-size:16px;max-width:44ch">Blauw voor de kinderen aan de Reiterkogel, rood en zwart richting Zwölferkogel en Leogang. Seizoen van begin december tot half april. <span class="mono">[cijfers verifiëren]</span></p><a href="#" class="btn ghost" style="color:var(--snow);border-color:var(--snow);align-self:flex-start">Alles over het skigebied {icon('arrow')}</a></div>
+    <div style="display:flex;flex-direction:column;gap:14px"><p style="font-size:16px;max-width:44ch">Blauw voor de kinderen aan de Reiterkogel, rood en zwart richting Zwölferkogel en Leogang. Seizoen van begin december tot half april. <span class="mono">[cijfers verifiëren]</span></p><a href="#" class="btn ghost" style="align-self:flex-start">Alles over het skigebied {icon('arrow')}</a></div>
   </div>
-  <div class="facts" style="grid-template-columns:repeat({'2' if mobile else '4'}, minmax(0, 1fr));gap:16px;border-color:oklch(0.50 0.06 165)"><div class="fact" style="border-color:oklch(0.50 0.06 165)"><span class="label">Pistekilometers</span><b>270</b></div><div class="fact" style="border-color:oklch(0.50 0.06 165)"><span class="label">Liften</span><b>70</b></div><div class="fact" style="border-color:oklch(0.50 0.06 165)"><span class="label">Hoogte</span><b>830–2096 m</b></div><div class="fact" style="border:0"><span class="label">Vanuit Utrecht</span><b>± 10 u</b></div></div>
-  {ridge_svg('oklch(0.60 0.06 165)','100%',1.5)}
+  <div class="facts" style="grid-template-columns:repeat({'2' if mobile else '4'}, minmax(0, 1fr));gap:16px;border-color:var(--glacier-2)"><div class="fact" style="border-color:var(--glacier-2)"><span class="label">Pistekilometers</span><b>270</b></div><div class="fact" style="border-color:var(--glacier-2)"><span class="label">Liften</span><b>70</b></div><div class="fact" style="border-color:var(--glacier-2)"><span class="label">Hoogte</span><b>830–2096 m</b></div><div class="fact" style="border:0"><span class="label">Vanuit Utrecht</span><b>± 10 u</b></div></div>
+  {ridge_svg('var(--ink)','100%',1.5)}
 </section>'''
 
 def steps_block(mobile):
@@ -231,12 +231,12 @@ def steps_block(mobile):
     cols='1fr' if mobile else 'repeat(3, minmax(0, 1fr))'
     return f'''<section style="padding:{'48px 20px' if mobile else '96px 48px'};display:flex;flex-direction:column;gap:28px">
   <div style="display:flex;flex-direction:column;gap:12px"><span class="label">Zo werkt boeken</span><h2 style="{'' if mobile else 'font-size:52px'}">Drie stappen, geen boekingsmachine.</h2></div>
-  <div style="display:grid;grid-template-columns:{cols};gap:20px">{''.join(f'<div class="card" style="padding:22px;display:flex;flex-direction:column;gap:12px"><span class="mono" style="color:var(--orange);font-weight:600">{n}</span><h3>{t}</h3><p style="font-size:15px;color:var(--ink-2)">{d}</p></div>' for n,t,d in steps)}</div>
+  <div style="display:grid;grid-template-columns:{cols};gap:20px">{''.join(f'<div class="card" style="padding:22px;display:flex;flex-direction:column;gap:12px"><span class="mono" style="color:var(--piste);font-weight:600">{n}</span><h3>{t}</h3><p style="font-size:15px;color:var(--ink-2)">{d}</p></div>' for n,t,d in steps)}</div>
 </section>'''
 
 def host_block(mobile):
     return f'''<section style="padding:{'0 20px 48px' if mobile else '0 48px 96px'}"><div class="card" style="display:grid;grid-template-columns:{'1fr' if mobile else '1fr 1.4fr'};gap:0;overflow:hidden">
-  {photo('100%', 260 if mobile else 360, 'foto · [host], op het balkon', 0)}
+  {photo('100%', 260 if mobile else 360, 'foto · [host], met ski’s bij de gondel', 0)}
   <div style="padding:{'24px' if mobile else '48px'};display:flex;flex-direction:column;gap:14px;justify-content:center"><span class="label">Over ons</span><h2>Wij zijn [voornamen], uit [plaats].</h2><p style="font-size:16px;color:var(--ink-2);max-width:48ch">[Waarom dit huis, sinds wanneer, hoe vaak jullie er zelf zijn. Twee zinnen, in jullie eigen woorden.]</p><a href="#" class="btn ghost" style="align-self:flex-start">Lees ons verhaal {icon('arrow')}</a></div>
 </div></section>'''
 
@@ -267,10 +267,10 @@ def home_desktop():
   <div style="display:flex;flex-direction:column;gap:28px;padding-bottom:24px">
     <span class="label">Hinterglemm · Salzburgerland · Oostenrijk</span>
     <h1 style="font-size:104px">Wakker worden aan de piste.</h1>
-    <p style="font-size:20px;color:var(--ink-2);max-width:40ch">Vier ruime appartementen in Hinterglemm, 250 tot 400 meter van de lift. Nederlandse eigenaren die je vragen binnen 24 uur beantwoorden.</p>
+    <p style="font-size:20px;color:var(--ink-2);max-width:40ch">Ski-in, bijna ski-out: vier ruime appartementen in Hinterglemm, 250 tot 400 meter van de gondel. Nederlandse eigenaren die er zelf elke winter skiën.</p>
     <div style="display:flex;gap:12px"><a href="#" class="btn primary">Bekijk beschikbaarheid {icon('arrow')}</a><a href="#" class="btn secondary">De vier appartementen</a></div>
   </div>
-  {photo('100%',560,'foto · balkon, ochtendzon op de Zwölferkogel')}
+  {photo('100%',560,'foto · eerste afdaling, Reiterkogel, 08:40')}
 </section>
 <div style="padding:0 48px;margin-top:-1px">{ridge_svg('var(--ink)','100%',2,style='height:160px')}</div>
 <div class="facts" style="margin:0 48px;grid-template-columns:repeat(4, minmax(0, 1fr));gap:24px"><div class="fact"><span class="label">Tot de lift</span><b>250–400 m</b></div><div class="fact"><span class="label">Personen</span><b>2–8</b></div><div class="fact"><span class="label">Prijs</span><b>per week, alles-in</b></div><div class="fact"><span class="label">Antwoord</span><b>binnen 24 u</b></div></div>
@@ -328,9 +328,9 @@ SKETCH = """
 """
 def hero_alt(title, why, trade, kind):
     if kind=='dense':
-        inner = '''<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;height:100%"><div style="display:flex;flex-direction:column;gap:8px"><div class="box" style="height:26px;width:60%">label</div><div class="box" style="height:64px">kop: zoek je week</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:6px"><div class="box" style="height:34px">aankomst</div><div class="box" style="height:34px">vertrek</div><div class="box" style="height:34px">personen</div><div class="box" style="height:34px;background:var(--orange);color:#fff;border:0">zoek</div></div></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">'''+''.join('<div class="box" style="height:auto">app. '+str(i)+'<br>feiten</div>' for i in range(1,5))+'</div></div>'
+        inner = '''<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;height:100%"><div style="display:flex;flex-direction:column;gap:8px"><div class="box" style="height:26px;width:60%">label</div><div class="box" style="height:64px">kop: zoek je week</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:6px"><div class="box" style="height:34px">aankomst</div><div class="box" style="height:34px">vertrek</div><div class="box" style="height:34px">personen</div><div class="box" style="height:34px;background:var(--piste);color:#fff;border:0">zoek</div></div></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">'''+''.join('<div class="box" style="height:auto">app. '+str(i)+'<br>feiten</div>' for i in range(1,5))+'</div></div>'
     else:
-        inner = '''<div style="position:relative;height:100%"><div class="box" style="height:100%">foto full-bleed</div><div style="position:absolute;left:12px;bottom:12px;right:12px;display:flex;flex-direction:column;gap:6px"><div class="box" style="height:56px;background:var(--snow)">kop groot, wit vlak</div><div class="box" style="height:32px;width:50%;background:var(--orange);color:#fff;border:0">cta</div></div></div>'''
+        inner = '''<div style="position:relative;height:100%"><div class="box" style="height:100%">foto full-bleed</div><div style="position:absolute;left:12px;bottom:12px;right:12px;display:flex;flex-direction:column;gap:6px"><div class="box" style="height:56px;background:var(--snow)">kop groot, wit vlak</div><div class="box" style="height:32px;width:50%;background:var(--piste);color:#fff;border:0">cta</div></div></div>'''
     body = f'''<div class="sk" style="padding:20px;display:flex;flex-direction:column;gap:12px;height:100%">
   <div style="display:flex;justify-content:space-between"><span class="label">Alternatief · {title}</span><span class="label">lo-fi</span></div>
   <div style="flex:1;min-height:0">{inner}</div>
@@ -346,9 +346,9 @@ def tile(kind, title, tag, s=1.0, ridge_vb=None, sub=None, dark=False):
     fg = 'var(--snow)' if dark else 'var(--ink)'
     ridge = ''
     if ridge_vb:
-        ridge = f'<svg viewBox="{ridge_vb}" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%" aria-hidden="true"><path d="{ridge_path_big()}" fill="none" stroke="{"oklch(0.45 0.03 260)" if dark else "var(--ink)"}" stroke-width="3" vector-effect="non-scaling-stroke" stroke-linejoin="round"/></svg>'
+        ridge = f'<svg viewBox="{ridge_vb}" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%" aria-hidden="true"><path d="{ridge_path_big()}" fill="none" stroke="{"var(--ice)" if dark else "var(--ink)"}" stroke-width="3" vector-effect="non-scaling-stroke" stroke-linejoin="round"/></svg>'
     photo_area = '' if kind!='photo' else f'<div class="photo" style="position:absolute;inset:0;border-radius:0"><span class="cap" style="left:{fs(16)};bottom:{fs(16)};font-size:{fs(10)}">foto</span></div>'
-    mark = svgfile('a-venster-mark.svg', height=round(28*s)) if not dark else svgfile('a-venster-mark-reversed.svg', height=round(30*s))
+    mark = svgfile('b-dak-mark.svg', height=round(28*s)) if not dark else svgfile('b-dak-mark-reversed.svg', height=round(30*s))
     subhtml = f'<p style="font-size:{fs(14)};line-height:1.35;color:{"var(--ink-3)" if dark else "var(--ink-2)"};max-width:{fs(280)}">{sub}</p>' if sub else ''
     return f'''<div style="position:relative;width:{W}px;height:{H}px;background:{bg};color:{fg};overflow:hidden;font-family:var(--fb)">
   {photo_area}{ridge}
@@ -370,7 +370,7 @@ def grid_mock():
       ('photo','Reiterkogel in 5 foto\'s','Appartement', None, None, False),
       ('text','270 km piste, 70 liften','Skigebied', None, 'Skicircus Saalbach Hinterglemm Leogang Fieberbrunn.', True),
       ('text','Utrecht → Hinterglemm in 10 uur','Praktisch', slice_vb(0,0), 'Route, vignet, winterbanden, stops.', False),
-      ('photo','Wij zijn [voornamen]','Over ons', None, None, False),
+      ('photo','Wij zijn [voornamen]','Over ons', None, 'Op de piste sinds [jaar].', False),
       ('text','Skischool voor kinderen','Skigebied', slice_vb(2,0), 'Beginnersweide op 200 m van de deur.', False),
       ('text','Voorjaars­vakantie: 1 app. vrij','Aanbieding', slice_vb(0,1), None, False),
       ('text','Inpaklijst wintersport','Praktisch', slice_vb(1,1), '14 dingen die iedereen vergeet.', False),
@@ -380,8 +380,8 @@ def grid_mock():
     grid = ''.join(tile(k,t,tag,s,vb,sub,dark) for k,t,tag,vb,sub,dark in tiles)
     body = f'''<div style="padding:20px 18px;display:flex;flex-direction:column;gap:16px;background:#fff">
   <div style="display:flex;justify-content:space-between;align-items:center"><b style="font-size:16px">huishinterglemm</b>{icon('menu')}</div>
-  <div style="display:flex;align-items:center;gap:20px"><div style="width:80px;height:80px;border-radius:50%;background:var(--ink);display:flex;align-items:center;justify-content:center">{svgfile('a-venster-mark-reversed.svg', height=80)}</div><div style="display:flex;gap:18px;flex:1;justify-content:space-around;text-align:center;font-size:13px"><div><b style="font-size:16px">9</b><br>berichten</div><div><b style="font-size:16px">0</b><br>volgers</div><div><b style="font-size:16px">12</b><br>volgend</div></div></div>
-  <div style="font-size:14px;line-height:1.4"><b>Huis Hinterglemm</b><br>Ruime appartementen aan de piste in Hinterglemm · NL hosts · 250–400 m tot de lift · Boek direct ↓<br><a href="#" style="color:var(--spruce)">huishinterglemm.nl/link</a></div>
+  <div style="display:flex;align-items:center;gap:20px"><div style="width:80px;height:80px;border-radius:50%;background:var(--ink);display:flex;align-items:center;justify-content:center">{svgfile('b-dak-mark-reversed.svg', height=80)}</div><div style="display:flex;gap:18px;flex:1;justify-content:space-around;text-align:center;font-size:13px"><div><b style="font-size:16px">9</b><br>berichten</div><div><b style="font-size:16px">0</b><br>volgers</div><div><b style="font-size:16px">12</b><br>volgend</div></div></div>
+  <div style="font-size:14px;line-height:1.4"><b>Huis Hinterglemm</b><br>Ruime appartementen aan de piste in Hinterglemm · NL hosts · 250–400 m tot de lift · Boek direct ↓<br><a href="#" style="color:var(--piste)">huishinterglemm.nl/link</a></div>
   <div style="display:flex;gap:8px"><a href="#" class="btn secondary sm" style="flex:1;height:36px;font-size:14px">Volgen</a><a href="#" class="btn secondary sm" style="flex:1;height:36px;font-size:14px">Bericht</a></div>
   <div style="display:flex;gap:14px">{''.join(f'<div style="display:flex;flex-direction:column;align-items:center;gap:6px"><div style="width:60px;height:60px;border-radius:50%;border:1.5px solid var(--stone);display:flex;align-items:center;justify-content:center;font-family:var(--fm);font-size:9px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-2)">{h}</div><span style="font-size:11px">{h}</span></div>' for h in ('huizen','piste','route','gasten'))}</div>
   <div style="display:grid;grid-template-columns:repeat(3, minmax(0, 1fr));gap:2px;margin:0 -18px">{grid}</div>
@@ -410,9 +410,9 @@ def reel_board():
     W,H=360,640
     body=f'''<div style="padding:20px;display:flex;flex-direction:column;gap:12px;align-items:flex-start"><span class="label">Reel-cover · 9:16 met 4:5 veilig gebied</span>
 <div style="position:relative;width:{W}px;height:{H}px;background:var(--ink);color:var(--snow);overflow:hidden">
-  <div class="photo" style="position:absolute;inset:0;border-radius:0;background-color:oklch(0.32 0.02 260);background-image:repeating-linear-gradient(135deg,transparent 0 14px,oklch(0.36 0.02 260) 14px 15px)"></div>
-  <div style="position:absolute;left:0;right:0;top:{(H-450)//2}px;height:450px;border-top:1px dashed var(--orange);border-bottom:1px dashed var(--orange)"></div>
-  <div style="position:absolute;left:24px;right:24px;top:{(H-450)//2+24}px;display:flex;justify-content:space-between;align-items:center"><span class="label" style="color:var(--ink-3)">Appartement</span>{svgfile('a-venster-mark-reversed.svg', height=30)}</div>
+  <div class="photo" style="position:absolute;inset:0;border-radius:0;background-color:oklch(0.32 0.05 255);background-image:repeating-linear-gradient(135deg,transparent 0 14px,oklch(0.36 0.05 255) 14px 15px)"></div>
+  <div style="position:absolute;left:0;right:0;top:{(H-450)//2}px;height:450px;border-top:1px dashed var(--piste);border-bottom:1px dashed var(--piste)"></div>
+  <div style="position:absolute;left:24px;right:24px;top:{(H-450)//2+24}px;display:flex;justify-content:space-between;align-items:center"><span class="label" style="color:var(--ink-3)">Appartement</span>{svgfile('b-dak-mark-reversed.svg', height=30)}</div>
   <div style="position:absolute;left:24px;right:24px;bottom:{(H-450)//2+24}px;display:flex;flex-direction:column;gap:10px"><div class="display" style="font-size:40px">Van de deur naar de lift in 3 minuten.</div><span class="mono" style="color:var(--ink-3);font-size:12px;display:flex;align-items:center;gap:6px"><svg class="ico" viewBox="0 0 24 24" style="width:14px;height:14px"><path d="M7 4l12 8-12 8z"/></svg>0:32 · Reiterkogel</span></div>
 </div><span class="mono muted" style="font-size:11px;max-width:360px">Titel en merk binnen de 4:5 band, zodat de cover in het raster hetzelfde leest als in de feed.</span></div>'''
     return doc(body, 400)
@@ -421,7 +421,7 @@ def story_board():
     W,H=360,640
     body=f'''<div style="padding:20px;display:flex;flex-direction:column;gap:12px;align-items:flex-start"><span class="label">Story-sjabloon · 9:16</span>
 <div style="position:relative;width:{W}px;height:{H}px;background:var(--snow);overflow:hidden;display:flex;flex-direction:column">
-  <div style="padding:64px 24px 0;display:flex;justify-content:space-between;align-items:center"><span class="label">Vandaag in Hinterglemm</span>{svgfile('a-venster-mark.svg', height=28)}</div>
+  <div style="padding:64px 24px 0;display:flex;justify-content:space-between;align-items:center"><span class="label">Vandaag in Hinterglemm</span>{svgfile('b-dak-mark.svg', height=28)}</div>
   <div style="padding:20px 24px 0">{photo('100%',340,'foto · piste, 08:40')}</div>
   <div style="padding:20px 24px;display:flex;flex-direction:column;gap:10px"><div class="display" style="font-size:36px">−6 °C, 20 cm verse sneeuw.</div><span class="pill">Reiterkogel nog vrij 6–13 mrt</span></div>
   <div style="margin-top:auto;padding:0 24px 40px"><a href="#" class="btn primary" style="width:100%">Bekijk beschikbaarheid {icon('arrow')}</a></div>
@@ -430,13 +430,13 @@ def story_board():
 
 def carousel_boards():
     cover = tile('text','5 dingen die je over Hinterglemm moet weten','Skigebied',1.0,None,'Swipe →',False)
-    slide = f'''<div style="position:relative;width:360px;height:450px;background:var(--snow-2);color:var(--ink);overflow:hidden;padding:22px;display:flex;flex-direction:column;justify-content:space-between"><div style="display:flex;justify-content:space-between;align-items:center"><span class="label">2 / 6</span>{svgfile('a-venster-mark.svg', height=28)}</div><div style="display:flex;flex-direction:column;gap:10px"><span class="mono" style="color:var(--orange);font-weight:600">02</span><div class="display" style="font-size:34px">De Reiterkogel is de kant voor kinderen.</div><p style="font-size:14px;line-height:1.4;color:var(--ink-2)">Brede blauwe pistes, de skischool start op 200 m van de deur, en de lift is een gondel: geen sleeplift-stress.</p></div><div style="height:3px;background:var(--stone);border-radius:2px"><div style="width:33%;height:100%;background:var(--orange);border-radius:2px"></div></div></div>'''
-    return tile_board('Carrousel · cover', cover, 'Cover = leesbare tegel in het raster. Voortgangsbalk op elke slide, laatste slide zonder pijl.', 360, 450), tile_board('Carrousel · slide', slide, 'Slides wisselen snow / snow-2 / ink voor ritme. Nummer in oranje mono.', 360, 450)
+    slide = f'''<div style="position:relative;width:360px;height:450px;background:var(--snow-2);color:var(--ink);overflow:hidden;padding:22px;display:flex;flex-direction:column;justify-content:space-between"><div style="display:flex;justify-content:space-between;align-items:center"><span class="label">2 / 6</span>{svgfile('b-dak-mark.svg', height=28)}</div><div style="display:flex;flex-direction:column;gap:10px"><span class="mono" style="color:var(--piste);font-weight:600">02</span><div class="display" style="font-size:34px">De Reiterkogel is de kant voor kinderen.</div><p style="font-size:14px;line-height:1.4;color:var(--ink-2)">Brede blauwe pistes, de skischool start op 200 m van de deur, en de lift is een gondel: geen sleeplift-stress.</p></div><div style="height:3px;background:var(--stone);border-radius:2px"><div style="width:33%;height:100%;background:var(--piste);border-radius:2px"></div></div></div>'''
+    return tile_board('Carrousel · cover', cover, 'Cover = leesbare tegel in het raster. Voortgangsbalk op elke slide, laatste slide zonder pijl.', 360, 450), tile_board('Carrousel · slide', slide, 'Slides wisselen snow / snow-2 / ink voor ritme. Nummer in pisteblauw mono.', 360, 450)
 
 # --- build ---------------------------------------------------------------
 files = {
-  'LogoA.dc.html': logo_board('a-venster','A · Venster','Huis en berg in één teken: een raam met twee toppen erin. Leest op 16 px, werkt als app-icoon en favicon, oranje zon geeft warmte.','Rasterachtig; met te veel stroke voelt het als een spreadsheet-icoon. Wordmark op twee regels vraagt ruimte.'),
-  'LogoB.dc.html': logo_board('b-dak','B · Dak','Eén doorlopende lijn: gevel wordt bergkam. Zelfde lijn als de signatuur op de site en in het Instagram-raster. Vriendelijk, handgetekend gevoel.','Monoline verdwijnt op kleine maat en in low-contrast foto\'s. Kan op een kasteeltje lijken zonder de oranje deur.'),
+  'LogoA.dc.html': logo_board('a-venster','A · Venster','Huis en berg in één teken: een raam met twee toppen erin. Leest op 16 px, werkt als app-icoon en favicon, blauwe zon als accent.','Rasterachtig; met te veel stroke voelt het als een spreadsheet-icoon. Wordmark op twee regels vraagt ruimte.'),
+  'LogoB.dc.html': logo_board('b-dak','B · Dak','Eén doorlopende dunne lijn: gevel wordt bergkam. Zelfde lijn als de signatuur op de site en in het Instagram-raster. Strak, technisch, leest als een pistekaart.','Dunne lijn vraagt ruimte op kleine maat (favicon = dikkere variant). Blauwe deur is het enige kleuraccent.'),
   'LogoC.dc.html': logo_board('c-monogram','C · HH','Typografisch, stevig, geen illustratie. Twee H\'s delen een stam, de dwarsbalk is een bergkam. Werkt groot op gevel en skipas-hoesje.','Minst "huis". Zonder wordmark ernaast is het een abstract teken; kapitalen-wordmark is formeler dan de toon van de site.'),
   'Tokens.dc.html': tokens_board(),
   'Main.dc.html': home_mobile(),
@@ -489,7 +489,7 @@ canvas = {
   'pages': [{'id':'merk','name':'Merk'},{'id':'website','name':'Website'},{'id':'instagram','name':'Instagram'}],
   'artboards': artboards,
   'annotations': [
-    {'id':'n-merk','x':0,'y':-160,'w':520,'page':'merk','text':'Drie logorichtingen voor Huis Hinterglemm. Kies er één; de site-mockups gebruiken voorlopig A. Alle wordmarks zijn echte vectorpaden (design/brand/logos).'},
+    {'id':'n-merk','x':0,'y':-160,'w':520,'page':'merk','text':'v2: ski-palet (wit, gletsjer, piste, nacht). Logo B strakker (dunne lijn, scherpe hoeken); mockups gebruiken nu B. Alle wordmarks zijn echte vectorpaden (design/brand/logos).'},
     {'id':'n-web','x':0,'y':-160,'w':560,'page':'website','text':'Alle teksten zijn placeholder (docs/product-pitch/00-brief.md). Grijze vlakken = foto-slots met shotlist-label. [haakjes] = feiten die van de klant moeten komen.'},
     {'id':'n-ig','x':0,'y':-160,'w':560,'page':'instagram','text':'Optie a: elke tegel leesbaar op zichzelf, bergkam als achtergrondlaag over 2×3. Tegels zijn HTML, export 1080×1350 via Playwright.'},
   ],

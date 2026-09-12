@@ -1,20 +1,19 @@
-/* Huis Hinterglemm — design tokens (source of truth mirrored in Figma variables)
+/* Huis Hinterglemm — design tokens v2 (ski palette). Source of truth, mirrored in Figma variables.
    Colour model: OKLCH, lightness fixed per role. Change hue/chroma only. */
 :root {
-  /* surfaces */
-  --snow:      oklch(0.975 0.006 80);   /* page background, warm off-white */
-  --snow-2:    oklch(0.945 0.010 80);   /* raised surface / card */
-  --stone:     oklch(0.860 0.012 80);   /* hairlines, borders */
-  --stone-2:   oklch(0.620 0.020 70);   /* muted text, meta */
-  /* ink */
-  --ink:       oklch(0.250 0.025 260);  /* text, dark surfaces */
-  --ink-2:     oklch(0.360 0.020 260);  /* secondary text on snow */
-  --ink-3:     oklch(0.700 0.020 260);  /* muted text on ink */
-  /* accents */
-  --orange:    oklch(0.660 0.190 42);   /* primary action, piste marker */
-  --orange-2:  oklch(0.590 0.185 42);   /* hover / pressed */
-  --spruce:    oklch(0.400 0.070 165);  /* resort / nature sections */
-  --spruce-2:  oklch(0.920 0.030 165);  /* spruce tint */
+  /* surfaces: cool white and glacier blue */
+  --snow:      oklch(0.985 0.004 240);  /* page background, cool white */
+  --glacier:   oklch(0.930 0.035 228);  /* raised surface, cards, resort band */
+  --ice:       oklch(0.820 0.070 225);  /* decorative light blue: tags, ridge on dark */
+  --stone:     oklch(0.870 0.030 235);  /* hairlines, borders */
+  --stone-2:   oklch(0.560 0.035 250);  /* muted text, meta */
+  /* ink: night blue */
+  --ink:       oklch(0.240 0.050 255);  /* text, dark surfaces */
+  --ink-2:     oklch(0.380 0.045 255);  /* secondary text on light */
+  --ink-3:     oklch(0.740 0.035 245);  /* muted text on ink */
+  /* action: piste blue */
+  --piste:     oklch(0.560 0.160 250);  /* primary action, logo door */
+  --piste-2:   oklch(0.480 0.160 250);  /* hover / pressed */
   /* type */
   --font-display: "Bricolage Grotesque", "Arial Narrow", Impact, sans-serif;
   --font-body:    "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
@@ -39,7 +38,7 @@
   /* motion */
   --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
   --t-fast: 160ms; --t-base: 260ms; --t-reveal: 700ms; --t-draw: 1400ms;
-  /* elevation: one hairline, no drop shadows on snow */
+  /* elevation: one hairline, no drop shadows */
   --hairline: 1px solid var(--stone);
 }
 @media (prefers-reduced-motion: reduce) {
