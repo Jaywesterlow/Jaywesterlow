@@ -61,7 +61,7 @@ Availability of domains, handles and trademarks is **unchecked**. Check before p
 
 Names are Saalbach lift/peak names so they swap cleanly for the real resort. Add per apartment for design: 8 to 12 photo slots, floor plan slot, "Wat is inbegrepen" (linen, final cleaning, Wi-Fi, parking), "Extra" (tourist tax p.p.p.n., pets), check-in 16:00 / check-out 10:00.
 
-Season table (placeholder): Low = 10 Jan to 6 Feb and 14 Mar to close · Mid = opening to 19 Dec, 7 Feb to 13 Feb, 28 Feb to 13 Mar · High = 20 Dec to 9 Jan, 14 Feb to 27 Feb.
+Season table (placeholder, Saturday to Saturday, 2026/27): Low = 9 Jan to 6 Feb and 13 Mar to close · Mid = opening to 19 Dec, 6 Feb to 13 Feb, 27 Feb to 13 Mar · High = 19 Dec to 9 Jan, 13 Feb to 27 Feb.
 
 ---
 
@@ -69,7 +69,7 @@ Season table (placeholder): Low = 10 Jan to 6 Feb and 14 Mar to close · Mid = o
 
 **Home**
 - H1: *Wakker worden aan de piste.*
-- Sub: *Vier ruime appartementen in Saalbach-Hinterglemm. Op loopafstand van de lift, met een Nederlandse host die je vragen dezelfde dag beantwoordt.*
+- Sub: *Vier ruime appartementen in Saalbach-Hinterglemm. Op loopafstand van de lift, met Nederlandse eigenaren die je vragen binnen 24 uur beantwoorden.*
 - CTA primary: **Bekijk beschikbaarheid** · secondary: **Bekijk de appartementen**
 - Proof strip: *250 m tot de lift · 2 tot 8 personen · Prijzen per week, geen verrassingen · 270 km piste*
 - Sections: Appartementen (4 cards) → Waarom hier (3 attributes) → Het skigebied (Skicircus facts) → Zo werkt boeken (3 steps: kies datum → stuur aanvraag → wij bevestigen binnen 24 uur) → Reviews (placeholder: "Nog geen reviews: dit wordt de eerste winter.") → FAQ (5) → Contact/aanvraag.

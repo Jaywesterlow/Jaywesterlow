@@ -74,7 +74,8 @@ def icon(name):
     return f'<svg class="ico" viewBox="0 0 24 24">{d}</svg>'
 
 def photo(w='100%', h=240, cap='foto', radius=12, style=''):
-    return f'<div class="photo" style="width:{w};height:{h}px;border-radius:{radius}px;{style}"><span class="cap">{cap}</span></div>'
+    hh = h if isinstance(h, str) else f'{h}px'
+    return f'<div class="photo" style="width:{w};height:{hh};border-radius:{radius}px;{style}"><span class="cap">{cap}</span></div>'
 
 def doc(body, w, bg='var(--snow)', extra_css=''):
     return f'''<!doctype html>
@@ -107,7 +108,7 @@ APTS = [
 def apt_card(a, w='100%', ph=200):
     n,p,m2,br,lift,lo,mid,hi = a
     return f'''<a href="#" class="card" style="display:flex;flex-direction:column;width:{w};color:inherit">
-  {photo('100%',ph,f'foto · {n.lower()}, woonkamer',0)}
+  {photo('100%',ph,f'foto · {n}, woonkamer',0)}
   <div style="padding:16px 18px 18px;display:flex;flex-direction:column;gap:10px">
     <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px"><h3>{n}</h3><span class="mono">{lift} m → lift</span></div>
     <div style="display:flex;gap:8px;flex-wrap:wrap"><span class="pill">{p} pers.</span><span class="pill">{m2} m²</span><span class="pill">{br} slaapk.</span></div>
@@ -128,7 +129,7 @@ def footer(mobile=True):
     return f'''<footer class="dark" style="padding:{pad};display:flex;flex-direction:column;gap:28px">
   {ridge_svg('oklch(0.45 0.03 260)', '100%', 1.5)}
   <div style="display:grid;{cols};gap:28px">
-    <div style="display:flex;flex-direction:column;gap:12px">{LOGO_A_REV}<p class="muted" style="max-width:38ch;font-size:15px">Vier appartementen in Hinterglemm, verhuurd door Nederlandse eigenaren. Vragen? Stuur een WhatsApp, je hoort dezelfde dag van ons.</p></div>
+    <div style="display:flex;flex-direction:column;gap:12px">{LOGO_A_REV}<p class="muted" style="max-width:38ch;font-size:15px">Vier appartementen in Hinterglemm, verhuurd door Nederlandse eigenaren. Vragen? Stuur een WhatsApp, je hoort binnen 24 uur van ons.</p></div>
     <div style="display:flex;flex-direction:column;gap:8px;font-size:15px"><span class="label">Appartementen</span><a href="#">Kohlmais · 4 pers.</a><a href="#">Reiterkogel · 6 pers.</a><a href="#">Zwölferkogel · 8 pers.</a><a href="#">Schattberg · 2–3 pers.</a></div>
     <div style="display:flex;flex-direction:column;gap:8px;font-size:15px"><span class="label">Info</span><a href="#">Skigebied</a><a href="#">Praktisch</a><a href="#">Aanbiedingen</a><a href="#">Over ons</a></div>
     <div style="display:flex;flex-direction:column;gap:8px;font-size:15px"><span class="label">Contact</span><a href="#">06 [nummer]</a><a href="#">info@huishinterglemm.nl</a><a href="#">Instagram</a></div>
@@ -185,7 +186,7 @@ def tokens_board():
       <div style="display:flex;gap:8px;flex-wrap:wrap"><span class="pill">6 pers.</span><span class="pill">80 m²</span><span class="pill">3 slaapk.</span><span class="pill">sauna</span></div>
       <div class="facts" style="grid-template-columns:repeat(3, minmax(0, 1fr));gap:14px"><div class="fact"><span class="label">Tot de lift</span><b>300 m</b></div><div class="fact"><span class="label">Personen</span><b>2–8</b></div><div class="fact"><span class="label">Piste</span><b>270 km</b></div></div>
       {ridge_svg('var(--ink)','100%',2)}
-      <span class="mono muted">Signatuur: één doorlopende bergkam-lijn. Tekent zich in bij scrollen (1400 ms), rust bij reduced motion.</span>
+      <span class="mono muted">Signatuur: één doorlopende bergkam-lijn. Tekent zichzelf bij scrollen (1400 ms), rust bij reduced motion.</span>
     </div>
   </section>
   <section style="display:flex;flex-direction:column;gap:12px"><span class="label">Ruimte · 4 8 12 16 24 32 48 64 96 128 · radius 4 / 12 / pil · geen slagschaduw op snow, één hairline</span>
@@ -199,15 +200,15 @@ def hero_mobile():
 <section style="padding:36px 20px 28px;display:flex;flex-direction:column;gap:20px">
   <span class="label">Hinterglemm · Salzburgerland · Oostenrijk</span>
   <h1 style="font-size:52px">Wakker worden aan de piste.</h1>
-  <p style="font-size:17px;color:var(--ink-2)">Vier ruime appartementen in Hinterglemm, 250 tot 400 meter van de lift. Nederlandse eigenaren die je vragen dezelfde dag beantwoorden.</p>
+  <p style="font-size:17px;color:var(--ink-2)">Vier ruime appartementen in Hinterglemm, 250 tot 400 meter van de lift. Nederlandse eigenaren die je vragen binnen 24 uur beantwoorden.</p>
   <div style="display:flex;flex-direction:column;gap:10px"><a href="#" class="btn primary">Bekijk beschikbaarheid {icon('arrow')}</a><a href="#" class="btn secondary">De vier appartementen</a></div>
 </section>
 <div style="padding:0 20px">{photo('100%',300,'foto · balkon, ochtendzon op de Zwölferkogel')}</div>
-<div class="facts" style="margin:24px 20px 0;grid-template-columns:repeat(3, minmax(0, 1fr));gap:12px"><div class="fact"><span class="label">Tot de lift</span><b>250 m</b></div><div class="fact"><span class="label">Personen</span><b>2–8</b></div><div class="fact"><span class="label">Piste</span><b>270 km</b></div></div>'''
+<div class="facts" style="margin:24px 20px 0;grid-template-columns:repeat(3, minmax(0, 1fr));gap:12px"><div class="fact"><span class="label">Tot de lift</span><b>250–400 m</b></div><div class="fact"><span class="label">Personen</span><b>2–8</b></div><div class="fact"><span class="label">Piste</span><b>270 km</b></div></div>'''
 
 def why_block(mobile):
     items = [('Ruim','Twee tot acht personen. Slaapkamers voor iedereen, één grote tafel, en een droogruimte voor de skischoenen.'),
-             ('Dichtbij','Lopen naar de Reiterkogelbahn. Geen skibus, geen parkeerstress, om vier uur sta je in de sauna.'),
+             ('Dichtbij','Lopen naar de Reiterkogelbahn. Geen skibus, geen parkeerstress, om vier uur zit je op het balkon.'),
              ('Eerlijk','Eén prijs per week, alles inbegrepen. Vrij of bezet staat gewoon op de site. Vragen gaan via WhatsApp.')]
     cols = '1fr' if mobile else 'repeat(3, minmax(0, 1fr))'
     return f'''<section style="padding:{'48px 20px' if mobile else '96px 48px'};display:flex;flex-direction:column;gap:{'28px' if mobile else '48px'}">
@@ -226,7 +227,7 @@ def resort_band(mobile):
 </section>'''
 
 def steps_block(mobile):
-    steps=[('01','Kies je appartement en week','Vrij of bezet staat op de site. Zaterdag tot zaterdag in het hoogseizoen, daarbuiten ook kortere periodes.'),('02','Stuur een aanvraag','Datum, aantal personen, en wat je nog wilt weten. Duurt een minuut.'),('03','Binnen 24 uur een bevestiging','Van een van ons, niet van een systeem. Betalen via iDEAL, 30% aanbetaling.')]
+    steps=[('01','Kies je appartement en week','Vrij of bezet staat op de site. Zaterdag tot zaterdag in het hoogseizoen, daarbuiten ook kortere periodes.'),('02','Stuur een aanvraag','Datum, aantal personen, en wat je nog wilt weten. Duurt een minuut.'),('03','Binnen 24 uur een bevestiging','Van een van ons, niet van een systeem. Betalen via iDEAL, [x]% aanbetaling.')]
     cols='1fr' if mobile else 'repeat(3, minmax(0, 1fr))'
     return f'''<section style="padding:{'48px 20px' if mobile else '96px 48px'};display:flex;flex-direction:column;gap:28px">
   <div style="display:flex;flex-direction:column;gap:12px"><span class="label">Zo werkt boeken</span><h2 style="{'' if mobile else 'font-size:52px'}">Drie stappen, geen boekingsmachine.</h2></div>
@@ -248,7 +249,7 @@ def faq_block(mobile):
 
 def cta_block(mobile):
     return f'''<section style="background:var(--snow-2);padding:{'48px 20px' if mobile else '96px 48px'};display:flex;flex-direction:column;gap:24px;align-items:flex-start">
-  <span class="label">Winter 2026 / 2027</span><h2 style="{'font-size:40px' if mobile else 'font-size:64px;max-width:14ch'}">Nog vrij in de kerstvakantie: één appartement.</h2>
+  <span class="label">Winter 2026 / 2027 · [voorbeeld-aanbieding]</span><h2 style="{'font-size:40px' if mobile else 'font-size:64px;max-width:14ch'}">Nog vrij in de kerstvakantie: één appartement.</h2>
   <div style="display:flex;gap:12px;flex-wrap:wrap"><a href="#" class="btn primary">Bekijk beschikbaarheid {icon('arrow')}</a><a href="#" class="btn secondary">{icon('wa')} Stuur een WhatsApp</a></div>
 </section>'''
 
@@ -266,7 +267,7 @@ def home_desktop():
   <div style="display:flex;flex-direction:column;gap:28px;padding-bottom:24px">
     <span class="label">Hinterglemm · Salzburgerland · Oostenrijk</span>
     <h1 style="font-size:104px">Wakker worden aan de piste.</h1>
-    <p style="font-size:20px;color:var(--ink-2);max-width:40ch">Vier ruime appartementen in Hinterglemm, 250 tot 400 meter van de lift. Nederlandse eigenaren die je vragen dezelfde dag beantwoorden.</p>
+    <p style="font-size:20px;color:var(--ink-2);max-width:40ch">Vier ruime appartementen in Hinterglemm, 250 tot 400 meter van de lift. Nederlandse eigenaren die je vragen binnen 24 uur beantwoorden.</p>
     <div style="display:flex;gap:12px"><a href="#" class="btn primary">Bekijk beschikbaarheid {icon('arrow')}</a><a href="#" class="btn secondary">De vier appartementen</a></div>
   </div>
   {photo('100%',560,'foto · balkon, ochtendzon op de Zwölferkogel')}
@@ -280,7 +281,7 @@ def home_desktop():
     return doc(body, 1440)
 
 def price_table():
-    rows=[('Laagseizoen','10 jan – 6 feb · 14 mrt – sluiting','1.100'),('Middenseizoen','opening – 19 dec · 7–13 feb · 28 feb – 13 mrt','1.500'),('Hoogseizoen','20 dec – 9 jan · 14–27 feb','2.000')]
+    rows=[('Laagseizoen','9 jan – 6 feb · 13 mrt – sluiting','1.100'),('Middenseizoen','opening – 19 dec · 6–13 feb · 27 feb – 13 mrt','1.500'),('Hoogseizoen','19 dec – 9 jan · 13–27 feb','2.000')]
     return '<div style="display:flex;flex-direction:column">'+''.join(f'<div style="display:grid;grid-template-columns:1fr 1.6fr auto;gap:12px;align-items:baseline;border-top:1px solid var(--stone);padding:12px 0"><b style="font-size:15px">{a}</b><span class="mono muted" style="font-size:12px">{b}</span><b style="font-family:var(--fd);font-size:22px;letter-spacing:-0.02em">€ {c}</b></div>' for a,b,c in rows)+'<div style="border-top:1px solid var(--stone);padding-top:10px" class="mono muted">Per week, alles inbegrepen. Toeristenbelasting € [x] p.p.p.n. apart.</div></div>'
 
 def calendar(mobile):
@@ -308,7 +309,7 @@ def apt_detail(mobile):
     content = f'''
 <div style="display:flex;flex-direction:column;gap:12px"><span class="label">Appartement 2 van 4</span><h1 style="font-size:{'44px' if mobile else '72px'}">Reiterkogel</h1><p style="font-size:{'17px' if mobile else '19px'};color:var(--ink-2);max-width:52ch">Zes personen, drie slaapkamers, sauna, en 300 meter lopen naar de Reiterkogelbahn. Het appartement voor twee gezinnen of een vriendengroep die één grote tafel wil.</p></div>
 {facts}
-<div style="display:flex;flex-direction:column;gap:12px"><h3>Indeling</h3><p style="font-size:16px;color:var(--ink-2);max-width:60ch">Woonkamer met open keuken en eettafel voor acht. Slaapkamer 1 en 2 met tweepersoonsbed, slaapkamer 3 met stapelbed. Twee badkamers, sauna, ski- en droogruimte beneden. Balkon op het zuiden.</p></div>
+<div style="display:flex;flex-direction:column;gap:12px"><h3>Indeling</h3><p style="font-size:16px;color:var(--ink-2);max-width:60ch">Woonkamer met open keuken en eettafel voor acht. [Slaapkamer 1 en 2 met tweepersoonsbed, slaapkamer 3 met stapelbed. Twee badkamers, sauna, ski- en droogruimte beneden. Balkon op het zuiden.]</p></div>
 <div style="display:flex;flex-direction:column;gap:12px"><h3>Inbegrepen</h3><div style="display:flex;gap:8px;flex-wrap:wrap"><span class="pill">beddengoed</span><span class="pill">handdoeken</span><span class="pill">eindschoonmaak</span><span class="pill">wifi</span><span class="pill">parkeerplaats</span><span class="pill">sauna</span><span class="pill">vaatwasser</span><span class="pill">droogruimte</span></div></div>
 <div style="display:flex;flex-direction:column;gap:12px"><h3>Prijzen per week</h3>{price_table()}</div>
 <div style="display:flex;flex-direction:column;gap:12px;max-width:{'100%' if mobile else '460px'}"><h3>Beschikbaarheid</h3>{calendar(mobile)}</div>'''
@@ -319,7 +320,7 @@ def apt_detail(mobile):
     return doc(body, W)
 
 def inquiry_mobile():
-    body = nav(True) + f'<div style="padding:28px 20px 40px;display:flex;flex-direction:column;gap:24px">{inquiry_form()}<div class="hair" style="padding-top:20px;display:flex;flex-direction:column;gap:10px"><span class="label">Liever direct?</span><a href="#" class="btn secondary">{icon("wa")} WhatsApp 06 [nummer]</a><span class="mono muted" style="font-size:12px">Ma–zo 9–21 u. Nederlands, Duits of Engels.</span></div></div>' + footer(True)
+    body = nav(True) + f'<div style="padding:28px 20px 40px;display:flex;flex-direction:column;gap:24px">{inquiry_form()}<div class="hair" style="padding-top:20px;display:flex;flex-direction:column;gap:10px"><span class="label">Liever direct?</span><a href="#" class="btn secondary">{icon("wa")} WhatsApp 06 [nummer]</a><span class="mono muted" style="font-size:12px">[Ma–zo 9–21 u]. Nederlands, Duits of Engels.</span></div></div>' + footer(True)
     return doc(body, 390)
 
 SKETCH = """
@@ -365,7 +366,7 @@ def slice_vb(col,row):
 
 def grid_mock():
     tiles = [
-      ('text','Vroegboek­korting tot 1 november','Aanbieding', None, '10% op alle weken in januari en maart.', False),
+      ('text','Vroegboek­korting tot 1 november','Aanbieding', None, '[10%] op alle weken in januari en maart.', False),
       ('photo','Reiterkogel in 5 foto\'s','Appartement', None, None, False),
       ('text','270 km piste, 70 liften','Skigebied', None, 'Skicircus Saalbach Hinterglemm Leogang Fieberbrunn.', True),
       ('text','Utrecht → Hinterglemm in 10 uur','Praktisch', slice_vb(0,0), 'Route, vignet, winterbanden, stops.', False),
@@ -380,7 +381,7 @@ def grid_mock():
     body = f'''<div style="padding:20px 18px;display:flex;flex-direction:column;gap:16px;background:#fff">
   <div style="display:flex;justify-content:space-between;align-items:center"><b style="font-size:16px">huishinterglemm</b>{icon('menu')}</div>
   <div style="display:flex;align-items:center;gap:20px"><div style="width:80px;height:80px;border-radius:50%;background:var(--ink);display:flex;align-items:center;justify-content:center">{svgfile('a-venster-mark-reversed.svg', height=80)}</div><div style="display:flex;gap:18px;flex:1;justify-content:space-around;text-align:center;font-size:13px"><div><b style="font-size:16px">9</b><br>berichten</div><div><b style="font-size:16px">0</b><br>volgers</div><div><b style="font-size:16px">12</b><br>volgend</div></div></div>
-  <div style="font-size:14px;line-height:1.4"><b>Huis Hinterglemm</b><br>Ruime appartementen aan de piste in Hinterglemm · NL hosts · 250 m tot de lift · Boek direct ↓<br><a href="#" style="color:var(--spruce)">huishinterglemm.nl/link</a></div>
+  <div style="font-size:14px;line-height:1.4"><b>Huis Hinterglemm</b><br>Ruime appartementen aan de piste in Hinterglemm · NL hosts · 250–400 m tot de lift · Boek direct ↓<br><a href="#" style="color:var(--spruce)">huishinterglemm.nl/link</a></div>
   <div style="display:flex;gap:8px"><a href="#" class="btn secondary sm" style="flex:1;height:36px;font-size:14px">Volgen</a><a href="#" class="btn secondary sm" style="flex:1;height:36px;font-size:14px">Bericht</a></div>
   <div style="display:flex;gap:14px">{''.join(f'<div style="display:flex;flex-direction:column;align-items:center;gap:6px"><div style="width:60px;height:60px;border-radius:50%;border:1.5px solid var(--stone);display:flex;align-items:center;justify-content:center;font-family:var(--fm);font-size:9px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-2)">{h}</div><span style="font-size:11px">{h}</span></div>' for h in ('huizen','piste','route','gasten'))}</div>
   <div style="display:grid;grid-template-columns:repeat(3, minmax(0, 1fr));gap:2px;margin:0 -18px">{grid}</div>
@@ -412,7 +413,7 @@ def reel_board():
   <div class="photo" style="position:absolute;inset:0;border-radius:0;background-color:oklch(0.32 0.02 260);background-image:repeating-linear-gradient(135deg,transparent 0 14px,oklch(0.36 0.02 260) 14px 15px)"></div>
   <div style="position:absolute;left:0;right:0;top:{(H-450)//2}px;height:450px;border-top:1px dashed var(--orange);border-bottom:1px dashed var(--orange)"></div>
   <div style="position:absolute;left:24px;right:24px;top:{(H-450)//2+24}px;display:flex;justify-content:space-between;align-items:center"><span class="label" style="color:var(--ink-3)">Appartement</span>{svgfile('a-venster-mark-reversed.svg', height=30)}</div>
-  <div style="position:absolute;left:24px;right:24px;bottom:{(H-450)//2+24}px;display:flex;flex-direction:column;gap:10px"><div class="display" style="font-size:40px">Van de deur naar de lift in 3 minuten.</div><span class="mono" style="color:var(--ink-3);font-size:12px">▶ 0:32 · Reiterkogel</span></div>
+  <div style="position:absolute;left:24px;right:24px;bottom:{(H-450)//2+24}px;display:flex;flex-direction:column;gap:10px"><div class="display" style="font-size:40px">Van de deur naar de lift in 3 minuten.</div><span class="mono" style="color:var(--ink-3);font-size:12px;display:flex;align-items:center;gap:6px"><svg class="ico" viewBox="0 0 24 24" style="width:14px;height:14px"><path d="M7 4l12 8-12 8z"/></svg>0:32 · Reiterkogel</span></div>
 </div><span class="mono muted" style="font-size:11px;max-width:360px">Titel en merk binnen de 4:5 band, zodat de cover in het raster hetzelfde leest als in de feed.</span></div>'''
     return doc(body, 400)
 
@@ -422,7 +423,7 @@ def story_board():
 <div style="position:relative;width:{W}px;height:{H}px;background:var(--snow);overflow:hidden;display:flex;flex-direction:column">
   <div style="padding:64px 24px 0;display:flex;justify-content:space-between;align-items:center"><span class="label">Vandaag in Hinterglemm</span>{svgfile('a-venster-mark.svg', height=28)}</div>
   <div style="padding:20px 24px 0">{photo('100%',340,'foto · piste, 08:40')}</div>
-  <div style="padding:20px 24px;display:flex;flex-direction:column;gap:10px"><div class="display" style="font-size:36px">−6 °C, 20 cm verse sneeuw.</div><span class="pill">Reiterkogel nog vrij 7–14 mrt</span></div>
+  <div style="padding:20px 24px;display:flex;flex-direction:column;gap:10px"><div class="display" style="font-size:36px">−6 °C, 20 cm verse sneeuw.</div><span class="pill">Reiterkogel nog vrij 6–13 mrt</span></div>
   <div style="margin-top:auto;padding:0 24px 40px"><a href="#" class="btn primary" style="width:100%">Bekijk beschikbaarheid {icon('arrow')}</a></div>
 </div></div>'''
     return doc(body, 400)
@@ -447,7 +448,7 @@ files = {
   'AltPhoto.dc.html': hero_alt('full-bleed foto','Eén grote foto van het uitzicht doet het werk; kop op wit vlak. Emotie eerst.','Staat of valt met echte foto\'s die er nog niet zijn. Tot de shoot is het een grijs vlak.','photo'),
   'Raster.dc.html': grid_mock(),
   'Compositie.dc.html': composite_board(),
-  'TegelEnkel.dc.html': tile_board('Enkele tegel · aanbieding', tile('text','Vroegboek­korting tot 1 november','Aanbieding',1.0,None,'10% op alle weken in januari en maart. Aanvragen via de link in bio.',False), 'Titel Bricolage 38 px, tag mono, merkteken rechtsboven. Export 1080×1350 met device-scale 3.', 360, 450),
+  'TegelEnkel.dc.html': tile_board('Enkele tegel · aanbieding', tile('text','Vroegboek­korting tot 1 november','Aanbieding',1.0,None,'[10%] op alle weken in januari en maart. Aanvragen via de link in bio.',False), 'Titel Bricolage 38 px, tag mono, merkteken rechtsboven. Export 1080×1350 met device-scale 3.', 360, 450),
   'Reel.dc.html': reel_board(),
   'Story.dc.html': story_board(),
 }
@@ -465,24 +466,24 @@ def ab(f, x, y, w, h, page, title=None, **kw):
     d.update(kw); return d
 
 artboards = [
-  ab('LogoA.dc.html', 0, 0, 760, 760, 'merk', 'Logo A · Venster'),
-  ab('LogoB.dc.html', 840, 0, 760, 760, 'merk', 'Logo B · Dak'),
-  ab('LogoC.dc.html', 1680, 0, 760, 760, 'merk', 'Logo C · HH'),
-  ab('Tokens.dc.html', 0, 900, 1240, 1000, 'merk', 'Design system'),
-  ab('Main.dc.html', 0, 0, 390, 4300, 'website', 'Home · mobiel'),
-  ab('HomeDesktop.dc.html', 480, 0, 1440, 4300, 'website', 'Home · desktop'),
-  ab('AppartementMobiel.dc.html', 0, 4450, 390, 3300, 'website', 'Appartement · mobiel'),
-  ab('AppartementDesktop.dc.html', 480, 4450, 1440, 2500, 'website', 'Appartement · desktop'),
-  ab('Aanvraag.dc.html', 2010, 0, 390, 1500, 'website', 'Aanvraag · mobiel'),
-  ab('AltDense.dc.html', 2010, 1650, 600, 420, 'website', 'Alt · spec-sheet (lo-fi)'),
-  ab('AltPhoto.dc.html', 2010, 2200, 600, 420, 'website', 'Alt · full-bleed foto (lo-fi)'),
-  ab('Raster.dc.html', 0, 0, 384, 900, 'instagram', 'Profiel · raster'),
-  ab('Compositie.dc.html', 480, 0, 1136, 1060, 'instagram', 'Compositie 2×3'),
-  ab('TegelEnkel.dc.html', 0, 1050, 400, 560, 'instagram', 'Tegel · enkel'),
-  ab('CarrouselCover.dc.html', 480, 1200, 400, 560, 'instagram', 'Carrousel · cover'),
-  ab('CarrouselSlide.dc.html', 960, 1200, 400, 560, 'instagram', 'Carrousel · slide'),
-  ab('Reel.dc.html', 1440, 1200, 400, 760, 'instagram', 'Reel · cover'),
-  ab('Story.dc.html', 1920, 1200, 400, 740, 'instagram', 'Story'),
+  ab('LogoA.dc.html', 0, 0, 760, 790, 'merk', 'Logo A · Venster'),
+  ab('LogoB.dc.html', 840, 0, 760, 813, 'merk', 'Logo B · Dak'),
+  ab('LogoC.dc.html', 1680, 0, 760, 790, 'merk', 'Logo C · HH'),
+  ab('Tokens.dc.html', 0, 960, 1240, 1128, 'merk', 'Design system'),
+  ab('Main.dc.html', 0, 0, 390, 7438, 'website', 'Home · mobiel'),
+  ab('HomeDesktop.dc.html', 480, 0, 1440, 5641, 'website', 'Home · desktop'),
+  ab('AppartementMobiel.dc.html', 0, 7600, 390, 3496, 'website', 'Appartement · mobiel'),
+  ab('AppartementDesktop.dc.html', 480, 7600, 1440, 2781, 'website', 'Appartement · desktop'),
+  ab('Aanvraag.dc.html', 2010, 0, 390, 1752, 'website', 'Aanvraag · mobiel'),
+  ab('AltDense.dc.html', 2010, 1900, 600, 378, 'website', 'Alt · spec-sheet (lo-fi)'),
+  ab('AltPhoto.dc.html', 2010, 2420, 600, 378, 'website', 'Alt · full-bleed foto (lo-fi)'),
+  ab('Raster.dc.html', 0, 0, 384, 977, 'instagram', 'Profiel · raster'),
+  ab('Compositie.dc.html', 480, 0, 1136, 1090, 'instagram', 'Compositie 2×3'),
+  ab('TegelEnkel.dc.html', 0, 1240, 400, 615, 'instagram', 'Tegel · enkel'),
+  ab('CarrouselCover.dc.html', 480, 1240, 400, 615, 'instagram', 'Carrousel · cover'),
+  ab('CarrouselSlide.dc.html', 960, 1240, 400, 615, 'instagram', 'Carrousel · slide'),
+  ab('Reel.dc.html', 1440, 1240, 400, 805, 'instagram', 'Reel · cover'),
+  ab('Story.dc.html', 1920, 1240, 400, 759, 'instagram', 'Story'),
 ]
 canvas = {
   'pages': [{'id':'merk','name':'Merk'},{'id':'website','name':'Website'},{'id':'instagram','name':'Instagram'}],
