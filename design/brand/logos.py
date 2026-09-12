@@ -45,12 +45,14 @@ def stackedA(fill=INK,acc=ORANGE,bg=None):
 # ---------- Direction B: "Dak" — one continuous sleek line: gable becomes ridge. Thin stroke, sharp joins.
 def markB(x,y,s,fill=INK,acc=ORANGE):
     st=s*0.055
-    pts=[(s*0.10,s*0.92),(s*0.10,s*0.50),(s*0.32,s*0.27),(s*0.50,s*0.47),(s*0.68,s*0.17),(s*0.90,s*0.40),(s*0.90,s*0.92)]
+    # gable 45°/45°, then a symmetric summit: both flanks ~ equal slope so the top reads as a mountain
+    pts=[(s*0.10,s*0.92),(s*0.10,s*0.50),(s*0.32,s*0.28),(s*0.50,s*0.46),(s*0.70,s*0.14),(s*0.90,s*0.40),(s*0.90,s*0.92)]
     d='M'+' L'.join(f'{a:.1f},{b:.1f}' for a,b in pts)
     p=f'<g transform="translate({x},{y})">'
     p+=f'<path d="{d}" fill="none" stroke="{fill}" stroke-width="{st}" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="6"/>'
     p+=f'<rect x="{s*0.10-st/2}" y="{s*0.92-st/2}" width="{s*0.80+st}" height="{st}" fill="{fill}"/>'
-    p+=f'<rect x="{s*0.245}" y="{s*0.70}" width="{s*0.11}" height="{s*0.22}" fill="{acc}"/>'
+    # door sits on top of the baseline, not across it
+    p+=f'<rect x="{s*0.245}" y="{s*0.70}" width="{s*0.11}" height="{s*0.22-st/2}" fill="{acc}"/>'
     return p+'</g>'
 
 def lockupB(fill=INK,acc=ORANGE,bg=None):
