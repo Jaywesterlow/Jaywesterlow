@@ -1,8 +1,12 @@
 {
  "pages": [
   {
+   "id": "hero2",
+   "name": "Hero v2"
+  },
+  {
    "id": "hero",
-   "name": "Hero-concepten"
+   "name": "Hero v1"
   },
   {
    "id": "merk",
@@ -323,6 +327,96 @@
    "h": 868,
    "page": "hero",
    "title": "D · Masker · mobiel"
+  },
+  {
+   "file": "V2Hero0.dc.html",
+   "x": 0,
+   "y": 0,
+   "w": 1440,
+   "h": 924,
+   "page": "hero2",
+   "title": "Hero v2 · scroll 0%"
+  },
+  {
+   "file": "V2Hero50a.dc.html",
+   "x": 1520,
+   "y": 0,
+   "w": 1440,
+   "h": 924,
+   "page": "hero2",
+   "title": "Hero v2 · 50% a · sheet"
+  },
+  {
+   "file": "V2Hero50b.dc.html",
+   "x": 3040,
+   "y": 0,
+   "w": 1440,
+   "h": 924,
+   "page": "hero2",
+   "title": "Hero v2 · 50% b · masker"
+  },
+  {
+   "file": "V2Hero100.dc.html",
+   "x": 4560,
+   "y": 0,
+   "w": 1440,
+   "h": 924,
+   "page": "hero2",
+   "title": "Hero v2 · 100% · hoogteprofiel"
+  },
+  {
+   "file": "V2HeroMobiel.dc.html",
+   "x": 6080,
+   "y": 0,
+   "w": 390,
+   "h": 868,
+   "page": "hero2",
+   "title": "Hero v2 · mobiel"
+  },
+  {
+   "file": "V2Story0.dc.html",
+   "x": 0,
+   "y": 1100,
+   "w": 1440,
+   "h": 924,
+   "page": "hero2",
+   "title": "Scrollverhaal v2 · 0%"
+  },
+  {
+   "file": "V2Story50.dc.html",
+   "x": 1520,
+   "y": 1100,
+   "w": 1440,
+   "h": 924,
+   "page": "hero2",
+   "title": "Scrollverhaal v2 · 50%"
+  },
+  {
+   "file": "V2Story100.dc.html",
+   "x": 3040,
+   "y": 1100,
+   "w": 1440,
+   "h": 924,
+   "page": "hero2",
+   "title": "Scrollverhaal v2 · 100%"
+  },
+  {
+   "file": "V2Footer.dc.html",
+   "x": 0,
+   "y": 2200,
+   "w": 1440,
+   "h": 784,
+   "page": "hero2",
+   "title": "Footer · lagen"
+  },
+  {
+   "file": "V2FooterMobiel.dc.html",
+   "x": 1520,
+   "y": 2200,
+   "w": 390,
+   "h": 924,
+   "page": "hero2",
+   "title": "Footer · mobiel"
   }
  ],
  "annotations": [
@@ -359,6 +453,30 @@
    "text": "D · Masker. De foto zit in de huisvorm van het logo en groeit bij scrollen tot full-bleed; de kop blijft staan tot het beeld eroverheen schuift. clip-path animatie, werkt met foto én video. Sterk merkmoment, iets meer ontwikkelwerk dan A."
   },
   {
+   "id": "n2-hero",
+   "x": 0,
+   "y": -150,
+   "w": 760,
+   "page": "hero2",
+   "text": "Hero v2 = A met je notities: donkerder scrim boven (nav leesbaar) en onder, labels wit i.p.v. ijsblauw op licht, CTA terug in de hero (nav-CTA alleen is op mobiel onvindbaar achter het menu), rechtsonder een sneeuwbericht-widget i.p.v. de tekstfeiten. 50% in twee varianten: a) wit paneel schuift over het vastgezette beeld, b) beeld in de huisvorm (D50-gevoel). 100%: beeldstrook + hoogteprofiel als grafiek met een functie (voordeur → bergstation), geen sierlijn."
+  },
+  {
+   "id": "n2-story",
+   "x": 0,
+   "y": 950,
+   "w": 760,
+   "page": "hero2",
+   "text": "Scrollverhaal v2: structuur van B (teller, voortgangsbalk, drie tekstmomenten) op een rustig vectortoneel met één middelpunt: het huis uit het logo, het pad, het gondelstation. Geen video-ruis achter de tekst. Later kan het huis een uitgesneden foto worden."
+  },
+  {
+   "id": "n2-footer",
+   "x": 0,
+   "y": 2050,
+   "w": 760,
+   "page": "hero2",
+   "text": "Footer: zes lagen, toppen dicht op elkaar, meer randen en kleurtrappen van gletsjer naar nacht; de donkerste laag draagt de footerinhoud. Alleen als footer, zoals gevraagd."
+  },
+  {
    "id": "n-merk",
    "x": 0,
    "y": -160,
@@ -385,6 +503,6 @@
  ],
  "launch": {
   "view": "canvas",
-  "page": "hero"
+  "page": "hero2"
  }
 }

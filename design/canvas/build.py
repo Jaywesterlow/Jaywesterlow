@@ -447,6 +447,8 @@ def carousel_boards():
 
 # --- build ---------------------------------------------------------------
 import hero as _hero
+import hero2 as _hero2
+HERO2_FILES = _hero2.make({'doc':doc,'svgfile':svgfile,'icon':icon})
 HERO_FILES = _hero.make({'doc':doc,'nav':nav,'ridge_svg':ridge_svg,'svgfile':svgfile,'icon':icon,'ridge_path':ridge_path})
 
 files = {
@@ -471,6 +473,7 @@ c1, c2 = carousel_boards()
 files['CarrouselCover.dc.html'] = c1
 files['CarrouselSlide.dc.html'] = c2
 files.update(HERO_FILES)
+files.update(HERO2_FILES)
 
 for name, html in files.items():
     open(os.path.join(HERE, name), 'w').write(html)
@@ -502,15 +505,16 @@ artboards = [
   ab('Story.dc.html', 1920, 1240, 400, 759, 'instagram', 'Story'),
 ]
 canvas = {
-  'pages': [{'id':'hero','name':'Hero-concepten'},{'id':'merk','name':'Merk'},{'id':'website','name':'Website'},{'id':'instagram','name':'Instagram'}],
-  'artboards': artboards + _hero.artboards(ab),
+  'pages': [{'id':'hero2','name':'Hero v2'},{'id':'hero','name':'Hero v1'},{'id':'merk','name':'Merk'},{'id':'website','name':'Website'},{'id':'instagram','name':'Instagram'}],
+  'artboards': artboards + _hero.artboards(ab) + _hero2.artboards(ab),
   'annotations': [
     *[{'id':i,'x':x,'y':y,'w':640,'page':'hero','text':t} for i,x,y,t in _hero.NOTES],
+    *[{'id':i,'x':x,'y':y,'w':760,'page':'hero2','text':t} for i,x,y,t in _hero2.NOTES],
     {'id':'n-merk','x':0,'y':-160,'w':520,'page':'merk','text':'v2: ski-palet (wit, gletsjer, piste, nacht). Logo B strakker (dunne lijn, scherpe hoeken); mockups gebruiken nu B. Alle wordmarks zijn echte vectorpaden (design/brand/logos).'},
     {'id':'n-web','x':0,'y':-160,'w':560,'page':'website','text':'Alle teksten zijn placeholder (docs/product-pitch/00-brief.md). Grijze vlakken = foto-slots met shotlist-label. [haakjes] = feiten die van de klant moeten komen.'},
     {'id':'n-ig','x':0,'y':-160,'w':560,'page':'instagram','text':'Optie a: elke tegel leesbaar op zichzelf, bergkam als achtergrondlaag over 2×3. Tegels zijn HTML, export 1080×1350 via Playwright.'},
   ],
-  'launch': {'view':'canvas','page':'hero'},
+  'launch': {'view':'canvas','page':'hero2'},
 }
 json.dump(canvas, open(os.path.join(HERE,'canvas.json'),'w'), indent=1, ensure_ascii=False)
 print('wrote', len(files), 'artboards')
