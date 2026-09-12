@@ -1,6 +1,10 @@
 {
  "pages": [
   {
+   "id": "landing",
+   "name": "Landing v3"
+  },
+  {
    "id": "hero2",
    "name": "Hero v2"
   },
@@ -417,6 +421,33 @@
    "h": 924,
    "page": "hero2",
    "title": "Footer · mobiel"
+  },
+  {
+   "file": "Landing.dc.html",
+   "x": 0,
+   "y": 0,
+   "w": 1440,
+   "h": 9455,
+   "page": "landing",
+   "title": "Landing v3 · desktop"
+  },
+  {
+   "file": "LandingMobiel.dc.html",
+   "x": 1560,
+   "y": 0,
+   "w": 390,
+   "h": 11734,
+   "page": "landing",
+   "title": "Landing v3 · mobiel"
+  },
+  {
+   "file": "DemoOverlay.dc.html",
+   "x": 2100,
+   "y": 0,
+   "w": 1440,
+   "h": 924,
+   "page": "landing",
+   "title": "Demo-overlay"
   }
  ],
  "annotations": [
@@ -477,6 +508,22 @@
    "text": "Footer: zes lagen, toppen dicht op elkaar, meer randen en kleurtrappen van gletsjer naar nacht; de donkerste laag draagt de footerinhoud. Alleen als footer, zoals gevraagd."
   },
   {
+   "id": "n3-flow",
+   "x": 0,
+   "y": -170,
+   "w": 760,
+   "page": "landing",
+   "text": "Landing v3, één pagina. Scroll: hero vastgezet, inhoud vervaagt; het witte paneel schuift eroverheen; Ruim/Dichtbij/Eerlijk vervagen en het beeld groeit in de huisvorm tot full-bleed; daarna normale flow. Blauwe chips op de boards beschrijven het gedrag. Elke link opent de demo-overlay (rechts) en fadet terug."
+  },
+  {
+   "id": "n3-facts",
+   "x": 2100,
+   "y": 1000,
+   "w": 760,
+   "page": "landing",
+   "text": "Cijfers skigebied en skipas van saalbach.com (12 sep 2026): 270 km (140/112/18), 70 liften, 830–2.096 m, seizoen 27 nov – 4 apr, 6 dagen € 440 / 330 / 220. Hoogtes van het huis en de Reiterkogel bergstation nog verifiëren."
+  },
+  {
    "id": "n-merk",
    "x": 0,
    "y": -160,
@@ -503,6 +550,6 @@
  ],
  "launch": {
   "view": "canvas",
-  "page": "hero2"
+  "page": "landing"
  }
 }

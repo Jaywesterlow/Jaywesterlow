@@ -103,6 +103,8 @@ for key,(mk,lk,stk) in sets.items():
     open(f'{OUT}/{key}-lockup-mono.svg','w').write(lk(INK,INK))
     open(f'{OUT}/{key}-lockup-reversed.svg','w').write(lk(SNOW,ORANGE,INK))
     open(f'{OUT}/{key}-stacked.svg','w').write(stk())
+    open(f'{OUT}/{key}-lockup-white.svg','w').write(lk(SNOW,ORANGE))
+    open(f'{OUT}/{key}-mark-white.svg','w').write(svg(128,128,mk(0,0,128,SNOW,ORANGE)))
     open(f'{OUT}/{key}-mark.svg','w').write(svg(128,128,mk(0,0,128)))
     open(f'{OUT}/{key}-mark-reversed.svg','w').write(svg(160,160,'<rect width="160" height="160" rx="24" fill="'+INK+'"/>'+mk(16,16,128,SNOW,ORANGE)))
     open(f'{OUT}/{key}-mark-orange.svg','w').write(svg(160,160,'<rect width="160" height="160" rx="24" fill="'+ORANGE+'"/>'+mk(16,16,128,SNOW,INK)))
