@@ -200,7 +200,7 @@
 			</div>
 			<div class="grid4">
 				{#each apartments as a (a.slug)}
-					<a href={DEMO} class="card apt">
+					<a href={DEMO} class="card apt" data-cursor="view">
 						<div class="photo">
 							<img
 								src="/img/{rooms[a.slug]}-800.jpg"
@@ -226,6 +226,12 @@
 							<div class="row price">
 								<span class="muted">vanaf</span>
 								<b>{euro(a.price.low)} <small>/ week</small></b>
+							</div>
+							<div class="more">
+								<div>
+									<p>{a.summary}</p>
+									<span class="go">Bekijk het appartement <Icon name="arrow" size={16} /></span>
+								</div>
 							</div>
 						</div>
 					</a>
@@ -413,7 +419,7 @@
 					</div>
 				</div>
 			</div>
-			<button type="button" class="card story" onclick={() => (video = true)}>
+			<button type="button" class="card story" data-cursor="play" onclick={() => (video = true)}>
 				<img
 					src="/img/aerial-dorp-800.jpg"
 					srcset="/img/aerial-dorp-800.jpg 800w, /img/aerial-dorp-1600.jpg 1600w"
@@ -707,7 +713,7 @@
 	/* sheet */
 	.sheet {
 		position: relative;
-		background: linear-gradient(180deg, var(--snow) 0%, var(--snow) 30%, var(--glacier) 100%);
+		background: var(--snow);
 		border-radius: 28px 28px 0 0;
 		padding: var(--section) var(--inset) calc(var(--section) * 1.2);
 		display: flex;
@@ -764,7 +770,7 @@
 	.mask {
 		position: relative;
 		height: 220svh;
-		background: var(--glacier);
+		background: var(--snow);
 	}
 	.pin {
 		position: sticky;
@@ -830,26 +836,72 @@
 		gap: 20px;
 	}
 	.apt {
-		display: flex;
-		flex-direction: column;
+		position: relative;
+		height: 440px;
 		background: var(--snow);
 		border: 1px solid var(--stone);
 		color: inherit;
-		transition: transform var(--t-base) var(--ease-out);
+		transition: transform 600ms var(--ease-out);
 	}
 	.apt:hover {
 		color: inherit;
-		transform: translateY(-3px);
+		transform: translateY(-4px);
 	}
 	.apt .photo {
-		height: 260px;
+		position: absolute;
+		inset: 0;
 		border-radius: 0;
 	}
+	.apt .photo img {
+		transition: transform 900ms var(--ease-out);
+	}
+	.apt:hover .photo img {
+		transform: scale(1.05);
+	}
 	.apt .body {
+		/* sits on the photo; on hover the description unfolds and the panel slides up over the image */
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: var(--snow);
 		padding: 16px 18px 18px;
 		display: flex;
 		flex-direction: column;
 		gap: 10px;
+		transition: transform 600ms var(--ease-out);
+	}
+	.apt .more {
+		display: grid;
+		grid-template-rows: 0fr;
+		opacity: 0;
+		transition:
+			grid-template-rows 600ms var(--ease-out),
+			opacity 400ms var(--ease-out);
+	}
+	.apt .more > div {
+		overflow: hidden;
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+	}
+	.apt .more p {
+		font-size: var(--fs-small);
+		color: var(--ink-2);
+		padding-top: 4px;
+	}
+	.apt .go {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		font-weight: 600;
+		color: var(--piste);
+		padding-bottom: 2px;
+	}
+	.apt:hover .more,
+	.apt:focus-visible .more {
+		grid-template-rows: 1fr;
+		opacity: 1;
 	}
 	.apt .price {
 		border-top: 1px solid var(--stone);
@@ -878,8 +930,8 @@
 		.grid4 {
 			grid-template-columns: 1fr;
 		}
-		.apt .photo {
-			height: 220px;
+		.apt {
+			height: 400px;
 		}
 	}
 

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Icon from './Icon.svelte';
+	import { tilt } from '$lib/tilt';
 
 	/** Static example. On the real site this reads the daily snow report. */
 	const items = [
@@ -10,7 +11,8 @@
 	];
 </script>
 
-<div class="widget">
+<div class="widget" use:tilt={{ max: 7, scale: 1.02 }}>
+	<span class="sheen" aria-hidden="true"></span>
 	<div class="head">
 		<span class="label">Vandaag in Hinterglemm</span>
 		<span class="src">bron: saalbach.com · voorbeeld</span>
@@ -28,6 +30,9 @@
 
 <style>
 	.widget {
+		position: relative;
+		overflow: hidden;
+		will-change: transform;
 		display: flex;
 		flex-direction: column;
 		gap: 14px;
@@ -38,6 +43,25 @@
 		backdrop-filter: blur(12px);
 		-webkit-backdrop-filter: blur(12px);
 		color: var(--snow);
+	}
+	.sheen {
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+		background: radial-gradient(
+			260px circle at var(--mx, 50%) var(--my, 50%),
+			oklch(1 0 0 / 0.16),
+			transparent 60%
+		);
+		opacity: 0;
+		transition: opacity var(--t-base) var(--ease-out);
+	}
+	.widget:hover .sheen {
+		opacity: 1;
+	}
+	.head,
+	.cells {
+		position: relative;
 	}
 	.head {
 		display: flex;

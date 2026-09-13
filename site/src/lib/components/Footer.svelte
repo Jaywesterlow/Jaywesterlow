@@ -23,11 +23,27 @@
 
 <footer class="footer" id="contact-footer">
 	<svg viewBox="0 0 1440 760" preserveAspectRatio="none" class="ridges desktop" aria-hidden="true">
-		<rect width="1440" height="760" fill="oklch(0.985 0.004 240)" />
+		<defs
+			><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"
+				><stop offset="0" stop-color="oklch(0.93 0.035 228)" /><stop
+					offset="0.28"
+					stop-color="oklch(0.985 0.004 240)"
+				/></linearGradient
+			></defs
+		>
+		<rect width="1440" height="760" fill="url(#sky)" />
 		{#each desktop as l, i (i)}<path d={l.d} fill={l.c} />{/each}
 	</svg>
 	<svg viewBox="0 0 390 900" preserveAspectRatio="none" class="ridges mobile" aria-hidden="true">
-		<rect width="390" height="900" fill="oklch(0.985 0.004 240)" />
+		<defs
+			><linearGradient id="sky-m" x1="0" y1="0" x2="0" y2="1"
+				><stop offset="0" stop-color="oklch(0.93 0.035 228)" /><stop
+					offset="0.22"
+					stop-color="oklch(0.985 0.004 240)"
+				/></linearGradient
+			></defs
+		>
+		<rect width="390" height="900" fill="url(#sky-m)" />
 		{#each mobile as l, i (i)}<path d={l.d} fill={l.c} />{/each}
 	</svg>
 
@@ -76,7 +92,7 @@
 	.footer {
 		position: relative;
 		overflow: hidden;
-		min-height: 760px;
+		min-height: 880px;
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
@@ -107,7 +123,7 @@
 		display: flex;
 		flex-direction: column;
 		gap: 28px;
-		padding: 200px var(--inset) 32px;
+		padding: 300px var(--inset) 32px;
 	}
 	.cols {
 		display: grid;
@@ -117,6 +133,7 @@
 	.brand {
 		display: flex;
 		flex-direction: column;
+		align-items: flex-start;
 		gap: 12px;
 	}
 	.brand img {
@@ -152,7 +169,7 @@
 	}
 	@media (max-width: 900px) {
 		.footer {
-			min-height: 900px;
+			min-height: 1000px;
 		}
 		.ridges.desktop {
 			display: none;
@@ -164,7 +181,7 @@
 			padding-top: 48px;
 		}
 		.content {
-			padding-top: 120px;
+			padding-top: 200px;
 		}
 		.cols {
 			grid-template-columns: 1fr 1fr;

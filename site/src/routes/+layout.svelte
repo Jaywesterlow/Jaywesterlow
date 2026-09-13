@@ -1,6 +1,7 @@
 <script lang="ts">
 	import '../app.css';
 	import DemoOverlay from '$lib/components/DemoOverlay.svelte';
+	import Cursor from '$lib/components/Cursor.svelte';
 	import { openDemo } from '$lib/demo.svelte';
 	import { DEMO } from '$lib/site';
 
@@ -21,3 +22,4 @@
 
 {@render children()}
 <DemoOverlay />
+<Cursor />

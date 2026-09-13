@@ -62,9 +62,9 @@
 	--r-card: 12px;
 	--r-pill: 999px;
 	/* motion */
-	--ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
-	--t-fast: 160ms;
-	--t-base: 260ms;
+	--ease-out: cubic-bezier(0.16, 1, 0.3, 1); /* expo-out: fast start, long settle */
+	--t-fast: 200ms;
+	--t-base: 380ms;
 	--t-draw: 1400ms;
 	--hairline: 1px solid var(--stone);
 }
@@ -84,6 +84,10 @@
 }
 html {
 	scroll-behavior: smooth;
+}
+html.custom-cursor,
+html.custom-cursor * {
+	cursor: none !important;
 }
 body {
 	margin: 0;
