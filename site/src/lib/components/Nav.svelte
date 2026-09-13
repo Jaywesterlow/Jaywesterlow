@@ -4,11 +4,27 @@
 	import { fade } from 'svelte/transition';
 
 	let open = $state(false);
+	let y = $state(0);
+	let last = 0;
+	let hidden = $state(false);
+	const scrolled = $derived(y > 40);
+
+	/* hide while scrolling down, show again on the first scroll up; always visible near the top */
+	$effect(() => {
+		const dy = y - last;
+		if (y < 120) hidden = false;
+		else if (dy > 4) hidden = true;
+		else if (dy < -4) hidden = false;
+		last = y;
+	});
 </script>
 
-<header class="nav">
+<svelte:window bind:scrollY={y} />
+
+<header class="nav" class:scrolled class:hidden={hidden && !open} class:open>
 	<a href="#top" class="logo" aria-label="Huis Hinterglemm, naar boven">
-		<img src="/brand/lockup.svg" alt="Huis Hinterglemm" width="569" height="112" />
+		<img class="ink" src="/brand/lockup.svg" alt="Huis Hinterglemm" width="569" height="112" />
+		<img class="white" src="/brand/lockup-white.svg" alt="" width="569" height="112" />
 	</a>
 	<nav class="links" aria-label="Hoofdmenu">
 		{#each nav as item (item.href)}
@@ -41,19 +57,43 @@
 
 <style>
 	.nav {
-		position: absolute;
+		position: fixed;
 		inset: 0 0 auto 0;
-		z-index: 10;
+		z-index: 40;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
 		gap: var(--s-5);
 		padding: 22px var(--inset);
 		color: var(--ink);
+		background: transparent;
+		border-bottom: 1px solid transparent;
+		transition:
+			transform 480ms var(--ease-out),
+			background var(--t-base) var(--ease-out),
+			padding var(--t-base) var(--ease-out),
+			border-color var(--t-base) var(--ease-out),
+			color var(--t-base) var(--ease-out);
+	}
+	.nav.scrolled {
+		background: oklch(0.985 0.004 240 / 0.94);
+		backdrop-filter: blur(10px);
+		-webkit-backdrop-filter: blur(10px);
+		border-bottom-color: var(--stone);
+		padding-block: 14px;
+	}
+	.nav.hidden {
+		transform: translateY(-100%);
+	}
+	.logo {
+		display: inline-flex;
 	}
 	.logo img {
 		height: 40px;
 		width: auto;
+	}
+	.logo .white {
+		display: none;
 	}
 	.links {
 		display: flex;
@@ -119,8 +159,24 @@
 		}
 	}
 	@media (max-width: 900px) {
-		:global(.hero.mobile-dark) .nav {
+		/* over the dark mobile hero the bar is white on the photo; on the white bar it goes back to ink */
+		.nav:not(.scrolled):not(.open) {
 			color: var(--snow);
+		}
+		.nav:not(.scrolled):not(.open) .logo .ink {
+			display: none;
+		}
+		.nav:not(.scrolled):not(.open) .logo .white {
+			display: block;
+		}
+		.nav.open {
+			color: var(--snow);
+		}
+		.nav.open .logo .ink {
+			display: none;
+		}
+		.nav.open .logo .white {
+			display: block;
 		}
 	}
 </style>

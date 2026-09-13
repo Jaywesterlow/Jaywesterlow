@@ -102,16 +102,19 @@
 	.dot {
 		width: 7px;
 		height: 7px;
-		background: #fff;
-		mix-blend-mode: difference;
+		background: var(--ink);
+		box-shadow: 0 0 0 1.5px oklch(1 0 0 / 0.9);
 		transform: translate(calc(var(--x, -100px) - 50%), calc(var(--y, -100px) - 50%));
 		transition: opacity var(--t-fast) var(--ease-out);
 	}
 	.ring {
 		width: 36px;
 		height: 36px;
-		border: 1.5px solid #fff;
-		mix-blend-mode: difference;
+		border: 1.5px solid var(--ink);
+		/* white halo outside and inside the navy ring: visible on white, glacier and ink alike */
+		box-shadow:
+			0 0 0 1.5px oklch(1 0 0 / 0.85),
+			inset 0 0 0 1.5px oklch(1 0 0 / 0.85);
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
@@ -130,7 +133,7 @@
 	.link .ring {
 		width: 52px;
 		height: 52px;
-		background: oklch(1 0 0 / 0.18);
+		background: oklch(0.56 0.16 250 / 0.18);
 	}
 	.link .dot {
 		opacity: 0;
@@ -141,9 +144,9 @@
 	.label .ring {
 		width: 84px;
 		height: 84px;
-		mix-blend-mode: normal;
 		background: var(--piste);
 		border-color: var(--piste);
+		box-shadow: 0 0 0 1.5px oklch(1 0 0 / 0.85);
 	}
 	.text {
 		color: #fff;

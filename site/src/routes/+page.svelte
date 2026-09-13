@@ -110,6 +110,7 @@
 <PageMeta {meta} />
 
 <div id="top" class="page">
+	<Nav />
 	<!-- 1 · hero, pinned; content fades as the sheet slides over it -->
 	<section class="hero mobile-dark" use:progress={{ mode: 'page', distance: 0.7 }}>
 		<picture class="bg">
@@ -128,7 +129,6 @@
 			/>
 		</picture>
 		<div class="scrim"></div>
-		<Nav />
 		<div class="hero-bottom">
 			<div class="hero-copy">
 				<span class="kicker">Hinterglemm · Salzburgerland · Oostenrijk</span>
@@ -623,9 +623,6 @@
 			background:
 				linear-gradient(180deg, oklch(0.24 0.05 255 / 0.5) 0%, transparent 30%),
 				linear-gradient(180deg, transparent 42%, oklch(0.24 0.05 255 / 0.78) 100%);
-		}
-		.hero :global(.logo img) {
-			content: url('/brand/lockup-white.svg');
 		}
 		.hero-copy {
 			gap: 16px;
