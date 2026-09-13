@@ -1,24 +1,9 @@
 <script lang="ts">
 	import { site, DEMO } from '$lib/site';
 	import { apartments } from '$lib/data/apartments';
+	import { ridge } from '$lib/ridge';
 
 	/** Seven layered ridges; the last one is the footer colour so the content sits on ink. */
-	function ridge(w: number, base: number, amp: number, seed: number) {
-		const pts: string[] = [];
-		let first = '';
-		for (let x = 0; x <= w + 24; x += 24) {
-			const t = x / w;
-			const v =
-				Math.sin(t * 9 * Math.PI + seed) * 0.5 +
-				Math.sin(t * 23 * Math.PI + seed * 1.7) * 0.3 +
-				Math.sin(t * 51 * Math.PI + seed * 2.3) * 0.2;
-			const jag = ((x * 7919 + seed * 104729) % 97) / 97 - 0.5;
-			const y = base - amp * (0.55 + 0.45 * v) - jag * amp * 0.18;
-			if (!first) first = y.toFixed(1);
-			pts.push(`L${x},${y.toFixed(1)}`);
-		}
-		return `M0,${w + 400} L0,${first} ${pts.join(' ')} L${w},${w + 400} Z`;
-	}
 	const layers: [number, number, string][] = [
 		[300, 150, 'oklch(0.90 0.045 228)'],
 		[330, 140, 'oklch(0.82 0.07 225)'],
@@ -110,7 +95,7 @@
 		display: flex;
 		flex-direction: column;
 		gap: 12px;
-		padding: 40px var(--gutter) 0;
+		padding: 40px var(--inset) 0;
 	}
 	.top h2 {
 		font-size: clamp(2rem, 1.5rem + 2vw, 3rem);
@@ -122,7 +107,7 @@
 		display: flex;
 		flex-direction: column;
 		gap: 28px;
-		padding: 200px var(--gutter) 32px;
+		padding: 200px var(--inset) 32px;
 	}
 	.cols {
 		display: grid;

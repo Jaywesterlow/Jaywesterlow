@@ -13,6 +13,8 @@
 	import VideoModal from '$lib/components/VideoModal.svelte';
 	import { progress, reveal } from '$lib/scroll';
 	import { openDemo } from '$lib/demo.svelte';
+	import RidgeEdge from '$lib/components/RidgeEdge.svelte';
+	import { slide } from 'svelte/transition';
 
 	const meta = {
 		title: 'Huis Hinterglemm · Vier appartementen aan de piste in Hinterglemm',
@@ -30,10 +32,14 @@
 		schattberg: 'sauna'
 	};
 
-	const three = [
-		['Ruim', 'Twee tot acht personen, één grote tafel, een droogruimte voor de skischoenen.'],
-		['Dichtbij', 'Lopen naar de gondel. Om negen uur sta je boven.'],
-		['Eerlijk', 'Eén prijs per week, alles inbegrepen. Vrij of bezet staat op de site.']
+	const three: [string, string, string][] = [
+		[
+			'space',
+			'Ruim',
+			'Twee tot acht personen, één grote tafel, een droogruimte voor de skischoenen.'
+		],
+		['lift', 'Dichtbij', 'Lopen naar de gondel. Om negen uur sta je boven.'],
+		['check', 'Eerlijk', 'Eén prijs per week, alles inbegrepen. Vrij of bezet staat op de site.']
 	];
 
 	const levels = [
@@ -123,17 +129,19 @@
 		</picture>
 		<div class="scrim"></div>
 		<Nav />
-		<div class="hero-copy">
-			<span class="kicker">Hinterglemm · Salzburgerland · Oostenrijk</span>
-			<h1>Wakker worden aan de piste.</h1>
-			<div class="actions">
-				<a href={DEMO} class="btn primary">Bekijk beschikbaarheid <Icon name="arrow" size={18} /></a
-				>
-				<a href="#appartementen" class="textlink">De vier appartementen</a>
+		<div class="hero-bottom">
+			<div class="hero-copy">
+				<span class="kicker">Hinterglemm · Salzburgerland · Oostenrijk</span>
+				<h1>Wakker worden aan de piste.</h1>
+				<div class="actions">
+					<a href={DEMO} class="btn primary"
+						>Bekijk beschikbaarheid <Icon name="arrow" size={18} /></a
+					>
+					<a href="#appartementen" class="textlink">De vier appartementen</a>
+				</div>
 			</div>
-			<div class="widget-m"><SnowWidget /></div>
+			<div class="widget"><SnowWidget /></div>
 		</div>
-		<div class="widget-d"><SnowWidget /></div>
 	</section>
 
 	<div class="over">
@@ -149,11 +157,14 @@
 					</p>
 				</div>
 			</div>
-			<div class="three">
-				{#each three as [t, d] (t)}
-					<div class="item">
-						<h3>{t}</h3>
-						<p>{d}</p>
+			<div class="three usp">
+				{#each three as [i, t, d] (t)}
+					<div class="usp-item">
+						<span class="usp-icon"><Icon name={i} size={22} /></span>
+						<div>
+							<h3>{t}</h3>
+							<p>{d}</p>
+						</div>
 					</div>
 				{/each}
 			</div>
@@ -164,8 +175,8 @@
 			<div class="pin">
 				<div class="house">
 					<img
-						src="/img/dorp-blauwuur-1600.jpg"
-						srcset="/img/dorp-blauwuur-800.jpg 800w, /img/dorp-blauwuur-1600.jpg 1600w"
+						src="/img/dorp-1600.jpg"
+						srcset="/img/dorp-800.jpg 800w, /img/dorp-1600.jpg 1600w, /img/dorp-2400.jpg 2400w"
 						sizes="100vw"
 						alt="Hinterglemm in het blauwe uur, sneeuw op de daken"
 						loading="lazy"
@@ -253,7 +264,8 @@
 			</ul>
 		</section>
 
-		<!-- 6 · resort -->
+		<!-- 6 · resort, entered over a mountain ridge -->
+		<RidgeEdge />
 		<section id="skigebied" class="section dark resort">
 			<div class="head">
 				<div class="head-text">
@@ -436,7 +448,7 @@
 								<Icon name="plus" size={18} />
 							</button>
 						</h3>
-						{#if openFaq === i}<p>{f.a}</p>{/if}
+						{#if openFaq === i}<p transition:slide={{ duration: 260 }}>{f.a}</p>{/if}
 					</div>
 				{/each}
 			</div>
@@ -552,17 +564,29 @@
 			),
 			linear-gradient(180deg, transparent 42%, oklch(0.24 0.05 255 / 0.72) 100%);
 	}
-	.hero-copy {
+	.hero-bottom {
 		position: absolute;
-		left: var(--gutter);
-		right: var(--gutter);
-		bottom: 56px;
+		left: var(--inset);
+		right: var(--inset);
+		bottom: clamp(28px, 5vh, 56px);
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-end;
+		gap: 24px 48px;
+		flex-wrap: wrap;
+		opacity: calc(1 - var(--p, 0) * 1.4);
+		transform: translateY(calc(var(--p, 0) * -40px));
+	}
+	.hero-copy {
 		display: flex;
 		flex-direction: column;
 		gap: 22px;
+		flex: 1 1 520px;
 		max-width: 880px;
-		opacity: calc(1 - var(--p, 0) * 1.4);
-		transform: translateY(calc(var(--p, 0) * -40px));
+		min-width: 0;
+	}
+	.widget {
+		flex: 0 0 auto;
 	}
 	.kicker {
 		font-family: var(--font-label);
@@ -573,7 +597,7 @@
 		opacity: 0.9;
 	}
 	.hero h1 {
-		font-size: clamp(3.4rem, 1rem + 8vw, 7.5rem);
+		font-size: clamp(3rem, 1rem + 7vw, 7.5rem);
 		line-height: 0.9;
 		max-width: 10ch;
 	}
@@ -588,15 +612,6 @@
 		border-bottom: 1.5px solid currentColor;
 		padding-bottom: 2px;
 	}
-	.widget-d {
-		position: absolute;
-		right: var(--gutter);
-		bottom: 56px;
-		opacity: calc(1 - var(--p, 0) * 1.4);
-	}
-	.widget-m {
-		display: none;
-	}
 	@media (max-width: 900px) {
 		.hero .scrim {
 			background:
@@ -607,18 +622,15 @@
 			content: url('/brand/lockup-white.svg');
 		}
 		.hero-copy {
-			bottom: 36px;
 			gap: 16px;
+			flex-basis: 100%;
 		}
 		.hero h1 {
 			font-size: clamp(3rem, 14vw, 4.2rem);
 			line-height: 0.92;
 		}
-		.widget-d {
-			display: none;
-		}
-		.widget-m {
-			display: block;
+		.widget {
+			flex-basis: 100%;
 		}
 	}
 
@@ -631,7 +643,7 @@
 
 	/* shared section layout */
 	.section {
-		padding: var(--section) var(--gutter);
+		padding: var(--section) var(--inset);
 		display: flex;
 		flex-direction: column;
 		gap: clamp(28px, 4vw, 48px);
@@ -695,13 +707,52 @@
 	/* sheet */
 	.sheet {
 		position: relative;
-		background: linear-gradient(180deg, var(--snow) 0%, var(--snow) 70%, var(--glacier) 100%);
+		background: linear-gradient(180deg, var(--snow) 0%, var(--snow) 30%, var(--glacier) 100%);
 		border-radius: 28px 28px 0 0;
-		margin-top: -28px;
-		padding: var(--section) var(--gutter);
+		padding: var(--section) var(--inset) calc(var(--section) * 1.2);
 		display: flex;
 		flex-direction: column;
 		gap: clamp(28px, 4vw, 48px);
+	}
+	.usp {
+		gap: 20px;
+	}
+	.usp-item {
+		display: flex;
+		gap: 16px;
+		align-items: flex-start;
+		padding: 22px;
+		border-radius: var(--r-card);
+		background: oklch(0.985 0.004 240 / 0.7);
+		border: 1px solid oklch(0.87 0.03 235 / 0.6);
+		transition:
+			transform var(--t-base) var(--ease-out),
+			background var(--t-base) var(--ease-out);
+	}
+	.usp-item:hover {
+		transform: translateY(-2px);
+		background: var(--snow);
+	}
+	.usp-item > div {
+		display: flex;
+		flex-direction: column;
+		gap: 6px;
+		min-width: 0;
+	}
+	.usp-item p {
+		font-size: var(--fs-small);
+		color: var(--ink-2);
+	}
+	.usp-icon {
+		flex: none;
+		width: 44px;
+		height: 44px;
+		border-radius: 999px;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		background: var(--ice);
+		color: var(--ink);
 	}
 	.sheet .three {
 		/* starts fading once the house shape fills the lower third of the screen */
@@ -722,31 +773,40 @@
 		overflow: hidden;
 	}
 	.house {
+		/* a square box, so the cut-out keeps the exact proportions of the logo mark at every width */
+		--s: min(86vw, 82svh);
 		position: absolute;
-		inset: 0;
+		left: 50%;
+		top: 50%;
+		width: var(--s);
+		height: var(--s);
+		transform: translate(-50%, -50%);
 		--h: var(--p, 0);
-		/* house vertices → far outside the box, so at --p = 1 the photo is full-bleed */
+		/* logo vertices → far outside the box, so at --p = 1 the photo is full-bleed */
 		clip-path: polygon(
-			calc(10% - 40% * var(--h)) calc(92% + 60% * var(--h)),
-			calc(10% - 40% * var(--h)) calc(50% - 90% * var(--h)),
-			calc(32% - 12% * var(--h)) calc(27% - 80% * var(--h)),
-			calc(50% + 0% * var(--h)) calc(47% - 90% * var(--h)),
-			calc(68% + 12% * var(--h)) calc(17% - 80% * var(--h)),
-			calc(90% + 40% * var(--h)) calc(40% - 90% * var(--h)),
-			calc(90% + 40% * var(--h)) calc(92% + 60% * var(--h))
+			calc(10% - 200% * var(--h)) calc(92% + 200% * var(--h)),
+			calc(10% - 200% * var(--h)) calc(50% - 250% * var(--h)),
+			calc(32% - 70% * var(--h)) calc(28% - 250% * var(--h)),
+			calc(50% + 0% * var(--h)) calc(46% - 250% * var(--h)),
+			calc(70% + 70% * var(--h)) calc(14% - 250% * var(--h)),
+			calc(90% + 200% * var(--h)) calc(40% - 250% * var(--h)),
+			calc(90% + 200% * var(--h)) calc(92% + 200% * var(--h))
 		);
 	}
 	.house img {
+		/* the photo always covers the whole viewport; only the cut-out changes */
 		position: absolute;
-		inset: 0;
-		width: 100%;
-		height: 100%;
+		left: 50%;
+		top: 50%;
+		width: 100vw;
+		height: 100svh;
+		max-width: none;
 		object-fit: cover;
-		transform: scale(calc(1.15 - var(--p, 0) * 0.15));
+		transform: translate(-50%, -50%) scale(calc(1.12 - var(--p, 0) * 0.12));
 	}
 	.mask-copy {
 		position: absolute;
-		left: var(--gutter);
+		left: var(--inset);
 		bottom: 56px;
 		display: flex;
 		flex-direction: column;
@@ -761,11 +821,6 @@
 	.mask-copy h2 {
 		font-size: clamp(2rem, 1.2rem + 3vw, 3.5rem);
 		max-width: 14ch;
-	}
-	@media (max-width: 900px) {
-		.house {
-			inset: 0 -10%;
-		}
 	}
 
 	/* apartments */

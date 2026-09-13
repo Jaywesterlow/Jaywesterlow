@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { nav, DEMO } from '$lib/site';
 	import Icon from './Icon.svelte';
+	import { fade } from 'svelte/transition';
 
 	let open = $state(false);
 </script>
@@ -28,7 +29,7 @@
 </header>
 
 {#if open}
-	<div id="menu" class="menu dark">
+	<div id="menu" class="menu dark" transition:fade={{ duration: 220 }}>
 		<nav aria-label="Menu">
 			{#each nav as item (item.href)}
 				<a href={item.href} onclick={() => (open = false)}>{item.label}</a>
@@ -47,7 +48,7 @@
 		align-items: center;
 		justify-content: space-between;
 		gap: var(--s-5);
-		padding: 22px var(--gutter);
+		padding: 22px var(--inset);
 		color: var(--ink);
 	}
 	.logo img {
@@ -61,6 +62,10 @@
 	}
 	.links a:hover {
 		color: var(--piste);
+	}
+	.menu nav a,
+	.links a {
+		transition: color var(--t-fast) var(--ease-out);
 	}
 	.burger {
 		display: none;
@@ -85,7 +90,7 @@
 		flex-direction: column;
 		justify-content: flex-end;
 		gap: var(--s-6);
-		padding: 96px var(--gutter) 48px;
+		padding: 96px var(--inset) 48px;
 	}
 	.menu nav {
 		display: flex;
@@ -107,7 +112,7 @@
 			z-index: 11;
 		}
 		.nav {
-			padding: 18px var(--gutter);
+			padding: 18px var(--inset);
 		}
 		.logo img {
 			height: 34px;
