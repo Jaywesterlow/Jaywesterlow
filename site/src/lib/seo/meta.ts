@@ -99,7 +99,7 @@ export function apartmentNode(a: Apartment) {
 		name: `${site.name} · ${a.name}`,
 		url: `${site.url}${path}`,
 		description: a.summary,
-		image: a.photos.map((p) => `${site.url}/img/${p.key}-1600.jpg`),
+		image: a.photos.map((p) => `${site.url}/img/${p.key}-1600.webp`),
 		containedInPlace: { '@id': ORG },
 		occupancy: { '@type': 'QuantitativeValue', maxValue: a.sleepsMax, unitCode: 'C62' },
 		floorSize: { '@type': 'QuantitativeValue', value: a.area, unitCode: 'MTK' },

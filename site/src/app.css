@@ -89,6 +89,10 @@ html.custom-cursor,
 html.custom-cursor * {
 	cursor: none !important;
 }
+/* a modal is open: stop painting the page under it (see src/lib/freeze.ts) */
+html.page-frozen .page {
+	visibility: hidden;
+}
 body {
 	margin: 0;
 	background: var(--snow);
