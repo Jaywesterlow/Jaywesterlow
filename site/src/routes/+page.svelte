@@ -642,6 +642,8 @@
 		position: relative;
 		z-index: 2;
 		background: var(--snow);
+		/* the same radius as the sheet, so the corners reveal the pinned hero behind them */
+		border-radius: 28px 28px 0 0;
 	}
 
 	/* shared section layout */

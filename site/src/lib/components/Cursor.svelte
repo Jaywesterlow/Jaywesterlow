@@ -7,6 +7,8 @@
 	 * links and buttons grow the ring. Only on fine pointers without reduced motion.
 	 */
 	let el: HTMLDivElement | undefined = $state();
+	/* a modal <dialog> paints in the top layer, above any z-index; the cursor joins it as a popover */
+	let topLayer = $state(false);
 	let active = $state(false);
 	let mode = $state<'default' | 'link' | 'label' | 'hidden'>('hidden');
 	let label = $state('');
@@ -19,6 +21,28 @@
 		if (!fine || reduced) return;
 		active = true;
 		document.documentElement.classList.add('custom-cursor');
+
+		const supported = typeof HTMLElement !== 'undefined' && 'showPopover' in HTMLElement.prototype;
+		const anyDialog = () => !!document.querySelector('dialog[open]');
+		/** Re-enter the top layer so the cursor sits above a dialog that just opened. */
+		const raise = () => {
+			if (!el) return;
+			if (!supported) {
+				/* no popover support: fall back to the native cursor while a dialog is open */
+				document.documentElement.classList.toggle('custom-cursor', !anyDialog());
+				return;
+			}
+			try {
+				if (topLayer) el.hidePopover();
+				el.showPopover();
+				topLayer = true;
+			} catch {
+				topLayer = false;
+			}
+		};
+		const dialogs = new MutationObserver(raise);
+		dialogs.observe(document.body, { attributes: true, attributeFilter: ['open'], subtree: true });
+		queueMicrotask(raise);
 
 		let x = innerWidth / 2,
 			y = innerHeight / 2,
@@ -65,6 +89,7 @@
 		document.documentElement.addEventListener('mouseleave', leave);
 		document.documentElement.addEventListener('mouseenter', enter);
 		return () => {
+			dialogs.disconnect();
 			cancelAnimationFrame(raf);
 			removeEventListener('pointermove', move);
 			removeEventListener('scroll', scroll);
@@ -76,7 +101,13 @@
 </script>
 
 {#if active}
-	<div bind:this={el} class="cursor {mode}" aria-hidden="true">
+	<div
+		bind:this={el}
+		class="cursor {mode}"
+		class:top={topLayer}
+		popover="manual"
+		aria-hidden="true"
+	>
 		<span class="dot"></span>
 		<span class="ring"
 			>{#if mode === 'label'}<span class="text">{label}</span>{/if}</span
@@ -90,6 +121,22 @@
 		inset: 0;
 		z-index: 1000;
 		pointer-events: none;
+		/* reset the popover defaults so the layer stays a transparent full-screen overlay */
+		margin: 0;
+		padding: 0;
+		border: 0;
+		width: 100%;
+		height: 100%;
+		max-width: none;
+		max-height: none;
+		background: transparent;
+		overflow: visible;
+	}
+	.cursor:not(.top) {
+		display: block;
+	}
+	.cursor::backdrop {
+		background: transparent;
 	}
 	.dot,
 	.ring {
