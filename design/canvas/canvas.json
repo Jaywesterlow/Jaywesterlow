@@ -1,0 +1,555 @@
+{
+ "pages": [
+  {
+   "id": "landing",
+   "name": "Landing v3"
+  },
+  {
+   "id": "hero2",
+   "name": "Hero v2"
+  },
+  {
+   "id": "hero",
+   "name": "Hero v1"
+  },
+  {
+   "id": "merk",
+   "name": "Merk"
+  },
+  {
+   "id": "website",
+   "name": "Website"
+  },
+  {
+   "id": "instagram",
+   "name": "Instagram"
+  }
+ ],
+ "artboards": [
+  {
+   "file": "LogoA.dc.html",
+   "x": 0,
+   "y": 0,
+   "w": 760,
+   "h": 790,
+   "page": "merk",
+   "title": "Logo A · Venster"
+  },
+  {
+   "file": "LogoB.dc.html",
+   "x": 840,
+   "y": 0,
+   "w": 760,
+   "h": 813,
+   "page": "merk",
+   "title": "Logo B · Dak"
+  },
+  {
+   "file": "LogoC.dc.html",
+   "x": 1680,
+   "y": 0,
+   "w": 760,
+   "h": 790,
+   "page": "merk",
+   "title": "Logo C · HH"
+  },
+  {
+   "file": "Tokens.dc.html",
+   "x": 0,
+   "y": 960,
+   "w": 1240,
+   "h": 1128,
+   "page": "merk",
+   "title": "Design system"
+  },
+  {
+   "file": "Main.dc.html",
+   "x": 0,
+   "y": 0,
+   "w": 390,
+   "h": 7438,
+   "page": "website",
+   "title": "Home · mobiel"
+  },
+  {
+   "file": "HomeDesktop.dc.html",
+   "x": 480,
+   "y": 0,
+   "w": 1440,
+   "h": 5641,
+   "page": "website",
+   "title": "Home · desktop"
+  },
+  {
+   "file": "AppartementMobiel.dc.html",
+   "x": 0,
+   "y": 7600,
+   "w": 390,
+   "h": 3496,
+   "page": "website",
+   "title": "Appartement · mobiel"
+  },
+  {
+   "file": "AppartementDesktop.dc.html",
+   "x": 480,
+   "y": 7600,
+   "w": 1440,
+   "h": 2781,
+   "page": "website",
+   "title": "Appartement · desktop"
+  },
+  {
+   "file": "Aanvraag.dc.html",
+   "x": 2010,
+   "y": 0,
+   "w": 390,
+   "h": 1752,
+   "page": "website",
+   "title": "Aanvraag · mobiel"
+  },
+  {
+   "file": "AltDense.dc.html",
+   "x": 2010,
+   "y": 1900,
+   "w": 600,
+   "h": 378,
+   "page": "website",
+   "title": "Alt · spec-sheet (lo-fi)"
+  },
+  {
+   "file": "AltPhoto.dc.html",
+   "x": 2010,
+   "y": 2420,
+   "w": 600,
+   "h": 378,
+   "page": "website",
+   "title": "Alt · full-bleed foto (lo-fi)"
+  },
+  {
+   "file": "Raster.dc.html",
+   "x": 0,
+   "y": 0,
+   "w": 384,
+   "h": 977,
+   "page": "instagram",
+   "title": "Profiel · raster"
+  },
+  {
+   "file": "Compositie.dc.html",
+   "x": 480,
+   "y": 0,
+   "w": 1136,
+   "h": 1090,
+   "page": "instagram",
+   "title": "Compositie 2×3"
+  },
+  {
+   "file": "TegelEnkel.dc.html",
+   "x": 0,
+   "y": 1240,
+   "w": 400,
+   "h": 615,
+   "page": "instagram",
+   "title": "Tegel · enkel"
+  },
+  {
+   "file": "CarrouselCover.dc.html",
+   "x": 480,
+   "y": 1240,
+   "w": 400,
+   "h": 615,
+   "page": "instagram",
+   "title": "Carrousel · cover"
+  },
+  {
+   "file": "CarrouselSlide.dc.html",
+   "x": 960,
+   "y": 1240,
+   "w": 400,
+   "h": 615,
+   "page": "instagram",
+   "title": "Carrousel · slide"
+  },
+  {
+   "file": "Reel.dc.html",
+   "x": 1440,
+   "y": 1240,
+   "w": 400,
+   "h": 805,
+   "page": "instagram",
+   "title": "Reel · cover"
+  },
+  {
+   "file": "Story.dc.html",
+   "x": 1920,
+   "y": 1240,
+   "w": 400,
+   "h": 759,
+   "page": "instagram",
+   "title": "Story"
+  },
+  {
+   "file": "HeroA0.dc.html",
+   "x": 0,
+   "y": 0,
+   "w": 1440,
+   "h": 924,
+   "page": "hero",
+   "title": "A · Kaart · scroll 0%"
+  },
+  {
+   "file": "HeroA1.dc.html",
+   "x": 1520,
+   "y": 0,
+   "w": 1440,
+   "h": 924,
+   "page": "hero",
+   "title": "A · Kaart · scroll 50%"
+  },
+  {
+   "file": "HeroA2.dc.html",
+   "x": 3040,
+   "y": 0,
+   "w": 1440,
+   "h": 924,
+   "page": "hero",
+   "title": "A · Kaart · scroll 100%"
+  },
+  {
+   "file": "HeroAMobiel.dc.html",
+   "x": 4560,
+   "y": 0,
+   "w": 390,
+   "h": 868,
+   "page": "hero",
+   "title": "A · Kaart · mobiel"
+  },
+  {
+   "file": "HeroB0.dc.html",
+   "x": 0,
+   "y": 1100,
+   "w": 1440,
+   "h": 924,
+   "page": "hero",
+   "title": "B · Van de deur naar de lift · scroll 0%"
+  },
+  {
+   "file": "HeroB1.dc.html",
+   "x": 1520,
+   "y": 1100,
+   "w": 1440,
+   "h": 924,
+   "page": "hero",
+   "title": "B · Van de deur naar de lift · scroll 50%"
+  },
+  {
+   "file": "HeroB2.dc.html",
+   "x": 3040,
+   "y": 1100,
+   "w": 1440,
+   "h": 924,
+   "page": "hero",
+   "title": "B · Van de deur naar de lift · scroll 100%"
+  },
+  {
+   "file": "HeroBMobiel.dc.html",
+   "x": 4560,
+   "y": 1100,
+   "w": 390,
+   "h": 868,
+   "page": "hero",
+   "title": "B · Van de deur naar de lift · mobiel"
+  },
+  {
+   "file": "HeroC0.dc.html",
+   "x": 0,
+   "y": 2200,
+   "w": 1440,
+   "h": 924,
+   "page": "hero",
+   "title": "C · Lagen · scroll 0%"
+  },
+  {
+   "file": "HeroC1.dc.html",
+   "x": 1520,
+   "y": 2200,
+   "w": 1440,
+   "h": 924,
+   "page": "hero",
+   "title": "C · Lagen · scroll 50%"
+  },
+  {
+   "file": "HeroC2.dc.html",
+   "x": 3040,
+   "y": 2200,
+   "w": 1440,
+   "h": 924,
+   "page": "hero",
+   "title": "C · Lagen · scroll 100%"
+  },
+  {
+   "file": "HeroCMobiel.dc.html",
+   "x": 4560,
+   "y": 2200,
+   "w": 390,
+   "h": 868,
+   "page": "hero",
+   "title": "C · Lagen · mobiel"
+  },
+  {
+   "file": "HeroD0.dc.html",
+   "x": 0,
+   "y": 3300,
+   "w": 1440,
+   "h": 924,
+   "page": "hero",
+   "title": "D · Masker · scroll 0%"
+  },
+  {
+   "file": "HeroD1.dc.html",
+   "x": 1520,
+   "y": 3300,
+   "w": 1440,
+   "h": 924,
+   "page": "hero",
+   "title": "D · Masker · scroll 50%"
+  },
+  {
+   "file": "HeroD2.dc.html",
+   "x": 3040,
+   "y": 3300,
+   "w": 1440,
+   "h": 924,
+   "page": "hero",
+   "title": "D · Masker · scroll 100%"
+  },
+  {
+   "file": "HeroDMobiel.dc.html",
+   "x": 4560,
+   "y": 3300,
+   "w": 390,
+   "h": 868,
+   "page": "hero",
+   "title": "D · Masker · mobiel"
+  },
+  {
+   "file": "V2Hero0.dc.html",
+   "x": 0,
+   "y": 0,
+   "w": 1440,
+   "h": 924,
+   "page": "hero2",
+   "title": "Hero v2 · scroll 0%"
+  },
+  {
+   "file": "V2Hero50a.dc.html",
+   "x": 1520,
+   "y": 0,
+   "w": 1440,
+   "h": 924,
+   "page": "hero2",
+   "title": "Hero v2 · 50% a · sheet"
+  },
+  {
+   "file": "V2Hero50b.dc.html",
+   "x": 3040,
+   "y": 0,
+   "w": 1440,
+   "h": 924,
+   "page": "hero2",
+   "title": "Hero v2 · 50% b · masker"
+  },
+  {
+   "file": "V2Hero100.dc.html",
+   "x": 4560,
+   "y": 0,
+   "w": 1440,
+   "h": 924,
+   "page": "hero2",
+   "title": "Hero v2 · 100% · hoogteprofiel"
+  },
+  {
+   "file": "V2HeroMobiel.dc.html",
+   "x": 6080,
+   "y": 0,
+   "w": 390,
+   "h": 868,
+   "page": "hero2",
+   "title": "Hero v2 · mobiel"
+  },
+  {
+   "file": "V2Story0.dc.html",
+   "x": 0,
+   "y": 1100,
+   "w": 1440,
+   "h": 924,
+   "page": "hero2",
+   "title": "Scrollverhaal v2 · 0%"
+  },
+  {
+   "file": "V2Story50.dc.html",
+   "x": 1520,
+   "y": 1100,
+   "w": 1440,
+   "h": 924,
+   "page": "hero2",
+   "title": "Scrollverhaal v2 · 50%"
+  },
+  {
+   "file": "V2Story100.dc.html",
+   "x": 3040,
+   "y": 1100,
+   "w": 1440,
+   "h": 924,
+   "page": "hero2",
+   "title": "Scrollverhaal v2 · 100%"
+  },
+  {
+   "file": "V2Footer.dc.html",
+   "x": 0,
+   "y": 2200,
+   "w": 1440,
+   "h": 784,
+   "page": "hero2",
+   "title": "Footer · lagen"
+  },
+  {
+   "file": "V2FooterMobiel.dc.html",
+   "x": 1520,
+   "y": 2200,
+   "w": 390,
+   "h": 924,
+   "page": "hero2",
+   "title": "Footer · mobiel"
+  },
+  {
+   "file": "Landing.dc.html",
+   "x": 0,
+   "y": 0,
+   "w": 1440,
+   "h": 9000,
+   "page": "landing",
+   "title": "Landing v3 · desktop"
+  },
+  {
+   "file": "LandingMobiel.dc.html",
+   "x": 1560,
+   "y": 0,
+   "w": 390,
+   "h": 9000,
+   "page": "landing",
+   "title": "Landing v3 · mobiel"
+  },
+  {
+   "file": "DemoOverlay.dc.html",
+   "x": 2100,
+   "y": 0,
+   "w": 1440,
+   "h": 924,
+   "page": "landing",
+   "title": "Demo-overlay"
+  }
+ ],
+ "annotations": [
+  {
+   "id": "n-hero-a",
+   "x": 0,
+   "y": -140,
+   "w": 640,
+   "page": "hero",
+   "text": "A · Kaart. Full-bleed foto (later: video-loop) vouwt bij scrollen op tot een kaart rechts; de kop schuift naar links, de bergkam tekent onder de naad. CSS scroll-driven animation, geen JS nodig, statische fallback. Laagste risico, video-loop past er 1-op-1 in."
+  },
+  {
+   "id": "n-hero-b",
+   "x": 0,
+   "y": 960,
+   "w": 640,
+   "page": "hero",
+   "text": "B · Van de deur naar de lift. POV-video scrubt met scroll: 0 → 250 m, teller telt mee, aan het eind verschijnt de CTA. Het merkbelofte-verhaal in één beweging. Vraagt een echte POV-opname (of Veo image-to-video) en frame-sequentie voor iOS; fallback = poster + fade."
+  },
+  {
+   "id": "n-hero-c",
+   "x": 0,
+   "y": 2060,
+   "w": 640,
+   "page": "hero",
+   "text": "C · Lagen. Vectorbergen in merkblauw schuiven met verschillende snelheid; het huis-silhouet uit het logo groeit en “landt” linksboven als logo. Geen foto nodig, werkt overal, extreem licht. Nadeel: minder emotie dan een foto, en parallax is bekend terrein."
+  },
+  {
+   "id": "n-hero-d",
+   "x": 0,
+   "y": 3160,
+   "w": 640,
+   "page": "hero",
+   "text": "D · Masker. De foto zit in de huisvorm van het logo en groeit bij scrollen tot full-bleed; de kop blijft staan tot het beeld eroverheen schuift. clip-path animatie, werkt met foto én video. Sterk merkmoment, iets meer ontwikkelwerk dan A."
+  },
+  {
+   "id": "n2-hero",
+   "x": 0,
+   "y": -150,
+   "w": 760,
+   "page": "hero2",
+   "text": "Hero v2 = A met je notities: donkerder scrim boven (nav leesbaar) en onder, labels wit i.p.v. ijsblauw op licht, CTA terug in de hero (nav-CTA alleen is op mobiel onvindbaar achter het menu), rechtsonder een sneeuwbericht-widget i.p.v. de tekstfeiten. 50% in twee varianten: a) wit paneel schuift over het vastgezette beeld, b) beeld in de huisvorm (D50-gevoel). 100%: beeldstrook + hoogteprofiel als grafiek met een functie (voordeur → bergstation), geen sierlijn."
+  },
+  {
+   "id": "n2-story",
+   "x": 0,
+   "y": 950,
+   "w": 760,
+   "page": "hero2",
+   "text": "Scrollverhaal v2: structuur van B (teller, voortgangsbalk, drie tekstmomenten) op een rustig vectortoneel met één middelpunt: het huis uit het logo, het pad, het gondelstation. Geen video-ruis achter de tekst. Later kan het huis een uitgesneden foto worden."
+  },
+  {
+   "id": "n2-footer",
+   "x": 0,
+   "y": 2050,
+   "w": 760,
+   "page": "hero2",
+   "text": "Footer: zes lagen, toppen dicht op elkaar, meer randen en kleurtrappen van gletsjer naar nacht; de donkerste laag draagt de footerinhoud. Alleen als footer, zoals gevraagd."
+  },
+  {
+   "id": "n3-flow",
+   "x": 0,
+   "y": -170,
+   "w": 760,
+   "page": "landing",
+   "text": "Landing v3, één pagina. Scroll: hero vastgezet, inhoud vervaagt; het witte paneel schuift eroverheen; Ruim/Dichtbij/Eerlijk vervagen en het beeld groeit in de huisvorm tot full-bleed; daarna normale flow. Blauwe chips op de boards beschrijven het gedrag. Elke link opent de demo-overlay (rechts) en fadet terug."
+  },
+  {
+   "id": "n3-facts",
+   "x": 2100,
+   "y": 1000,
+   "w": 760,
+   "page": "landing",
+   "text": "Cijfers skigebied en skipas van saalbach.com (12 sep 2026): 270 km (140/112/18), 70 liften, 830–2.096 m, seizoen 27 nov – 4 apr, 6 dagen € 440 / 330 / 220. Hoogtes van het huis en de Reiterkogel bergstation nog verifiëren."
+  },
+  {
+   "id": "n-merk",
+   "x": 0,
+   "y": -160,
+   "w": 520,
+   "page": "merk",
+   "text": "v2: ski-palet (wit, gletsjer, piste, nacht). Logo B strakker (dunne lijn, scherpe hoeken); mockups gebruiken nu B. Alle wordmarks zijn echte vectorpaden (design/brand/logos)."
+  },
+  {
+   "id": "n-web",
+   "x": 0,
+   "y": -160,
+   "w": 560,
+   "page": "website",
+   "text": "Alle teksten zijn placeholder (docs/product-pitch/00-brief.md). Grijze vlakken = foto-slots met shotlist-label. [haakjes] = feiten die van de klant moeten komen."
+  },
+  {
+   "id": "n-ig",
+   "x": 0,
+   "y": -160,
+   "w": 560,
+   "page": "instagram",
+   "text": "Optie a: elke tegel leesbaar op zichzelf, bergkam als achtergrondlaag over 2×3. Tegels zijn HTML, export 1080×1350 via Playwright."
+  }
+ ],
+ "launch": {
+  "view": "canvas",
+  "page": "landing"
+ }
+}

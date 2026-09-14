@@ -1,0 +1,3 @@
+# Demo on a preview domain: keep it out of search results. Replace on the real domain.
+User-agent: *
+Disallow: /

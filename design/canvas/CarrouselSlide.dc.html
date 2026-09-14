@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&amp;family=Instrument+Sans:ital,wght@0,400..700;1,400..700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap">
+  <style>
+:root{--snow:oklch(0.985 0.004 240);--snow-2:oklch(0.945 0.020 230);--stone:oklch(0.87 0.030 235);--stone-2:oklch(0.56 0.035 250);
+--ink:oklch(0.24 0.050 255);--ink-2:oklch(0.38 0.045 255);--ink-3:oklch(0.74 0.035 245);--piste:oklch(0.56 0.160 250);--piste-2:oklch(0.48 0.160 250);--ice:oklch(0.82 0.070 225);
+--glacier:oklch(0.930 0.035 228);--glacier-2:oklch(0.80 0.06 228);
+--fd:"Bricolage Grotesque","Arial Narrow",sans-serif;--fb:"Instrument Sans","Helvetica Neue",Arial,sans-serif;--fm:"Instrument Sans","Helvetica Neue",Arial,sans-serif;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--snow);color:var(--ink);font-family:var(--fb);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:var(--ink);text-decoration:none} a:hover{color:var(--piste)}
+h1,h2,h3,.display{font-family:var(--fd);font-weight:700;letter-spacing:-0.03em;line-height:0.95;margin:0;text-wrap:balance}
+h2{font-size:34px;line-height:1.02} h3{font-size:22px;line-height:1.1;letter-spacing:-0.02em;font-weight:600}
+p{margin:0}
+.label{font-family:var(--fm);font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:var(--stone-2);font-weight:700}
+.mono{font-family:var(--fm);font-size:13px;letter-spacing:0.01em;font-weight:500}
+.muted{color:var(--stone-2)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:52px;padding:0 22px;border-radius:4px;font-weight:600;font-size:16px;line-height:1;white-space:nowrap;border:1.5px solid transparent}
+.btn.primary{background:var(--piste);color:#fff} .btn.secondary{background:transparent;color:var(--ink);border-color:var(--ink)} .btn.ghost{background:transparent;color:var(--ink);padding:0;height:auto;border:0;border-bottom:1.5px solid var(--ink);border-radius:0}
+.btn.sm{height:44px;padding:0 16px;font-size:15px}
+.hair{border-top:1px solid var(--stone)}
+.card{background:var(--snow-2);border-radius:12px;overflow:hidden}
+.photo{position:relative;background:var(--snow-2);background-image:repeating-linear-gradient(135deg,transparent 0 14px,oklch(0.90 0.030 230) 14px 15px);overflow:hidden}
+.photo .cap{position:absolute;left:12px;bottom:10px;font-family:var(--fm);font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink-2);background:var(--snow);padding:4px 8px;border-radius:3px}
+.pill{display:inline-flex;align-items:center;height:28px;padding:0 10px;border-radius:999px;border:1px solid var(--stone);font-family:var(--fm);font-size:12px;letter-spacing:0.04em;color:var(--ink-2);background:var(--snow)}
+.facts{display:grid;gap:0;border-top:1px solid var(--stone);border-bottom:1px solid var(--stone)}
+.fact{padding:14px 0;display:flex;flex-direction:column;gap:4px;border-right:1px solid var(--stone);padding-right:14px}
+.fact:last-child{border-right:0}
+.fact b{font-family:var(--fd);font-weight:700;font-size:24px;letter-spacing:-0.02em;line-height:1}
+.input{height:52px;border:1.5px solid var(--stone);border-radius:4px;background:#fff;padding:0 14px;display:flex;align-items:center;color:var(--stone-2);font-size:16px}
+.ridge{display:block;width:100%;height:auto}
+.dark{background:var(--ink);color:var(--snow)} .dark .label{color:var(--ink-3)} .dark .muted{color:var(--ink-3)} .dark .hair{border-color:oklch(0.36 0.05 255)} .dark a{color:var(--snow)}
+.spruce{background:var(--glacier);color:var(--ink)} .spruce .label{color:var(--stone-2)} .spruce .hair{border-color:var(--glacier-2)}
+.ico{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;flex:none}
+</style>
+</helmet>
+<div style="width:400px;background:var(--snow);min-height:100%;display:flex;flex-direction:column;">
+<div style="padding:20px;display:flex;flex-direction:column;gap:12px;align-items:flex-start"><span class="label">Carrousel · slide</span><div style="position:relative;width:360px;height:450px;background:var(--snow-2);color:var(--ink);overflow:hidden;padding:22px;display:flex;flex-direction:column;justify-content:space-between"><div style="display:flex;justify-content:space-between;align-items:center"><span class="label">2 / 6</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" height="28"><g transform="translate(0,0)"><path d="M12.8,117.8 L12.8,64.0 L41.0,35.8 L64.0,58.9 L89.6,17.9 L115.2,51.2 L115.2,117.8" fill="none" stroke="#132340" stroke-width="7.04" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="6"/><rect x="9.280000000000001" y="114.24000000000001" width="109.44000000000001" height="7.04" fill="#132340"/><rect x="31.36" y="89.6" width="14.08" height="24.64" fill="#2F6FD6"/></g></svg></div><div style="display:flex;flex-direction:column;gap:10px"><span class="mono" style="color:var(--piste);font-weight:600">02</span><div class="display" style="font-size:34px">De Reiterkogel is de kant voor kinderen.</div><p style="font-size:14px;line-height:1.4;color:var(--ink-2)">Brede blauwe pistes, de skischool start op 200 m van de deur, en de lift is een gondel: geen sleeplift-stress.</p></div><div style="height:3px;background:var(--stone);border-radius:2px"><div style="width:33%;height:100%;background:var(--piste);border-radius:2px"></div></div></div><span class="mono muted" style="font-size:11px;max-width:360px">Slides wisselen snow / snow-2 / ink voor ritme. Nummer in pisteblauw mono.</span></div>
+</div>
+</x-dc>
+</body>
+</html>
