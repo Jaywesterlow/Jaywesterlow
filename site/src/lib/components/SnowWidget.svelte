@@ -32,7 +32,6 @@
 	.widget {
 		position: relative;
 		overflow: hidden;
-		will-change: transform;
 		display: flex;
 		flex-direction: column;
 		gap: 14px;
@@ -55,6 +54,10 @@
 		);
 		opacity: 0;
 		transition: opacity var(--t-base) var(--ease-out);
+	}
+	.widget:hover {
+		/* promoted only while it is actually being tilted */
+		will-change: transform;
 	}
 	.widget:hover .sheen {
 		opacity: 1;

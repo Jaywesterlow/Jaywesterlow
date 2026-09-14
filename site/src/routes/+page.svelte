@@ -100,6 +100,10 @@
 
 	let video = $state(false);
 	let openFaq = $state(0);
+	/* the pinned hero stays behind the whole page; once it is covered, stop painting it */
+	let y = $state(0);
+	let vh = $state(0);
+	const heroSpent = $derived(vh > 0 && y > vh);
 
 	function submit(e: SubmitEvent) {
 		e.preventDefault();
@@ -107,20 +111,26 @@
 	}
 </script>
 
+<svelte:window bind:scrollY={y} bind:innerHeight={vh} />
+
 <PageMeta {meta} />
 
 <div id="top" class="page">
 	<Nav />
 	<!-- 1 · hero, pinned; content fades as the sheet slides over it -->
-	<section class="hero mobile-dark" use:progress={{ mode: 'page', distance: 0.7 }}>
+	<section
+		class="hero mobile-dark"
+		class:spent={heroSpent}
+		use:progress={{ mode: 'page', distance: 0.7 }}
+	>
 		<picture class="bg">
 			<source
 				media="(max-width: 700px)"
-				srcset="/img/piste-ochtend-800.jpg 800w, /img/piste-ochtend-1600.jpg 1600w"
+				srcset="/img/piste-ochtend-800.webp 800w, /img/piste-ochtend-1600.webp 1600w"
 			/>
 			<img
-				src="/img/hero-piste-1600.jpg"
-				srcset="/img/hero-piste-800.jpg 800w, /img/hero-piste-1600.jpg 1600w, /img/hero-piste-2400.jpg 2400w"
+				src="/img/hero-piste-1600.webp"
+				srcset="/img/hero-piste-800.webp 800w, /img/hero-piste-1600.webp 1600w, /img/hero-piste-2400.webp 2400w"
 				sizes="100vw"
 				alt="Versgeprepareerde piste boven Hinterglemm in de vroege ochtend, met het dorp en de gondel"
 				fetchpriority="high"
@@ -175,8 +185,8 @@
 			<div class="pin">
 				<div class="house">
 					<img
-						src="/img/dorp-1600.jpg"
-						srcset="/img/dorp-800.jpg 800w, /img/dorp-1600.jpg 1600w, /img/dorp-2400.jpg 2400w"
+						src="/img/dorp-1600.webp"
+						srcset="/img/dorp-800.webp 800w, /img/dorp-1600.webp 1600w, /img/dorp-2400.webp 2400w"
 						sizes="100vw"
 						alt="Hinterglemm in het blauwe uur, sneeuw op de daken"
 						loading="lazy"
@@ -203,8 +213,8 @@
 					<a href={DEMO} class="card apt" data-cursor="view">
 						<div class="photo">
 							<img
-								src="/img/{rooms[a.slug]}-800.jpg"
-								srcset="/img/{rooms[a.slug]}-800.jpg 800w, /img/{rooms[a.slug]}-1600.jpg 1600w"
+								src="/img/{rooms[a.slug]}-800.webp"
+								srcset="/img/{rooms[a.slug]}-800.webp 800w, /img/{rooms[a.slug]}-1600.webp 1600w"
 								sizes="(max-width: 900px) 100vw, 25vw"
 								alt={a.photos[0].alt}
 								loading="lazy"
@@ -295,8 +305,8 @@
 			<div class="split wide">
 				<div class="photo tall">
 					<img
-						src="/img/skischool-800.jpg"
-						srcset="/img/skischool-800.jpg 800w, /img/skischool-1600.jpg 1600w"
+						src="/img/skischool-800.webp"
+						srcset="/img/skischool-800.webp 800w, /img/skischool-1600.webp 1600w"
 						sizes="(max-width: 900px) 100vw, 55vw"
 						alt="Skischool op de Reiterkogel, kinderen op een brede blauwe piste"
 						loading="lazy"
@@ -398,8 +408,8 @@
 			<div class="card host">
 				<div class="photo">
 					<img
-						src="/img/gondel-800.jpg"
-						srcset="/img/gondel-800.jpg 800w, /img/gondel-1600.jpg 1600w"
+						src="/img/gondel-800.webp"
+						srcset="/img/gondel-800.webp 800w, /img/gondel-1600.webp 1600w"
 						sizes="(max-width: 900px) 100vw, 30vw"
 						alt="Gondel van de Reiterkogelbahn boven Hinterglemm"
 						loading="lazy"
@@ -421,8 +431,8 @@
 			</div>
 			<button type="button" class="card story" data-cursor="play" onclick={() => (video = true)}>
 				<img
-					src="/img/aerial-dorp-800.jpg"
-					srcset="/img/aerial-dorp-800.jpg 800w, /img/aerial-dorp-1600.jpg 1600w"
+					src="/img/aerial-dorp-800.webp"
+					srcset="/img/aerial-dorp-800.webp 800w, /img/aerial-dorp-1600.webp 1600w"
 					sizes="(max-width: 900px) 100vw, 35vw"
 					alt=""
 					loading="lazy"
@@ -544,6 +554,9 @@
 		background: var(--ink);
 		color: var(--snow);
 		z-index: 0;
+	}
+	.hero.spent {
+		visibility: hidden;
 	}
 	.hero .bg,
 	.hero .bg img {

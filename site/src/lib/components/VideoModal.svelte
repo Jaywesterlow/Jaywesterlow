@@ -1,14 +1,19 @@
 <script lang="ts">
 	import Icon from './Icon.svelte';
+	import { freezePage } from '$lib/freeze';
 
 	let { open = $bindable(false) }: { open?: boolean } = $props();
 	let dialog: HTMLDialogElement | undefined = $state();
 	let video: HTMLVideoElement | undefined = $state();
+	/** The file is only requested once someone opens the modal. */
+	let src = $state('');
 
 	$effect(() => {
 		if (!dialog) return;
 		if (open && !dialog.open) {
+			src = '/video/huis-hinterglemm-720.mp4';
 			dialog.showModal();
+			freezePage(true);
 			video?.play().catch(() => {});
 		}
 		if (!open && dialog.open) dialog.close();
@@ -17,6 +22,7 @@
 	function close() {
 		video?.pause();
 		if (video) video.currentTime = 0;
+		if (open) freezePage(false);
 		open = false;
 	}
 </script>
@@ -29,12 +35,12 @@
 		bind:this={video}
 		controls
 		playsinline
-		preload="metadata"
-		poster="/video/poster.jpg"
+		preload="none"
+		poster="/video/poster.webp"
 		width="1280"
 		height="720"
 	>
-		<source src="/video/huis-hinterglemm-720.mp4" type="video/mp4" />
+		{#if src}<source {src} type="video/mp4" />{/if}
 	</video>
 	<p class="meta">Beelden en muziek zijn AI-voorbeelden tot er echte opnames zijn.</p>
 </dialog>
@@ -50,9 +56,10 @@
 		max-width: none;
 		overflow: hidden;
 	}
+	/* a flat wash, not a blur: blurring the whole page behind the dialog costs more
+	   than decoding the video and drops playback to a slideshow */
 	.modal::backdrop {
-		background: oklch(0.24 0.05 255 / 0.85);
-		backdrop-filter: blur(4px);
+		background: oklch(0.18 0.04 255 / 0.92);
 	}
 	video {
 		display: block;

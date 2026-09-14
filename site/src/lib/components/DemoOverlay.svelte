@@ -2,14 +2,26 @@
 	import { demo, closeDemo } from '$lib/demo.svelte';
 	import Icon from './Icon.svelte';
 	import { DEMO_CONTACT } from '$lib/site';
+	import { freezePage } from '$lib/freeze';
 
 	let dialog: HTMLDialogElement | undefined = $state();
 
+	let frozen = false;
 	$effect(() => {
 		if (!dialog) return;
-		if (demo.open && !dialog.open) dialog.showModal();
+		if (demo.open && !dialog.open) {
+			dialog.showModal();
+			freezePage(true);
+			frozen = true;
+		}
 		if (!demo.open && dialog.open) dialog.close();
 	});
+
+	function onclose() {
+		if (frozen) freezePage(false);
+		frozen = false;
+		closeDemo();
+	}
 
 	const text = $derived(
 		demo.kind === 'form'
@@ -18,8 +30,8 @@
 	);
 </script>
 
-<dialog bind:this={dialog} class="demo" onclose={closeDemo} aria-labelledby="demo-title">
-	<img class="bg" src="/img/hero-piste-1600.jpg" alt="" />
+<dialog bind:this={dialog} class="demo" {onclose} aria-labelledby="demo-title">
+	<img class="bg" src="/img/hero-piste-800.webp" alt="" loading="lazy" />
 	<div class="scrim"></div>
 	<div class="inner">
 		<img src="/brand/mark-white.svg" alt="" width="72" height="72" class="mark" />
@@ -64,7 +76,8 @@
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
-		filter: blur(6px) brightness(0.6);
+		/* a small source scaled up is already soft, so a 3px blur is enough and costs a third */
+		filter: blur(3px) brightness(0.6);
 		transform: scale(1.04);
 	}
 	.scrim {
