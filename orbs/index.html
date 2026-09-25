@@ -1,0 +1,1161 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Thinking orbs</title>
+<meta name="description" content="Negen gestippelde denk-orbs voor AI-interfaces als framework-vrije custom elements, elk in een eigen HTML-bestand.">
+<style>
+:root {
+  --paper: #f5f5f4; --paper-2: #ffffff; --ink: #1c1917; --ink-2: #57534e; --line: #e7e5e4;
+  --night: #0c0c0d; --night-2: #161618; --chalk: #f4f4f5; --chalk-2: #a1a1aa; --night-line: #27272a;
+  --accent: #2f6fd6;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  background: var(--paper); color: var(--ink);
+  font: 16px/1.55 "Instrument Sans", "Helvetica Neue", Arial, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased; padding: 0 16px 64px;
+}
+main { max-width: 880px; margin: 0 auto; }
+header { padding: 40px 0 24px; display: flex; flex-wrap: wrap; gap: 8px 24px; align-items: baseline; justify-content: space-between; }
+h1 { margin: 0; font-size: 28px; letter-spacing: -0.02em; line-height: 1.1; }
+h1 small { font-weight: 400; color: var(--ink-2); font-size: 16px; letter-spacing: 0; margin-left: 8px; }
+h2 { font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-2); margin: 40px 0 12px; }
+a { color: var(--ink); }
+nav a { color: var(--ink-2); text-decoration: none; font-size: 14px; }
+nav a:hover { color: var(--accent); }
+.lead { color: var(--ink-2); margin: 0 0 24px; max-width: 60ch; }
+.panels { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (max-width: 640px) { .panels { grid-template-columns: 1fr; } }
+.panel { border-radius: 12px; padding: 28px 24px; display: grid; gap: 24px; border: 1px solid var(--line); }
+.panel.light { background: var(--paper-2); color: var(--ink); }
+.panel.dark { background: var(--night); color: var(--chalk); border-color: var(--night-line); }
+.panel .tag { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.6; }
+.avatar { display: flex; align-items: center; gap: 16px; }
+.avatar .bubble { border-radius: 12px; padding: 10px 14px; font-size: 15px; background: rgba(127,127,127,0.12); }
+.inline { display: flex; align-items: center; gap: 8px; font-size: 15px; }
+.controls { display: flex; flex-wrap: wrap; gap: 16px 28px; align-items: center; padding: 16px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); margin: 24px 0; font-size: 14px; }
+.controls label { display: inline-flex; align-items: center; gap: 8px; }
+.controls input[type=range] { width: 140px; accent-color: var(--accent); }
+.controls input[type=checkbox], .controls select { accent-color: var(--accent); }
+.controls select { font: inherit; padding: 4px 6px; border-radius: 4px; border: 1px solid var(--line); background: var(--paper-2); color: inherit; }
+.controls output { font-variant-numeric: tabular-nums; min-width: 3.5ch; display: inline-block; }
+pre { background: var(--paper-2); border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px; overflow-x: auto; font: 13px/1.5 ui-monospace, "JetBrains Mono", SFMono-Regular, Menlo, monospace; margin: 0 0 12px; }
+code { font: 13px/1.5 ui-monospace, "JetBrains Mono", SFMono-Regular, Menlo, monospace; }
+p code { background: var(--paper-2); border: 1px solid var(--line); padding: 1px 5px; border-radius: 4px; }
+table { border-collapse: collapse; width: 100%; font-size: 14px; }
+th, td { text-align: left; padding: 8px 10px 8px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-weight: 600; white-space: nowrap; }
+footer { margin-top: 48px; color: var(--ink-2); font-size: 13px; }
+footer a { color: inherit; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 12px; }
+.card { display: block; text-decoration: none; border: 1px solid var(--line); background: var(--paper-2); border-radius: 12px; padding: 20px; color: inherit; }
+.card:hover { border-color: var(--accent); }
+.card .pair { display: flex; align-items: center; gap: 16px; margin-bottom: 14px; }
+.card .name { font-weight: 600; }
+.card .sub { color: var(--ink-2); font-size: 14px; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0c0c0d; --paper-2: #161618; --ink: #f4f4f5; --ink-2: #a1a1aa; --line: #27272a;
+  }
+}
+</style>
+</head>
+<body>
+<main>
+<header>
+  <h1>Thinking orbs <small>negen states, twee maten, licht en donker</small></h1>
+  <nav><a href="https://github.com/Jakubantalik/thinking-orbs">origineel (React)</a></nav>
+</header>
+<p class="lead">Elke orb is een eigen custom element in een eigen standalone HTML-bestand. Klik een kaart voor de demo, de attributen en de code om te kopiëren. Het thema volgt hier je systeeminstelling.</p>
+
+<div class="controls">
+  <label>Snelheid <input id="speed" type="range" min="0.25" max="3" step="0.05" value="1"> <output id="speed-out">1.00×</output></label>
+  <label><input id="paused" type="checkbox"> Pauze</label>
+  <label>Thema <select id="theme"><option value="auto" selected>auto (systeem)</option><option value="light">light</option><option value="dark">dark</option></select></label>
+</div>
+
+<div class="grid">
+  <a class="card" href="working.html">
+    <div class="pair"><orb-working size="64"></orb-working><orb-working size="20"></orb-working></div>
+    <div class="name">working</div>
+    <div class="sub">Deeltjes op gekantelde banen</div>
+  </a>
+  <a class="card" href="searching.html">
+    <div class="pair"><orb-searching size="64"></orb-searching><orb-searching size="20"></orb-searching></div>
+    <div class="name">searching</div>
+    <div class="sub">Een scan-meridiaan veegt over een gestippelde globe</div>
+  </a>
+  <a class="card" href="solving.html">
+    <div class="pair"><orb-solving size="64"></orb-solving><orb-solving size="20"></orb-solving></div>
+    <div class="name">solving</div>
+    <div class="sub">Banden schuiven door elkaar en klikken weer terug</div>
+  </a>
+  <a class="card" href="listening.html">
+    <div class="pair"><orb-listening size="64"></orb-listening><orb-listening size="20"></orb-listening></div>
+    <div class="name">listening</div>
+    <div class="sub">Een golfvorm rolt door de ringen</div>
+  </a>
+  <a class="card" href="connecting.html">
+    <div class="pair"><orb-connecting size="64"></orb-connecting><orb-connecting size="20"></orb-connecting></div>
+    <div class="name">connecting</div>
+    <div class="sub">Een sterrenbeeld bedraadt zichzelf</div>
+  </a>
+  <a class="card" href="weaving.html">
+    <div class="pair"><orb-weaving size="64"></orb-weaving><orb-weaving size="20"></orb-weaving></div>
+    <div class="name">weaving</div>
+    <div class="sub">Drie strengen vlechten rond de bol</div>
+  </a>
+  <a class="card" href="composing.html">
+    <div class="pair"><orb-composing size="64"></orb-composing><orb-composing size="20"></orb-composing></div>
+    <div class="name">composing</div>
+    <div class="sub">Een golvende sjerp van banden</div>
+  </a>
+  <a class="card" href="breathing.html">
+    <div class="pair"><orb-breathing size="64"></orb-breathing><orb-breathing size="20"></orb-breathing></div>
+    <div class="name">breathing</div>
+    <div class="sub">Een ring die langzaam vervormt</div>
+  </a>
+  <a class="card" href="shaping.html">
+    <div class="pair"><orb-shaping size="64"></orb-shaping><orb-shaping size="20"></orb-shaping></div>
+    <div class="name">shaping</div>
+    <div class="sub">Gestippelde omtrek: cirkel → driehoek → vierkant</div>
+  </a>
+</div>
+
+<h2>Alle negen in één pagina</h2>
+<p>Laad <code>js/orb-core.js</code> één keer en daarna de modes die je nodig hebt. Elke mode registreert zijn eigen tag (<code>&lt;orb-working&gt;</code>, <code>&lt;orb-searching&gt;</code>, …) dus ze bijten elkaar niet.</p>
+<pre>&lt;script src="js/orb-core.js"&gt;&lt;/script&gt;
+&lt;script src="js/searching.js"&gt;&lt;/script&gt;
+&lt;script src="js/shaping.js"&gt;&lt;/script&gt;
+
+&lt;orb-searching size="64"&gt;&lt;/orb-searching&gt;
+&lt;orb-shaping size="20"&gt;&lt;/orb-shaping&gt;</pre>
+
+<footer>Port van <a href="https://github.com/Jakubantalik/thinking-orbs">thinking-orbs</a> 0.3.1 (MIT © Jakub Antalik).</footer>
+</main>
+
+<script>
+// thinking-orbs — framework-vrije kern (plain JS, nul dependencies).
+//
+// Geport van https://github.com/Jakubantalik/thinking-orbs (MIT © 2026 Jakub
+// Antalik). De geometrie is één-op-één overgenomen uit `src/engine/core.ts`,
+// de component-logica uit `src/ThinkingOrb.tsx` en `src/theme.ts`, maar dan
+// als custom element in plaats van een React-component.
+//
+// Wat dit blok levert: de wiskundige primitieven (projectie, ruis, Fibonacci-
+// bol), de painter (z-gesorteerde grijswaarde-cirkels op een 2D canvas) en
+// `OrbCore.define(tag, def)`, dat één orb als <tag> registreert met:
+//   size="64" | "20"      twee apart getunede presets (default 64)
+//   theme="auto|dark|light"  auto = data-theme / .dark / .light op een
+//                          voorouder, anders prefers-color-scheme (live)
+//   speed="1"             vermenigvuldiger op de ingebakken snelheid
+//   paused                bevriest het huidige frame
+// Verder: prefers-reduced-motion → één statisch frame, automatische pauze
+// buiten beeld (IntersectionObserver) en op een verborgen tabblad, één
+// gedeelde klok (performance.now) zodat alle orbs in fase blijven, DPR-cap 2.
+//
+// Het blok is idempotent: meerdere orb-bestanden op één pagina delen één
+// kern, de eerste wint.
+window.OrbCore = window.OrbCore || (function () {
+  'use strict';
+
+  // --- geometrie ---------------------------------------------------------
+
+  function lerp(a, b, f) { return a + (b - a) * f; }
+  function frac(x) { return x - Math.floor(x); }
+
+  /** Deterministische hash in [0, 1). */
+  function hashD(a, b) {
+    const h = Math.sin(a * 12.9898 + b * 78.233) * 43758.5453;
+    return h - Math.floor(h);
+  }
+
+  /** Waarde-ruis op een 2D-rooster: glad, deterministisch, goedkoop. */
+  function vnoise(x, y) {
+    const xi = Math.floor(x);
+    const yi = Math.floor(y);
+    let fx = x - xi;
+    let fy = y - yi;
+    fx = fx * fx * (3 - 2 * fx);
+    fy = fy * fy * (3 - 2 * fy);
+    const a = hashD(xi, yi);
+    const b = hashD(xi + 1, yi);
+    const c = hashD(xi, yi + 1);
+    const d = hashD(xi + 1, yi + 1);
+    return a + (b - a) * fx + (c - a) * fy + (a - b - c + d) * fx * fy;
+  }
+
+  /** Stabiele richtingen op een eenheidsbol (Fibonacci-rooster). */
+  function fibDir(i, n) {
+    const golden = Math.PI * (3 - Math.sqrt(5));
+    const y = 1 - (2 * (i + 0.5)) / n;
+    const rad = Math.sqrt(1 - y * y);
+    const a = i * golden;
+    return [rad * Math.cos(a), y, rad * Math.sin(a)];
+  }
+
+  /** Kortste getekende hoekafstand, gewikkeld naar (-π, π]. */
+  function angleDelta(a, b) {
+    return Math.atan2(Math.sin(a - b), Math.cos(a - b));
+  }
+
+  /** Gedeelde draai + kanteling + orthografische projectie. */
+  function makeProj(yaw, tilt, cx, cy, scale) {
+    const st = Math.sin(tilt);
+    const ct = Math.cos(tilt);
+    const sy = Math.sin(yaw);
+    const cyw = Math.cos(yaw);
+    return function (x, y, z) {
+      const x1 = x * cyw + z * sy;
+      const z1 = -x * sy + z * cyw;
+      const y1 = y * ct - z1 * st;
+      const z2 = y * st + z1 * ct;
+      return [cx + x1 * scale, cy - y1 * scale, z2];
+    };
+  }
+
+  /** Stipstralen zijn getuned op 300pt; sublineair schalen houdt kleine orbs leesbaar. */
+  function radiusScale(size, pow) {
+    return Math.pow(size / 300, pow);
+  }
+
+  /**
+   * Ruwe mode-uitvoer → afgewerkt frame: onzichtbare stippen weg, straal op
+   * de ondergrens, z-gesorteerd van ver naar dichtbij (= tekenvolgorde).
+   */
+  function finalizeFrame(dots, lines, rMin) {
+    if (rMin == null) rMin = 0.3;
+    const visible = [];
+    for (const d of dots) {
+      if ((d.a == null ? 1 : d.a) < 0.02) continue;
+      d.r = Math.max(rMin, d.r);
+      visible.push(d);
+    }
+    visible.sort(function (a, b) { return a.z - b.z; });
+    return { dots: visible, lines: lines.filter(function (l) { return (l.a == null ? 1 : l.a) >= 0.02; }) };
+  }
+
+  // --- painter -----------------------------------------------------------
+
+  function ink(white, dark) {
+    const w = Math.min(1, Math.max(0, white));
+    return Math.round((dark ? 1 - w : w) * 255);
+  }
+
+  /** Lijnen eerst, zodat knopen bovenop hun randen liggen. */
+  function paintLines(ctx, lines, dark) {
+    for (const l of lines) {
+      const g = ink(l.white, dark);
+      ctx.strokeStyle = 'rgba(' + g + ',' + g + ',' + g + ',' + (l.a == null ? 1 : l.a) + ')';
+      ctx.lineWidth = l.w;
+      ctx.beginPath();
+      ctx.moveTo(l.x1, l.y1);
+      ctx.lineTo(l.x2, l.y2);
+      ctx.stroke();
+    }
+  }
+
+  /** Matte grijswaarde-stippen; op donker wordt de inkt gespiegeld (1 - white). */
+  function paint(ctx, dots, dark) {
+    for (const d of dots) {
+      const g = ink(d.white, dark);
+      ctx.fillStyle = 'rgba(' + g + ',' + g + ',' + g + ',' + (d.a == null ? 1 : d.a) + ')';
+      ctx.beginPath();
+      ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+
+  function paintFrame(ctx, frame, dark) {
+    if (frame.lines.length) paintLines(ctx, frame.lines, dark);
+    paint(ctx, frame.dots, dark);
+  }
+
+  // --- thema & motion (live) --------------------------------------------
+
+  function ancestorTheme(el) {
+    let node = el;
+    while (node && node.getAttribute) {
+      const attr = node.getAttribute('data-theme');
+      if (attr === 'dark') return true;
+      if (attr === 'light') return false;
+      if (node.classList.contains('dark')) return true;
+      if (node.classList.contains('light')) return false;
+      node = node.parentElement;
+    }
+    return null;
+  }
+
+  function systemDark() {
+    return typeof matchMedia === 'undefined' || matchMedia('(prefers-color-scheme: dark)').matches;
+  }
+
+  /** Roept `cb(dark)` direct aan en daarna bij elke wissel; geeft een unsubscribe terug. */
+  function watchDark(el, theme, cb) {
+    if (theme === 'dark') { cb(true); return function () {}; }
+    if (theme === 'light') { cb(false); return function () {}; }
+    const resolve = function () {
+      const fromTree = ancestorTheme(el);
+      cb(fromTree == null ? systemDark() : fromTree);
+    };
+    resolve();
+    const mq = typeof matchMedia !== 'undefined' ? matchMedia('(prefers-color-scheme: dark)') : null;
+    if (mq) mq.addEventListener('change', resolve);
+    let mo = null;
+    if (typeof MutationObserver !== 'undefined') {
+      mo = new MutationObserver(resolve);
+      mo.observe(document.documentElement, { attributes: true, attributeFilter: ['class', 'data-theme'], subtree: true });
+    }
+    return function () {
+      if (mq) mq.removeEventListener('change', resolve);
+      if (mo) mo.disconnect();
+    };
+  }
+
+  function watchReduced(cb) {
+    if (typeof matchMedia === 'undefined') { cb(false); return function () {}; }
+    const mq = matchMedia('(prefers-reduced-motion: reduce)');
+    cb(mq.matches);
+    const on = function (e) { cb(e.matches); };
+    mq.addEventListener('change', on);
+    return function () { mq.removeEventListener('change', on); };
+  }
+
+  // --- custom element ----------------------------------------------------
+
+  const registry = {};
+  const STATIC_T = 0.6; // reduced motion: één representatief frame
+
+  /**
+   * Registreert een orb als custom element.
+   * def = { state, label, frame(size, t, opts) → {dots, lines},
+   *         presets: { 64: {speed, opts}, 20: {speed, opts} } }
+   */
+  function define(tag, def) {
+    registry[tag] = def;
+    if (typeof customElements === 'undefined' || customElements.get(tag)) return;
+
+    class OrbElement extends HTMLElement {
+      static get observedAttributes() { return ['size', 'theme', 'speed', 'paused']; }
+
+      constructor() {
+        super();
+        this._canvas = null;
+        this._teardown = null;
+      }
+
+      get size() { return this.getAttribute('size') === '20' ? 20 : 64; }
+
+      connectedCallback() {
+        if (!this._canvas) {
+          const c = document.createElement('canvas');
+          c.setAttribute('aria-hidden', 'true');
+          c.style.display = 'block';
+          this.appendChild(c);
+          this._canvas = c;
+        }
+        if (!this.style.display) this.style.display = 'inline-block';
+        this.style.lineHeight = '0';
+        this.style.verticalAlign = 'middle';
+        this.setAttribute('role', 'img');
+        if (!this.hasAttribute('aria-label')) this.setAttribute('aria-label', def.label);
+        this._setup();
+      }
+
+      disconnectedCallback() { this._stop(); }
+
+      attributeChangedCallback() {
+        if (this.isConnected && this._canvas) this._setup();
+      }
+
+      _stop() {
+        if (this._teardown) { this._teardown(); this._teardown = null; }
+      }
+
+      _setup() {
+        this._stop();
+        const host = this;
+        const size = this.size;
+        const theme = this.getAttribute('theme') || 'auto';
+        const userSpeed = parseFloat(this.getAttribute('speed'));
+        const paused = this.hasAttribute('paused');
+        const preset = def.presets[size];
+        const canvas = this._canvas;
+        const dpr = Math.min(2, (typeof devicePixelRatio !== 'undefined' && devicePixelRatio) || 1);
+        canvas.width = Math.round(size * dpr);
+        canvas.height = Math.round(size * dpr);
+        canvas.style.width = size + 'px';
+        canvas.style.height = size + 'px';
+        const ctx = canvas.getContext('2d');
+        if (!ctx) return;
+
+        const effSpeed = preset.speed * (isNaN(userSpeed) ? 1 : userSpeed);
+        const now = function () { return (performance.now() / 1000) * effSpeed; };
+        let dark = true;
+        let reduced = false;
+        let raf = 0;
+        let running = false;
+        let visible = true;
+
+        const frame = function (t) {
+          ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+          ctx.clearRect(0, 0, size, size);
+          paintFrame(ctx, def.frame(size, t, preset.opts), dark);
+        };
+        const loop = function () {
+          frame(now());
+          if (running) raf = requestAnimationFrame(loop);
+        };
+        const start = function () {
+          if (running || paused || reduced) return;
+          running = true;
+          raf = requestAnimationFrame(loop);
+        };
+        const stop = function () {
+          running = false;
+          cancelAnimationFrame(raf);
+        };
+        // stilstaand (paused, reduced, buiten beeld) toch het juiste frame tonen
+        const repaint = function () { frame(reduced ? STATIC_T : now()); };
+        const shouldRun = function () { return visible && document.visibilityState !== 'hidden'; };
+
+        const unDark = watchDark(host, theme, function (d) { dark = d; if (!running) repaint(); });
+        const unReduced = watchReduced(function (r) {
+          reduced = r;
+          if (r) { stop(); repaint(); } else { repaint(); if (shouldRun()) start(); }
+        });
+
+        let io = null;
+        if (typeof IntersectionObserver !== 'undefined') {
+          io = new IntersectionObserver(function (entries) {
+            visible = entries[0].isIntersecting;
+            if (shouldRun()) start(); else stop();
+          });
+          io.observe(host);
+        } else {
+          start();
+        }
+        const onVis = function () { if (shouldRun()) start(); else stop(); };
+        document.addEventListener('visibilitychange', onVis);
+
+        this._teardown = function () {
+          stop();
+          unDark();
+          unReduced();
+          if (io) io.disconnect();
+          document.removeEventListener('visibilitychange', onVis);
+        };
+      }
+    }
+
+    customElements.define(tag, OrbElement);
+  }
+
+  return {
+    lerp: lerp, frac: frac, hashD: hashD, vnoise: vnoise, fibDir: fibDir, angleDelta: angleDelta,
+    makeProj: makeProj, radiusScale: radiusScale, finalizeFrame: finalizeFrame,
+    paint: paint, paintLines: paintLines, paintFrame: paintFrame,
+    watchDark: watchDark, watchReduced: watchReduced,
+    define: define, registry: registry, STATIC_T: STATIC_T
+  };
+})();
+</script>
+<script>
+// working — orbits: deeltjes op gekantelde banen. Geen kern: alleen
+// spookpaden en de deeltjes die het werk doen.
+(function (C) {
+  'use strict';
+  const frameOrbits = function (size, t, o) {
+    const cx = size / 2;
+    const cy = size / 2;
+    const R = (size / 2) * 0.82;
+    const pt = C.makeProj(t * 0.12, 0.3, cx, cy, 1);
+    const rs = C.radiusScale(size, o.rsPow == null ? 0.6 : o.rsPow);
+
+    const dots = [];
+    const orbitN = o.orbitN == null ? 12 : o.orbitN;
+    const ghostN = o.ghostN == null ? 40 : o.ghostN;
+    const particles = o.particles == null ? 3 : o.particles;
+    const ghostR = o.ghostR == null ? 0.9 : o.ghostR;
+    const ghostA = o.ghostA == null ? 0.5 : o.ghostA;
+    const partR = o.partR == null ? 1.2 : o.partR;
+    const partRDepth = o.partRDepth == null ? 1.6 : o.partRDepth;
+
+    for (let orb = 0; orb < orbitN; orb++) {
+      const h1 = C.hashD(orb, 1.7);
+      const h2 = C.hashD(orb, 5.2);
+      const h3 = C.hashD(orb, 8.9);
+      const ro = R * (0.45 + 0.52 * h1);
+      const th = h1 * 2 * Math.PI;
+      const phi = Math.acos(2 * h2 - 1);
+      // baanvlak-basis (u, v ⟂ normaal n)
+      const nx = Math.sin(phi) * Math.cos(th);
+      const ny = Math.cos(phi);
+      const nz = Math.sin(phi) * Math.sin(th);
+      let ux = -ny;
+      let uy = nx;
+      const uz = 0;
+      const ul = Math.max(1e-6, Math.sqrt(ux * ux + uy * uy));
+      ux /= ul;
+      uy /= ul;
+      const vx = ny * uz - nz * uy;
+      const vy = nz * ux - nx * uz;
+      const vz = nx * uy - ny * ux;
+      const speed = (0.25 + 0.55 * h3) * (h3 > 0.5 ? 1 : -1);
+
+      // spookpad
+      for (let k = 0; k < ghostN; k++) {
+        const a = (k / ghostN) * 2 * Math.PI;
+        const p = pt(
+          (ux * Math.cos(a) + vx * Math.sin(a)) * ro,
+          (uy * Math.cos(a) + vy * Math.sin(a)) * ro,
+          (uz * Math.cos(a) + vz * Math.sin(a)) * ro
+        );
+        const depth = (p[2] / ro + 1) / 2;
+        dots.push({ x: p[0], y: p[1], z: p[2], r: ghostR * rs, white: 0.72, a: ghostA * (0.4 + 0.6 * depth) });
+      }
+      // de deeltjes die het werk doen
+      for (let m = 0; m < particles; m++) {
+        const a = t * speed + (m / particles) * 2 * Math.PI + h2 * 6;
+        const p = pt(
+          (ux * Math.cos(a) + vx * Math.sin(a)) * ro,
+          (uy * Math.cos(a) + vy * Math.sin(a)) * ro,
+          (uz * Math.cos(a) + vz * Math.sin(a)) * ro
+        );
+        const depth = (p[2] / ro + 1) / 2;
+        dots.push({ x: p[0], y: p[1], z: p[2], r: (partR + partRDepth * depth) * rs, white: 0.3 - 0.22 * depth });
+      }
+    }
+    return C.finalizeFrame(dots, [], o.rMin);
+  };
+
+  C.define('orb-working', { state: 'working', label: 'Working…', frame: frameOrbits, presets: { 64: { speed: 1.885, opts: { orbitN: 12, ghostN: 40, ghostR: 0.9, ghostA: 0.5, particles: 3, partR: 1.2, partRDepth: 1.6, rsPow: 0.6, rMin: 0.3 } }, 20: { speed: 3.9, opts: { orbitN: 3, ghostN: 10, ghostR: 2.16, ghostA: 0.5, particles: 3, partR: 2.88, partRDepth: 3.84, rsPow: 0.6, rMin: 0.3, rSizeMul: 2.4 } } } });
+})(window.OrbCore);
+
+// searching — globe: een lat/long-stippenveld waar een scan-meridiaan
+// overheen veegt, gelezen als een grootte-rimpel en niet als een glans.
+(function (C) {
+  'use strict';
+  const frameGlobe = function (size, t, o) {
+    const spin = 0.5;
+    const cx = size / 2;
+    const cy = size / 2;
+    const radius = (size / 2) * 0.82;
+    const tilt = 0.4 + 0.06 * Math.sin(t * 0.35);
+    const pt = C.makeProj(t * spin, tilt, cx, cy, radius);
+    // de scan veegt relatief aan de draai; scanMul schaalt dat tempo
+    const scan = t * (spin + (1.7 - spin) * (o.scanMul == null ? 1 : o.scanMul));
+    const rs = C.radiusScale(size, o.rsPow == null ? 0.6 : o.rsPow);
+    const dimBase = o.dimBase == null ? 1 : o.dimBase;
+    const rBase = o.rBase == null ? 0.6 : o.rBase;
+    const rDepth = o.rDepth == null ? 1.7 : o.rDepth;
+    const rBoost = o.rBoost == null ? 1 : o.rBoost;
+    const inkFar = o.inkFar == null ? 0.62 : o.inkFar;
+    const inkSpan = o.inkSpan == null ? 0.54 : o.inkSpan;
+
+    const dots = [];
+    const latRings = o.latRings == null ? 17 : o.latRings;
+    const lonDensity = o.lonDensity == null ? 44 : o.lonDensity;
+    for (let li = 0; li <= latRings; li++) {
+      const lat = -Math.PI / 2 + (li / latRings) * Math.PI;
+      const cosLat = Math.cos(lat);
+      const sinLat = Math.sin(lat);
+      const lonCount = Math.max(1, Math.round(Math.abs(cosLat) * lonDensity));
+      for (let lj = 0; lj < lonCount; lj++) {
+        const lon = (lj / lonCount) * 2 * Math.PI;
+        const p = pt(cosLat * Math.cos(lon), sinLat, cosLat * Math.sin(lon));
+        const z = p[2];
+        const depth = (z + 1) / 2;
+        const d = C.angleDelta(lon + t * spin, scan);
+        const boost = Math.exp(-(d * d) / 0.18) * Math.max(0, z);
+        dots.push({
+          x: p[0], y: p[1], z: z,
+          r: (rBase + rDepth * depth + rBoost * boost) * rs,
+          white: inkFar - inkSpan * depth,
+          // dimBase < 1 dimt niet-gescande stippen zodat de meridiaan leesbaar is
+          a: dimBase + (1 - dimBase) * Math.min(1, boost)
+        });
+      }
+    }
+    return C.finalizeFrame(dots, [], o.rMin);
+  };
+
+  C.define('orb-searching', { state: 'searching', label: 'Searching…', frame: frameGlobe, presets: { 64: { speed: 2.015, opts: { latRings: 11, lonDensity: 29, rBase: 0.69, rDepth: 1.9549999999999998, rBoost: 1, inkFar: 0.62, inkSpan: 0.54, rsPow: 0.6, rMin: 0.3, rSizeMul: 1.15, scanMul: 4.08, dimBase: 0.45 } }, 20: { speed: 2.665, opts: { latRings: 6, lonDensity: 14, rBase: 1.05, rDepth: 2.975, rBoost: 1, inkFar: 0.62, inkSpan: 0.54, rsPow: 0.6, rMin: 0.3, rSizeMul: 1.75, scanMul: 4.335, dimBase: 0.45 } } } });
+})(window.OrbCore);
+
+// solving — rubik: banden draaien in kwartslagen, schudden door elkaar en
+// spelen daarna in omgekeerde volgorde terug (palindroom) tot alles weer
+// "opgelost" klikt, rust, herhaalt.
+(function (C) {
+  'use strict';
+  function solveCycle(time, count, slotDur, rest) {
+    const cyc = 2 * count * slotDur + rest;
+    const tc = time % cyc;
+    const amount = new Array(count).fill(0);
+    let active = -1;
+    if (tc < 2 * count * slotDur) {
+      const slot = Math.floor(tc / slotDur);
+      const p = (tc - slot * slotDur) / slotDur;
+      const cl = Math.min(1, p / 0.7);
+      const ep = 1 - Math.pow(1 - cl, 3); // machinale ease-out
+      if (slot < count) {
+        for (let i = 0; i < slot; i++) amount[i] = 1;
+        amount[slot] = ep;
+        active = slot;
+      } else {
+        const u = 2 * count - 1 - slot;
+        for (let i = 0; i < u; i++) amount[i] = 1;
+        amount[u] = 1 - ep;
+        active = u;
+      }
+    }
+    return { amount: amount, active: active };
+  }
+
+  function applyMoves(pt3, moves, sc) {
+    let x = pt3[0], y = pt3[1], z = pt3[2];
+    let inActive = false;
+    for (let i = 0; i < moves.length; i++) {
+      if (sc.amount[i] <= 0) continue;
+      const mv = moves[i];
+      const coord = mv.axis === 0 ? x : mv.axis === 1 ? y : z;
+      if (coord < mv.lo || coord >= mv.hi) continue;
+      if (i === sc.active) inActive = true;
+      const a = mv.ang * sc.amount[i];
+      const ca = Math.cos(a);
+      const sa = Math.sin(a);
+      if (mv.axis === 0) {
+        const y2 = y * ca - z * sa;
+        z = y * sa + z * ca;
+        y = y2;
+      } else if (mv.axis === 1) {
+        const x2 = x * ca + z * sa;
+        z = -x * sa + z * ca;
+        x = x2;
+      } else {
+        const x2 = x * ca - y * sa;
+        y = x * sa + y * ca;
+        x = x2;
+      }
+    }
+    return [x, y, z, inActive];
+  }
+
+  function makeMoves(count) {
+    const moves = [];
+    for (let i = 0; i < count; i++) {
+      const axis = Math.min(2, Math.floor(C.hashD(i, 2.3) * 3));
+      const lo = -1.0 + 0.5 * Math.min(3, Math.floor(C.hashD(i, 5.9) * 4));
+      const dir = C.hashD(i, 7.7) < 0.5 ? 1 : -1;
+      moves.push({ axis: axis, lo: lo, hi: lo + 0.5, ang: (dir * Math.PI) / 2 });
+    }
+    return moves;
+  }
+
+  const frameRubik = function (size, t, o) {
+    const cx = size / 2;
+    const cy = size / 2;
+    const R = (size / 2) * 0.82;
+    const pt = C.makeProj(t * 0.55, 0.35 + 0.1 * Math.sin(t * 0.9), cx, cy, R);
+    const rs = C.radiusScale(size, o.rsPow == null ? 0.6 : o.rsPow);
+    const moveCount = o.moveCount == null ? 14 : o.moveCount;
+    const moves = makeMoves(moveCount);
+    const sc = solveCycle(t, moveCount, 0.42, 1.2);
+    const rBase = o.rBase == null ? 0.6 : o.rBase;
+    const rDepth = o.rDepth == null ? 1.7 : o.rDepth;
+    const rActive = o.rActive == null ? 0.3 : o.rActive;
+    const inkFar = o.inkFar == null ? 0.62 : o.inkFar;
+    const inkSpan = o.inkSpan == null ? 0.54 : o.inkSpan;
+
+    const dots = [];
+    const latRings = o.latRings == null ? 15 : o.latRings;
+    const lonDensity = o.lonDensity == null ? 40 : o.lonDensity;
+    for (let li = 0; li <= latRings; li++) {
+      const lat = -Math.PI / 2 + (li / latRings) * Math.PI;
+      const cosLat = Math.cos(lat);
+      const sinLat = Math.sin(lat);
+      const lonCount = Math.max(1, Math.round(Math.abs(cosLat) * lonDensity));
+      for (let lj = 0; lj < lonCount; lj++) {
+        const lon = (lj / lonCount) * 2 * Math.PI;
+        const m = applyMoves([cosLat * Math.cos(lon), sinLat, cosLat * Math.sin(lon)], moves, sc);
+        const inActive = m[3];
+        const p = pt(m[0], m[1], m[2]);
+        const zr = p[2];
+        const depth = (zr + 1) / 2;
+        // de band die gedraaid wordt inkt iets donkerder: de "hand"
+        dots.push({
+          x: p[0], y: p[1], z: zr,
+          r: (rBase + rDepth * depth + (inActive ? rActive : 0)) * rs,
+          white: inkFar - inkSpan * depth - (inActive ? 0.14 : 0)
+        });
+      }
+    }
+    return C.finalizeFrame(dots, [], o.rMin);
+  };
+
+  C.define('orb-solving', { state: 'solving', label: 'Solving…', frame: frameRubik, presets: { 64: { speed: 1.82, opts: { latRings: 9, lonDensity: 24, moveCount: 14, rBase: 0.63, rDepth: 1.785, rActive: 0.315, inkFar: 0.62, inkSpan: 0.54, rsPow: 0.6, rMin: 0.3, rSizeMul: 1.05 } }, 20: { speed: 1.95, opts: { latRings: 4, lonDensity: 12, moveCount: 14, rBase: 1.14, rDepth: 3.23, rActive: 0.57, inkFar: 0.62, inkSpan: 0.54, rsPow: 0.6, rMin: 0.3, rSizeMul: 1.9 } } } });
+})(window.OrbCore);
+
+// listening — wave: een golfvorm rolt door de breedteringen. Twee golven
+// met verschillend tempo, organisch en nooit precies herhalend.
+(function (C) {
+  'use strict';
+  const frameWave = function (size, t, o) {
+    const cx = size / 2;
+    const cy = size / 2;
+    // 0.76 basis × 1.15: de golving trekt de bol naar binnen, dus opgeschaald
+    const R = (size / 2) * 0.874;
+    const pt = C.makeProj(t * 0.18, 0.38, cx, cy, 1);
+    const rs = C.radiusScale(size, o.rsPow == null ? 0.6 : o.rsPow);
+    const rBase = o.rBase == null ? 0.6 : o.rBase;
+    const rDepth = o.rDepth == null ? 1.7 : o.rDepth;
+
+    const dots = [];
+    const rings = o.rings == null ? 15 : o.rings;
+    const lonDensity = o.lonDensity == null ? 40 : o.lonDensity;
+    for (let ri = 0; ri <= rings; ri++) {
+      const lat = -Math.PI / 2 + (ri / rings) * Math.PI;
+      const cosLat = Math.cos(lat);
+      const sinLat = Math.sin(lat);
+      const w = 0.62 * Math.sin(t * 2.1 - ri * 0.52) + 0.38 * Math.sin(t * 1.27 + ri * 0.83);
+      const rr = R * (0.88 + 0.105 * w);
+      const lonCount = Math.max(1, Math.round(Math.abs(cosLat) * lonDensity));
+      for (let lj = 0; lj < lonCount; lj++) {
+        const lon = (lj / lonCount) * 2 * Math.PI;
+        const p = pt(cosLat * Math.cos(lon) * rr, sinLat * rr, cosLat * Math.sin(lon) * rr);
+        const z = p[2];
+        const depth = (z / R + 1) / 2;
+        const crest = Math.max(0, w);
+        dots.push({
+          x: p[0], y: p[1], z: z,
+          r: (rBase + rDepth * depth) * (1 + 0.4 * crest) * rs,
+          white: 0.66 - 0.56 * depth - 0.1 * crest
+        });
+      }
+    }
+    return C.finalizeFrame(dots, [], o.rMin);
+  };
+
+  C.define('orb-listening', { state: 'listening', label: 'Listening…', frame: frameWave, presets: { 64: { speed: 4.388, opts: { rings: 9, lonDensity: 23, rBase: 0.6, rDepth: 1.7, rsPow: 0.6, rMin: 0.3 } }, 20: { speed: 3.998, opts: { rings: 5, lonDensity: 13, rBase: 0.96, rDepth: 2.72, rsPow: 0.6, rMin: 0.3, rSizeMul: 1.6 } } } });
+})(window.OrbCore);
+
+// connecting — web: een sterrenbeeld bedraadt zichzelf. Knopen drijven op
+// de bol onder trage ruis; elk paar dichter dan `thr` krijgt een rand, en
+// heldere pakketjes lopen langs telkens opnieuw gekozen knopenparen.
+(function (C) {
+  'use strict';
+  const frameWeb = function (size, t, o) {
+    const cx = size / 2;
+    const cy = size / 2;
+    const R = (size / 2) * 0.8 * (o.spread == null ? 1 : o.spread);
+    // de projector draagt de straal als schaal, dus knoopvectoren blijven
+    // eenheidslengte en afstanden hieronder zijn in eenheidsbol-ruimte
+    const pt = C.makeProj(t * 0.12, 0.32, cx, cy, R);
+    const rs = C.radiusScale(size, o.rsPow == null ? 0.6 : o.rsPow);
+
+    const nodeN = o.nodeN == null ? 30 : o.nodeN;
+    const thr = o.thr == null ? 0.72 : o.thr;
+    const nodeR = o.nodeR == null ? 1.4 : o.nodeR;
+    const nodeRDepth = o.nodeRDepth == null ? 1.8 : o.nodeRDepth;
+    const lineW = o.lineW == null ? 0.8 : o.lineW;
+
+    const nodes = [];
+    for (let i = 0; i < nodeN; i++) {
+      const d = C.fibDir(i, nodeN);
+      const x = d[0] + 0.3 * (C.vnoise(i * 0.31 + 9, t * 0.24) - 0.5) * 2;
+      const y = d[1] + 0.3 * (C.vnoise(i * 0.53 + 27, t * 0.21) - 0.5) * 2;
+      const z = d[2] + 0.3 * (C.vnoise(i * 0.77 + 55, t * 0.27) - 0.5) * 2;
+      const l = Math.sqrt(x * x + y * y + z * z);
+      nodes.push([x / l, y / l, z / l]);
+    }
+
+    const lines = [];
+    const dots = [];
+
+    for (let i = 0; i < nodeN; i++) {
+      for (let j = i + 1; j < nodeN; j++) {
+        const dx = nodes[i][0] - nodes[j][0];
+        const dy = nodes[i][1] - nodes[j][1];
+        const dz = nodes[i][2] - nodes[j][2];
+        const dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
+        if (dist >= thr) continue;
+        const p1 = pt(nodes[i][0], nodes[i][1], nodes[i][2]);
+        const p2 = pt(nodes[j][0], nodes[j][1], nodes[j][2]);
+        const depth = ((p1[2] + p2[2]) / 2 + 1) / 2;
+        lines.push({
+          x1: p1[0], y1: p1[1], x2: p2[0], y2: p2[1],
+          white: 0.42,
+          a: (1 - dist / thr) * (0.3 + 0.55 * depth),
+          w: Math.max(0.6, lineW * rs)
+        });
+      }
+    }
+
+    for (let i = 0; i < nodeN; i++) {
+      const p = pt(nodes[i][0], nodes[i][1], nodes[i][2]);
+      const depth = (p[2] + 1) / 2;
+      const pulse = 1 + 0.25 * Math.sin(t * 1.4 + i * 2.7);
+      dots.push({ x: p[0], y: p[1], z: p[2], r: (nodeR + nodeRDepth * depth) * pulse * rs, white: 0.55 - 0.45 * depth });
+    }
+
+    // signalen: heldere pakketjes tussen gepaarde knopen
+    const signals = o.signals == null ? 5 : o.signals;
+    for (let s = 0; s < signals; s++) {
+      const seg = Math.floor(t * 0.55 + s * 7.31);
+      const a = Math.floor(C.hashD(seg, s * 3.1 + 1.7) * nodeN);
+      const b = Math.floor(C.hashD(seg, s * 5.7 + 4.2) * nodeN);
+      if (a === b) continue;
+      const f = C.frac(t * 0.55 + s * 7.31);
+      const x = C.lerp(nodes[a][0], nodes[b][0], f);
+      const y = C.lerp(nodes[a][1], nodes[b][1], f);
+      const z = C.lerp(nodes[a][2], nodes[b][2], f);
+      const l = Math.max(1e-6, Math.sqrt(x * x + y * y + z * z));
+      const p = pt(x / l, y / l, z / l);
+      const depth = (p[2] + 1) / 2;
+      dots.push({ x: p[0], y: p[1], z: p[2], r: (nodeR * 1.5 + nodeRDepth * depth) * rs, white: 0.05, a: 0.5 + 0.5 * depth });
+    }
+
+    return C.finalizeFrame(dots, lines, o.rMin);
+  };
+
+  C.define('orb-connecting', { state: 'connecting', label: 'Connecting…', frame: frameWeb, presets: { 64: { speed: 3.315, opts: { nodeN: 41, thr: 0.72, signals: 7, nodeR: 1.3299999999999998, nodeRDepth: 1.71, lineW: 0.8, rsPow: 0.6, rMin: 0.3, rSizeMul: 0.95 } }, 20: { speed: 6.63, opts: { nodeN: 8, thr: 0.72, signals: 1, nodeR: 2.1279999999999997, nodeRDepth: 2.736, lineW: 0.8, rsPow: 0.6, rMin: 0.3, rSizeMul: 1.52 } } } });
+})(window.OrbCore);
+
+// weaving — braid: drie strengen vlechten rond de bol. Elke streng loopt
+// pool-tot-pool op een helix; een radiale ademhaling laat ze van plaats
+// wisselen, wat leest als het over-en-onder van een vlecht.
+(function (C) {
+  'use strict';
+  const frameBraid = function (size, t, o) {
+    const cx = size / 2;
+    const cy = size / 2;
+    const R = (size / 2) * 0.76;
+    const pt = C.makeProj(t * 0.4, 0.3, cx, cy, 1);
+    const rs = C.radiusScale(size, o.rsPow == null ? 0.6 : o.rsPow);
+    const rBase = o.rBase == null ? 1.2 : o.rBase;
+    const rDepth = o.rDepth == null ? 1.8 : o.rDepth;
+
+    const dots = [];
+    const ghostN = o.ghostN == null ? 150 : o.ghostN;
+    for (let i = 0; i < ghostN; i++) {
+      const d = C.fibDir(i, ghostN);
+      const p = pt(d[0] * R, d[1] * R, d[2] * R);
+      const depth = (p[2] / R + 1) / 2;
+      dots.push({ x: p[0], y: p[1], z: p[2], r: 0.8 * rs, white: 0.78, a: 0.1 + 0.22 * depth });
+    }
+
+    const strandN = o.strandN == null ? 52 : o.strandN;
+    const turns = o.turns == null ? 3 : o.turns;
+    for (let s = 0; s < 3; s++) {
+      const phase = (s / 3) * 2 * Math.PI;
+      for (let i = 0; i < strandN; i++) {
+        const u = (C.frac(i / strandN + t * 0.045) * 2 - 1) * 0.96;
+        const surf = Math.sqrt(Math.max(0, 1 - u * u));
+        const endFade = Math.min(1, (1 - Math.abs(u)) / 0.1);
+        const a = u * Math.PI * turns + phase;
+        const weave = 1 + 0.075 * Math.sin(u * Math.PI * turns * 2 + phase * 2 + t * 0.8);
+        const rr = surf * R * weave;
+        const p = pt(Math.cos(a) * rr, u * R * weave, Math.sin(a) * rr);
+        const zr = p[2];
+        const depth = (zr / R + 1) / 2;
+        dots.push({
+          x: p[0], y: p[1], z: zr,
+          r: (rBase + rDepth * depth) * rs,
+          white: 0.55 - 0.45 * depth,
+          a: endFade * (0.45 + 0.55 * depth)
+        });
+      }
+    }
+    return C.finalizeFrame(dots, [], o.rMin);
+  };
+
+  C.define('orb-weaving', { state: 'weaving', label: 'Weaving…', frame: frameBraid, presets: { 64: { speed: 1.625, opts: { strandN: 26, turns: 3, ghostN: 75, rBase: 1.2, rDepth: 1.8, rsPow: 0.6, rMin: 0.3 } }, 20: { speed: 2.75, opts: { strandN: 6, turns: 3, ghostN: 17, rBase: 1.6320000000000001, rDepth: 2.4480000000000004, rsPow: 0.6, rMin: 0.3, rSizeMul: 1.36 } } } });
+})(window.OrbCore);
+
+// ribbon: een golvende sjerp van parallelle strengen op een grootcirkel.
+// Met `faceOn` wordt het een vlakke ring waarvan de STRAAL golft in plaats
+// van de uit-het-vlak-offset: de "breathing"-variant.
+(function (C) {
+  'use strict';
+  const frameRibbon = function (size, t, o) {
+    const cx = size / 2;
+    const cy = size / 2;
+    const R = (size / 2) * 0.78;
+    const spin = o.spin == null ? 1 : o.spin;
+    const camTilt = 0.3;
+    const pt = C.makeProj(t * 0.1 * spin, camTilt, cx, cy, 1);
+    const rs = C.radiusScale(size, o.rsPow == null ? 0.6 : o.rsPow);
+    const wobMul = o.wobMul == null ? 1 : o.wobMul;
+    const rBase = o.rBase == null ? 1.1 : o.rBase;
+    const rDepth = o.rDepth == null ? 1.7 : o.rDepth;
+    const faceOn = !!o.faceOn;
+
+    const dots = [];
+    const ghostN = o.ghostN == null ? 150 : o.ghostN;
+    for (let i = 0; i < ghostN; i++) {
+      const d = C.fibDir(i, ghostN);
+      const p = pt(d[0] * R, d[1] * R, d[2] * R);
+      const depth = (p[2] / R + 1) / 2;
+      dots.push({ x: p[0], y: p[1], z: p[2], r: 0.8 * rs, white: 0.78, a: 0.1 + 0.22 * depth });
+    }
+
+    // het bandvlak, precesserend (bevroren bij spin=0)
+    const ya = t * 0.24 * spin;
+    const ta = faceOn ? -camTilt : 0.55 + 0.3 * Math.sin(t * 0.18) * spin;
+    const ux = Math.cos(ya);
+    const uy = 0;
+    const uz = Math.sin(ya);
+    const vx = -uz * Math.sin(ta);
+    const vy = Math.cos(ta);
+    const vz = ux * Math.sin(ta);
+    const nx = uy * vz - uz * vy;
+    const ny = uz * vx - ux * vz;
+    const nz = ux * vy - uy * vx;
+
+    const wobAmp = 0.23 * wobMul;
+    const baseR = faceOn ? R / (1 + 0.85 * wobAmp) : R;
+
+    const baseLanes = o.lanes == null ? 5 : o.lanes;
+    const segs = o.segs == null ? 88 : o.segs;
+    const lanes = Math.max(1, Math.round(baseLanes * (o.bandMul == null ? 1 : o.bandMul)));
+    for (let w = 0; w < lanes; w++) {
+      const laneOff = (w - (lanes - 1) / 2) * 0.075;
+      const edge = Math.abs(w - (lanes - 1) / 2) / Math.max(1, (lanes - 1) / 2);
+      for (let k = 0; k < segs; k++) {
+        const a = (k / segs) * 2 * Math.PI;
+        const wob = (0.16 * Math.sin(a * 3 - t * 1.7 + w * 0.22) + 0.07 * Math.sin(a * 5 + t * 1.1)) * wobMul;
+        const radial = faceOn ? 1 + wob : 1;
+        const off = faceOn ? laneOff : laneOff + wob;
+        const x = ux * Math.cos(a) + vx * Math.sin(a) + nx * off;
+        const y = uy * Math.cos(a) + vy * Math.sin(a) + ny * off;
+        const z = uz * Math.cos(a) + vz * Math.sin(a) + nz * off;
+        const l = Math.sqrt(x * x + y * y + z * z);
+        const rr = baseR * radial;
+        const p = pt((x / l) * rr, (y / l) * rr, (z / l) * rr);
+        const zr = p[2];
+        const depth = (zr / R + 1) / 2;
+        dots.push({
+          x: p[0], y: p[1], z: zr,
+          r: (rBase + rDepth * depth) * (1 - 0.25 * edge) * rs,
+          white: 0.52 - 0.44 * depth + 0.18 * edge,
+          a: 0.4 + 0.6 * depth
+        });
+      }
+    }
+    return C.finalizeFrame(dots, [], o.rMin);
+  };
+
+  C.define('orb-composing', { state: 'composing', label: 'Composing…', frame: frameRibbon, presets: { 64: { speed: 2.34, opts: { lanes: 3, segs: 44, ghostN: 38, rBase: 0.935, rDepth: 1.4449999999999998, rsPow: 0.6, rMin: 0.3, rSizeMul: 0.85, spin: 0, bandMul: 3.9, wobMul: 1 } }, 20: { speed: 3.12, opts: { lanes: 2, segs: 20, ghostN: 8, rBase: 1.1803000000000001, rDepth: 1.8240999999999998, rsPow: 0.6, rMin: 0.3, rSizeMul: 1.073, spin: 0, bandMul: 4.94, wobMul: 1 } } } });
+})(window.OrbCore);
+
+// ribbon: een golvende sjerp van parallelle strengen op een grootcirkel.
+// Met `faceOn` wordt het een vlakke ring waarvan de STRAAL golft in plaats
+// van de uit-het-vlak-offset: de "breathing"-variant.
+(function (C) {
+  'use strict';
+  const frameRibbon = function (size, t, o) {
+    const cx = size / 2;
+    const cy = size / 2;
+    const R = (size / 2) * 0.78;
+    const spin = o.spin == null ? 1 : o.spin;
+    const camTilt = 0.3;
+    const pt = C.makeProj(t * 0.1 * spin, camTilt, cx, cy, 1);
+    const rs = C.radiusScale(size, o.rsPow == null ? 0.6 : o.rsPow);
+    const wobMul = o.wobMul == null ? 1 : o.wobMul;
+    const rBase = o.rBase == null ? 1.1 : o.rBase;
+    const rDepth = o.rDepth == null ? 1.7 : o.rDepth;
+    const faceOn = !!o.faceOn;
+
+    const dots = [];
+    const ghostN = o.ghostN == null ? 150 : o.ghostN;
+    for (let i = 0; i < ghostN; i++) {
+      const d = C.fibDir(i, ghostN);
+      const p = pt(d[0] * R, d[1] * R, d[2] * R);
+      const depth = (p[2] / R + 1) / 2;
+      dots.push({ x: p[0], y: p[1], z: p[2], r: 0.8 * rs, white: 0.78, a: 0.1 + 0.22 * depth });
+    }
+
+    // het bandvlak, precesserend (bevroren bij spin=0)
+    const ya = t * 0.24 * spin;
+    const ta = faceOn ? -camTilt : 0.55 + 0.3 * Math.sin(t * 0.18) * spin;
+    const ux = Math.cos(ya);
+    const uy = 0;
+    const uz = Math.sin(ya);
+    const vx = -uz * Math.sin(ta);
+    const vy = Math.cos(ta);
+    const vz = ux * Math.sin(ta);
+    const nx = uy * vz - uz * vy;
+    const ny = uz * vx - ux * vz;
+    const nz = ux * vy - uy * vx;
+
+    const wobAmp = 0.23 * wobMul;
+    const baseR = faceOn ? R / (1 + 0.85 * wobAmp) : R;
+
+    const baseLanes = o.lanes == null ? 5 : o.lanes;
+    const segs = o.segs == null ? 88 : o.segs;
+    const lanes = Math.max(1, Math.round(baseLanes * (o.bandMul == null ? 1 : o.bandMul)));
+    for (let w = 0; w < lanes; w++) {
+      const laneOff = (w - (lanes - 1) / 2) * 0.075;
+      const edge = Math.abs(w - (lanes - 1) / 2) / Math.max(1, (lanes - 1) / 2);
+      for (let k = 0; k < segs; k++) {
+        const a = (k / segs) * 2 * Math.PI;
+        const wob = (0.16 * Math.sin(a * 3 - t * 1.7 + w * 0.22) + 0.07 * Math.sin(a * 5 + t * 1.1)) * wobMul;
+        const radial = faceOn ? 1 + wob : 1;
+        const off = faceOn ? laneOff : laneOff + wob;
+        const x = ux * Math.cos(a) + vx * Math.sin(a) + nx * off;
+        const y = uy * Math.cos(a) + vy * Math.sin(a) + ny * off;
+        const z = uz * Math.cos(a) + vz * Math.sin(a) + nz * off;
+        const l = Math.sqrt(x * x + y * y + z * z);
+        const rr = baseR * radial;
+        const p = pt((x / l) * rr, (y / l) * rr, (z / l) * rr);
+        const zr = p[2];
+        const depth = (zr / R + 1) / 2;
+        dots.push({
+          x: p[0], y: p[1], z: zr,
+          r: (rBase + rDepth * depth) * (1 - 0.25 * edge) * rs,
+          white: 0.52 - 0.44 * depth + 0.18 * edge,
+          a: 0.4 + 0.6 * depth
+        });
+      }
+    }
+    return C.finalizeFrame(dots, [], o.rMin);
+  };
+
+  C.define('orb-breathing', { state: 'breathing', label: 'Thinking…', frame: frameRibbon, presets: { 64: { speed: 3.24, opts: { lanes: 3, segs: 44, ghostN: 0, faceOn: 1, rBase: 1.0516, rDepth: 1.6252, rsPow: 0.6, rMin: 0.3, rSizeMul: 0.956, spin: 0, bandMul: 3.627, wobMul: 0.368 } }, 20: { speed: 3.78, opts: { lanes: 2, segs: 15, ghostN: 0, faceOn: 1, rBase: 1.7842000000000002, rDepth: 2.7574, rsPow: 0.6, rMin: 0.3, rSizeMul: 1.622, spin: 0, bandMul: 3.968, wobMul: 0.565 } } } });
+})(window.OrbCore);
+
+// shaping — morph: een gestippelde omtrek die cirkel → driehoek → vierkant
+// → cirkel doorloopt. Elke vorm is een gesloten pad op booglengte; per
+// frame worden de twee buurpaden gemengd en de stippen GELIJKMATIG langs
+// de gemengde omtrek gelegd, dus de spreiding blijft uniform tijdens
+// zowel de rust als de overgang.
+(function (C) {
+  'use strict';
+  function smoothE(x) { return x * x * (3 - 2 * x); }
+
+  function polyPath(verts) {
+    const V = verts.length;
+    const L = [];
+    let total = 0;
+    for (let i = 0; i < V; i++) {
+      const a = verts[i];
+      const b = verts[(i + 1) % V];
+      const l = Math.hypot(b[0] - a[0], b[1] - a[1]);
+      L.push(l);
+      total += l;
+    }
+    return function (f) {
+      let target = f * total;
+      let i = 0;
+      while (target > L[i] && i < V - 1) {
+        target -= L[i];
+        i++;
+      }
+      const a = verts[i];
+      const b = verts[(i + 1) % V];
+      const ff = L[i] ? Math.min(1, target / L[i]) : 0;
+      return [a[0] + (b[0] - a[0]) * ff, a[1] + (b[1] - a[1]) * ff];
+    };
+  }
+
+  const CIRCLE = function (f) {
+    const a = -Math.PI / 2 + f * 2 * Math.PI;
+    return [Math.cos(a) * 0.24, Math.sin(a) * 0.24];
+  };
+  const TRIANGLE = polyPath([[0.0, -0.26], [0.24, 0.16], [-0.24, 0.16]]);
+  // 5 hoekpunten zodat het pad boven-midden BEGINT, net als de andere vormen
+  const SQUARE = polyPath([[0, -0.2], [0.2, -0.2], [0.2, 0.2], [-0.2, 0.2], [-0.2, -0.2]]);
+  const CYCLE = [CIRCLE, TRIANGLE, SQUARE];
+
+  function morphN(d) { return Math.max(6, Math.round(34 * d)); }
+
+  const HOLD = 1.4;
+  const MORPH = 0.9;
+  const SEG = HOLD + MORPH;
+
+  const frameMorph = function (size, t, o) {
+    const K = CYCLE.length;
+    const tc = t % (SEG * K);
+    const k = Math.floor(tc / SEG);
+    const local = tc - k * SEG;
+    const m = local > HOLD ? smoothE((local - HOLD) / MORPH) : 0;
+    const sprd = o.spread == null ? 1 : o.spread;
+
+    const pA = CYCLE[k];
+    const pB = CYCLE[(k + 1) % K];
+    const M = 160;
+    const pts = [];
+    for (let i = 0; i < M; i++) {
+      const f = i / M;
+      const a = pA(f);
+      const b = pB(f);
+      pts.push([(a[0] + (b[0] - a[0]) * m) * sprd, (a[1] + (b[1] - a[1]) * m) * sprd]);
+    }
+    const L = [];
+    let total = 0;
+    for (let i = 0; i < M; i++) {
+      const a = pts[i];
+      const b = pts[(i + 1) % M];
+      const l = Math.hypot(b[0] - a[0], b[1] - a[1]);
+      L.push(l);
+      total += l;
+    }
+
+    const n = morphN(o.iconD == null ? 1 : o.iconD);
+    const re = (o.rDot == null ? 0.021 : o.rDot) * 1.35 * sprd;
+    const pulse = 1 + 0.02 * Math.sin(local * 3.1);
+
+    const dots = [];
+    const c2 = size / 2;
+    let seg = 0;
+    let acc = 0;
+    for (let k2 = 0; k2 < n; k2++) {
+      const target = (k2 / n) * total;
+      while (acc + L[seg] < target && seg < M - 1) {
+        acc += L[seg];
+        seg++;
+      }
+      const a = pts[seg];
+      const b = pts[(seg + 1) % M];
+      const f = L[seg] ? Math.min(1, (target - acc) / L[seg]) : 0;
+      const x = (a[0] + (b[0] - a[0]) * f) * pulse;
+      const y = (a[1] + (b[1] - a[1]) * f) * pulse;
+      dots.push({ x: c2 + x * size, y: c2 + y * size, z: 0, r: Math.max(0.35, re * size), white: 0.1 });
+    }
+    return C.finalizeFrame(dots, [], o.rMin);
+  };
+
+  C.define('orb-shaping', { state: 'shaping', label: 'Shaping…', frame: frameMorph, presets: { 64: { speed: 2.405, opts: { rDot: 0.008295, iconD: 0.702, rMin: 0.25, rSizeMul: 0.395, spread: 1.45 } }, 20: { speed: 2.08, opts: { rDot: 0.021231, iconD: 0.53, rMin: 0.25, rSizeMul: 1.011, spread: 1.45 } } } });
+})(window.OrbCore);
+</script>
+<script>
+(function () {
+  var orbs = document.querySelectorAll('.card > .pair > *');
+  var speed = document.getElementById('speed');
+  var speedOut = document.getElementById('speed-out');
+  var paused = document.getElementById('paused');
+  var theme = document.getElementById('theme');
+  function apply() {
+    orbs.forEach(function (el) {
+      el.setAttribute('speed', speed.value);
+      if (paused.checked) el.setAttribute('paused', ''); else el.removeAttribute('paused');
+    });
+    speedOut.textContent = Number(speed.value).toFixed(2) + '×';
+  }
+  speed.addEventListener('input', apply);
+  paused.addEventListener('change', apply);
+  // de panelen dragen data-theme; 'auto' laat ze staan, anders forceert de
+  // pagina één thema via het theme-attribuut (hoger dan de voorouder-detectie)
+  theme.addEventListener('change', function () {
+    orbs.forEach(function (el) {
+      if (theme.value === 'auto') el.removeAttribute('theme'); else el.setAttribute('theme', theme.value);
+    });
+  });
+  apply();
+})();
+</script>
+</body>
+</html>
