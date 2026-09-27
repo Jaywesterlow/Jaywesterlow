@@ -1,0 +1,521 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Orb · weaving</title>
+<meta name="description" content="Drie strengen vlechten rond de bol. Framework-vrije port van de thinking-orbs 'weaving'-state: één HTML-bestand, nul dependencies.">
+<style>
+:root {
+  --paper: #f5f5f4; --paper-2: #ffffff; --ink: #1c1917; --ink-2: #57534e; --line: #e7e5e4;
+  --night: #0c0c0d; --night-2: #161618; --chalk: #f4f4f5; --chalk-2: #a1a1aa; --night-line: #27272a;
+  --accent: #2f6fd6;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  background: var(--paper); color: var(--ink);
+  font: 16px/1.55 "Instrument Sans", "Helvetica Neue", Arial, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased; padding: 0 16px 64px;
+}
+main { max-width: 880px; margin: 0 auto; }
+header { padding: 40px 0 24px; display: flex; flex-wrap: wrap; gap: 8px 24px; align-items: baseline; justify-content: space-between; }
+h1 { margin: 0; font-size: 28px; letter-spacing: -0.02em; line-height: 1.1; }
+h1 small { font-weight: 400; color: var(--ink-2); font-size: 16px; letter-spacing: 0; margin-left: 8px; }
+h2 { font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-2); margin: 40px 0 12px; }
+a { color: var(--ink); }
+nav a { color: var(--ink-2); text-decoration: none; font-size: 14px; }
+nav a:hover { color: var(--accent); }
+.lead { color: var(--ink-2); margin: 0 0 24px; max-width: 60ch; }
+.panels { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (max-width: 640px) { .panels { grid-template-columns: 1fr; } }
+.panel { border-radius: 12px; padding: 28px 24px; display: grid; gap: 24px; border: 1px solid var(--line); }
+.panel.light { background: var(--paper-2); color: var(--ink); }
+.panel.dark { background: var(--night); color: var(--chalk); border-color: var(--night-line); }
+.panel .tag { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.6; }
+.avatar { display: flex; align-items: center; gap: 16px; }
+.avatar .bubble { border-radius: 12px; padding: 10px 14px; font-size: 15px; background: rgba(127,127,127,0.12); }
+.inline { display: flex; align-items: center; gap: 8px; font-size: 15px; }
+.controls { display: flex; flex-wrap: wrap; gap: 16px 28px; align-items: center; padding: 16px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); margin: 24px 0; font-size: 14px; }
+.controls label { display: inline-flex; align-items: center; gap: 8px; }
+.controls input[type=range] { width: 140px; accent-color: var(--accent); }
+.controls input[type=checkbox], .controls select { accent-color: var(--accent); }
+.controls select { font: inherit; padding: 4px 6px; border-radius: 4px; border: 1px solid var(--line); background: var(--paper-2); color: inherit; }
+.controls output { font-variant-numeric: tabular-nums; min-width: 3.5ch; display: inline-block; }
+pre { background: var(--paper-2); border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px; overflow-x: auto; font: 13px/1.5 ui-monospace, "JetBrains Mono", SFMono-Regular, Menlo, monospace; margin: 0 0 12px; }
+code { font: 13px/1.5 ui-monospace, "JetBrains Mono", SFMono-Regular, Menlo, monospace; }
+p code { background: var(--paper-2); border: 1px solid var(--line); padding: 1px 5px; border-radius: 4px; }
+table { border-collapse: collapse; width: 100%; font-size: 14px; }
+th, td { text-align: left; padding: 8px 10px 8px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-weight: 600; white-space: nowrap; }
+footer { margin-top: 48px; color: var(--ink-2); font-size: 13px; }
+footer a { color: inherit; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 12px; }
+.card { display: block; text-decoration: none; border: 1px solid var(--line); background: var(--paper-2); border-radius: 12px; padding: 20px; color: inherit; }
+.card:hover { border-color: var(--accent); }
+.card .pair { display: flex; align-items: center; gap: 16px; margin-bottom: 14px; }
+.card .name { font-weight: 600; }
+.card .sub { color: var(--ink-2); font-size: 14px; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0c0c0d; --paper-2: #161618; --ink: #f4f4f5; --ink-2: #a1a1aa; --line: #27272a;
+  }
+}
+</style>
+</head>
+<body>
+<main>
+<header>
+  <h1>weaving <small>Drie strengen vlechten rond de bol</small></h1>
+  <nav><a href="index.html">← alle negen</a></nav>
+</header>
+
+<p class="lead">Eén custom element, <code>&lt;orb-weaving&gt;</code>, in plain JavaScript op een 2D-canvas. Geen React, geen build-stap, geen dependencies. Links het lichte thema, rechts het donkere, allebei op maat 64 (chat-avatar) en 20 (inline in tekst).</p>
+
+<div class="controls">
+  <label>Snelheid <input id="speed" type="range" min="0.25" max="3" step="0.05" value="1"> <output id="speed-out">1.00×</output></label>
+  <label><input id="paused" type="checkbox"> Pauze</label>
+  <label>Thema <select id="theme"><option value="auto" selected>auto (van voorouder)</option><option value="light">light</option><option value="dark">dark</option></select></label>
+</div>
+
+<div class="panels">
+  <section class="panel light" data-theme="light">
+    <span class="tag">light · data-theme="light"</span>
+    <div class="avatar"><orb-weaving data-orb size="64"></orb-weaving><span class="bubble">Weaving…</span></div>
+    <div class="inline"><orb-weaving data-orb size="20"></orb-weaving><span>Even geduld, weaving</span></div>
+  </section>
+  <section class="panel dark" data-theme="dark">
+    <span class="tag">dark · data-theme="dark"</span>
+    <div class="avatar"><orb-weaving data-orb size="64"></orb-weaving><span class="bubble">Weaving…</span></div>
+    <div class="inline"><orb-weaving data-orb size="20"></orb-weaving><span>Even geduld, weaving</span></div>
+  </section>
+</div>
+
+<h2>Gebruik</h2>
+<p>Kopieer de twee <code>&lt;script&gt;</code>-blokken onderaan dit bestand (de kern en de <code>weaving</code>-mode) naar je pagina, of laad <code>js/orb-core.js</code> en <code>js/weaving.js</code>. Daarna:</p>
+<pre>&lt;orb-weaving size="64"&gt;&lt;/orb-weaving&gt;
+&lt;orb-weaving size="20" speed="1.5" theme="dark"&gt;&lt;/orb-weaving&gt;
+&lt;orb-weaving paused&gt;&lt;/orb-weaving&gt;</pre>
+<table>
+<tr><th>size</th><td><code>64</code> (default) of <code>20</code>. Twee aparte tunings, geen schaalfactor.</td></tr>
+<tr><th>theme</th><td><code>auto</code> (default), <code>dark</code> of <code>light</code>. Auto leest <code>data-theme="dark|light"</code> of een <code>.dark</code>/<code>.light</code>-class op een voorouder, anders <code>prefers-color-scheme</code>. Beide live.</td></tr>
+<tr><th>speed</th><td>Vermenigvuldiger op de ingebakken snelheid, default <code>1</code>.</td></tr>
+<tr><th>paused</th><td>Aanwezig = bevroren op het huidige frame.</td></tr>
+<tr><th>aria-label</th><td>Standaard “Weaving…”; zet zelf een attribuut om het te overschrijven. Het element heeft <code>role="img"</code>.</td></tr>
+</table>
+<p>Verder ingebouwd: <code>prefers-reduced-motion</code> geeft één statisch frame, buiten beeld en op een verborgen tabblad stopt de animatie vanzelf, alle orbs op een pagina delen één klok, device-pixel-ratio is begrensd op 2. Vanuit JavaScript zet je gewoon attributen: <code>el.setAttribute('paused', '')</code>, <code>el.setAttribute('speed', '2')</code>.</p>
+
+<footer>Port van <a href="https://github.com/Jakubantalik/thinking-orbs">thinking-orbs</a> 0.3.1 (MIT © Jakub Antalik). Geometrie en tuning zijn getal-voor-getal gelijk aan het origineel, geverifieerd tegen de golden-vectoren uit de upstream-spec.</footer>
+</main>
+
+<!-- 1. kern: gedeeld door alle orbs, idempotent -->
+<script>
+// thinking-orbs — framework-vrije kern (plain JS, nul dependencies).
+//
+// Geport van https://github.com/Jakubantalik/thinking-orbs (MIT © 2026 Jakub
+// Antalik). De geometrie is één-op-één overgenomen uit `src/engine/core.ts`,
+// de component-logica uit `src/ThinkingOrb.tsx` en `src/theme.ts`, maar dan
+// als custom element in plaats van een React-component.
+//
+// Wat dit blok levert: de wiskundige primitieven (projectie, ruis, Fibonacci-
+// bol), de painter (z-gesorteerde grijswaarde-cirkels op een 2D canvas) en
+// `OrbCore.define(tag, def)`, dat één orb als <tag> registreert met:
+//   size="64" | "20"      twee apart getunede presets (default 64)
+//   theme="auto|dark|light"  auto = data-theme / .dark / .light op een
+//                          voorouder, anders prefers-color-scheme (live)
+//   speed="1"             vermenigvuldiger op de ingebakken snelheid
+//   paused                bevriest het huidige frame
+// Verder: prefers-reduced-motion → één statisch frame, automatische pauze
+// buiten beeld (IntersectionObserver) en op een verborgen tabblad, één
+// gedeelde klok (performance.now) zodat alle orbs in fase blijven, DPR-cap 2.
+//
+// Het blok is idempotent: meerdere orb-bestanden op één pagina delen één
+// kern, de eerste wint.
+window.OrbCore = window.OrbCore || (function () {
+  'use strict';
+
+  // --- geometrie ---------------------------------------------------------
+
+  function lerp(a, b, f) { return a + (b - a) * f; }
+  function frac(x) { return x - Math.floor(x); }
+
+  /** Deterministische hash in [0, 1). */
+  function hashD(a, b) {
+    const h = Math.sin(a * 12.9898 + b * 78.233) * 43758.5453;
+    return h - Math.floor(h);
+  }
+
+  /** Waarde-ruis op een 2D-rooster: glad, deterministisch, goedkoop. */
+  function vnoise(x, y) {
+    const xi = Math.floor(x);
+    const yi = Math.floor(y);
+    let fx = x - xi;
+    let fy = y - yi;
+    fx = fx * fx * (3 - 2 * fx);
+    fy = fy * fy * (3 - 2 * fy);
+    const a = hashD(xi, yi);
+    const b = hashD(xi + 1, yi);
+    const c = hashD(xi, yi + 1);
+    const d = hashD(xi + 1, yi + 1);
+    return a + (b - a) * fx + (c - a) * fy + (a - b - c + d) * fx * fy;
+  }
+
+  /** Stabiele richtingen op een eenheidsbol (Fibonacci-rooster). */
+  function fibDir(i, n) {
+    const golden = Math.PI * (3 - Math.sqrt(5));
+    const y = 1 - (2 * (i + 0.5)) / n;
+    const rad = Math.sqrt(1 - y * y);
+    const a = i * golden;
+    return [rad * Math.cos(a), y, rad * Math.sin(a)];
+  }
+
+  /** Kortste getekende hoekafstand, gewikkeld naar (-π, π]. */
+  function angleDelta(a, b) {
+    return Math.atan2(Math.sin(a - b), Math.cos(a - b));
+  }
+
+  /** Gedeelde draai + kanteling + orthografische projectie. */
+  function makeProj(yaw, tilt, cx, cy, scale) {
+    const st = Math.sin(tilt);
+    const ct = Math.cos(tilt);
+    const sy = Math.sin(yaw);
+    const cyw = Math.cos(yaw);
+    return function (x, y, z) {
+      const x1 = x * cyw + z * sy;
+      const z1 = -x * sy + z * cyw;
+      const y1 = y * ct - z1 * st;
+      const z2 = y * st + z1 * ct;
+      return [cx + x1 * scale, cy - y1 * scale, z2];
+    };
+  }
+
+  /** Stipstralen zijn getuned op 300pt; sublineair schalen houdt kleine orbs leesbaar. */
+  function radiusScale(size, pow) {
+    return Math.pow(size / 300, pow);
+  }
+
+  /**
+   * Ruwe mode-uitvoer → afgewerkt frame: onzichtbare stippen weg, straal op
+   * de ondergrens, z-gesorteerd van ver naar dichtbij (= tekenvolgorde).
+   */
+  function finalizeFrame(dots, lines, rMin) {
+    if (rMin == null) rMin = 0.3;
+    const visible = [];
+    for (const d of dots) {
+      if ((d.a == null ? 1 : d.a) < 0.02) continue;
+      d.r = Math.max(rMin, d.r);
+      visible.push(d);
+    }
+    visible.sort(function (a, b) { return a.z - b.z; });
+    return { dots: visible, lines: lines.filter(function (l) { return (l.a == null ? 1 : l.a) >= 0.02; }) };
+  }
+
+  // --- painter -----------------------------------------------------------
+
+  function ink(white, dark) {
+    const w = Math.min(1, Math.max(0, white));
+    return Math.round((dark ? 1 - w : w) * 255);
+  }
+
+  /** Lijnen eerst, zodat knopen bovenop hun randen liggen. */
+  function paintLines(ctx, lines, dark) {
+    for (const l of lines) {
+      const g = ink(l.white, dark);
+      ctx.strokeStyle = 'rgba(' + g + ',' + g + ',' + g + ',' + (l.a == null ? 1 : l.a) + ')';
+      ctx.lineWidth = l.w;
+      ctx.beginPath();
+      ctx.moveTo(l.x1, l.y1);
+      ctx.lineTo(l.x2, l.y2);
+      ctx.stroke();
+    }
+  }
+
+  /** Matte grijswaarde-stippen; op donker wordt de inkt gespiegeld (1 - white). */
+  function paint(ctx, dots, dark) {
+    for (const d of dots) {
+      const g = ink(d.white, dark);
+      ctx.fillStyle = 'rgba(' + g + ',' + g + ',' + g + ',' + (d.a == null ? 1 : d.a) + ')';
+      ctx.beginPath();
+      ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+
+  function paintFrame(ctx, frame, dark) {
+    if (frame.lines.length) paintLines(ctx, frame.lines, dark);
+    paint(ctx, frame.dots, dark);
+  }
+
+  // --- thema & motion (live) --------------------------------------------
+
+  function ancestorTheme(el) {
+    let node = el;
+    while (node && node.getAttribute) {
+      const attr = node.getAttribute('data-theme');
+      if (attr === 'dark') return true;
+      if (attr === 'light') return false;
+      if (node.classList.contains('dark')) return true;
+      if (node.classList.contains('light')) return false;
+      node = node.parentElement;
+    }
+    return null;
+  }
+
+  function systemDark() {
+    return typeof matchMedia === 'undefined' || matchMedia('(prefers-color-scheme: dark)').matches;
+  }
+
+  /** Roept `cb(dark)` direct aan en daarna bij elke wissel; geeft een unsubscribe terug. */
+  function watchDark(el, theme, cb) {
+    if (theme === 'dark') { cb(true); return function () {}; }
+    if (theme === 'light') { cb(false); return function () {}; }
+    const resolve = function () {
+      const fromTree = ancestorTheme(el);
+      cb(fromTree == null ? systemDark() : fromTree);
+    };
+    resolve();
+    const mq = typeof matchMedia !== 'undefined' ? matchMedia('(prefers-color-scheme: dark)') : null;
+    if (mq) mq.addEventListener('change', resolve);
+    let mo = null;
+    if (typeof MutationObserver !== 'undefined') {
+      mo = new MutationObserver(resolve);
+      mo.observe(document.documentElement, { attributes: true, attributeFilter: ['class', 'data-theme'], subtree: true });
+    }
+    return function () {
+      if (mq) mq.removeEventListener('change', resolve);
+      if (mo) mo.disconnect();
+    };
+  }
+
+  function watchReduced(cb) {
+    if (typeof matchMedia === 'undefined') { cb(false); return function () {}; }
+    const mq = matchMedia('(prefers-reduced-motion: reduce)');
+    cb(mq.matches);
+    const on = function (e) { cb(e.matches); };
+    mq.addEventListener('change', on);
+    return function () { mq.removeEventListener('change', on); };
+  }
+
+  // --- custom element ----------------------------------------------------
+
+  const registry = {};
+  const STATIC_T = 0.6; // reduced motion: één representatief frame
+
+  /**
+   * Registreert een orb als custom element.
+   * def = { state, label, frame(size, t, opts) → {dots, lines},
+   *         presets: { 64: {speed, opts}, 20: {speed, opts} } }
+   */
+  function define(tag, def) {
+    registry[tag] = def;
+    if (typeof customElements === 'undefined' || customElements.get(tag)) return;
+
+    class OrbElement extends HTMLElement {
+      static get observedAttributes() { return ['size', 'theme', 'speed', 'paused']; }
+
+      constructor() {
+        super();
+        this._canvas = null;
+        this._teardown = null;
+      }
+
+      get size() { return this.getAttribute('size') === '20' ? 20 : 64; }
+
+      connectedCallback() {
+        if (!this._canvas) {
+          const c = document.createElement('canvas');
+          c.setAttribute('aria-hidden', 'true');
+          c.style.display = 'block';
+          this.appendChild(c);
+          this._canvas = c;
+        }
+        if (!this.style.display) this.style.display = 'inline-block';
+        this.style.lineHeight = '0';
+        this.style.verticalAlign = 'middle';
+        this.setAttribute('role', 'img');
+        if (!this.hasAttribute('aria-label')) this.setAttribute('aria-label', def.label);
+        this._setup();
+      }
+
+      disconnectedCallback() { this._stop(); }
+
+      attributeChangedCallback() {
+        if (this.isConnected && this._canvas) this._setup();
+      }
+
+      _stop() {
+        if (this._teardown) { this._teardown(); this._teardown = null; }
+      }
+
+      _setup() {
+        this._stop();
+        const host = this;
+        const size = this.size;
+        const theme = this.getAttribute('theme') || 'auto';
+        const userSpeed = parseFloat(this.getAttribute('speed'));
+        const paused = this.hasAttribute('paused');
+        const preset = def.presets[size];
+        const canvas = this._canvas;
+        const dpr = Math.min(2, (typeof devicePixelRatio !== 'undefined' && devicePixelRatio) || 1);
+        canvas.width = Math.round(size * dpr);
+        canvas.height = Math.round(size * dpr);
+        canvas.style.width = size + 'px';
+        canvas.style.height = size + 'px';
+        const ctx = canvas.getContext('2d');
+        if (!ctx) return;
+
+        const effSpeed = preset.speed * (isNaN(userSpeed) ? 1 : userSpeed);
+        const now = function () { return (performance.now() / 1000) * effSpeed; };
+        let dark = true;
+        let reduced = false;
+        let raf = 0;
+        let running = false;
+        let visible = true;
+
+        const frame = function (t) {
+          ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+          ctx.clearRect(0, 0, size, size);
+          paintFrame(ctx, def.frame(size, t, preset.opts), dark);
+        };
+        const loop = function () {
+          frame(now());
+          if (running) raf = requestAnimationFrame(loop);
+        };
+        const start = function () {
+          if (running || paused || reduced) return;
+          running = true;
+          raf = requestAnimationFrame(loop);
+        };
+        const stop = function () {
+          running = false;
+          cancelAnimationFrame(raf);
+        };
+        // stilstaand (paused, reduced, buiten beeld) toch het juiste frame tonen
+        const repaint = function () { frame(reduced ? STATIC_T : now()); };
+        const shouldRun = function () { return visible && document.visibilityState !== 'hidden'; };
+
+        const unDark = watchDark(host, theme, function (d) { dark = d; if (!running) repaint(); });
+        const unReduced = watchReduced(function (r) {
+          reduced = r;
+          if (r) { stop(); repaint(); } else { repaint(); if (shouldRun()) start(); }
+        });
+
+        let io = null;
+        if (typeof IntersectionObserver !== 'undefined') {
+          io = new IntersectionObserver(function (entries) {
+            visible = entries[0].isIntersecting;
+            if (shouldRun()) start(); else stop();
+          });
+          io.observe(host);
+        } else {
+          start();
+        }
+        const onVis = function () { if (shouldRun()) start(); else stop(); };
+        document.addEventListener('visibilitychange', onVis);
+
+        this._teardown = function () {
+          stop();
+          unDark();
+          unReduced();
+          if (io) io.disconnect();
+          document.removeEventListener('visibilitychange', onVis);
+        };
+      }
+    }
+
+    customElements.define(tag, OrbElement);
+  }
+
+  return {
+    lerp: lerp, frac: frac, hashD: hashD, vnoise: vnoise, fibDir: fibDir, angleDelta: angleDelta,
+    makeProj: makeProj, radiusScale: radiusScale, finalizeFrame: finalizeFrame,
+    paint: paint, paintLines: paintLines, paintFrame: paintFrame,
+    watchDark: watchDark, watchReduced: watchReduced,
+    define: define, registry: registry, STATIC_T: STATIC_T
+  };
+})();
+</script>
+
+<!-- 2. mode: weaving -->
+<script>
+// weaving — braid: drie strengen vlechten rond de bol. Elke streng loopt
+// pool-tot-pool op een helix; een radiale ademhaling laat ze van plaats
+// wisselen, wat leest als het over-en-onder van een vlecht.
+(function (C) {
+  'use strict';
+  const frameBraid = function (size, t, o) {
+    const cx = size / 2;
+    const cy = size / 2;
+    const R = (size / 2) * 0.76;
+    const pt = C.makeProj(t * 0.4, 0.3, cx, cy, 1);
+    const rs = C.radiusScale(size, o.rsPow == null ? 0.6 : o.rsPow);
+    const rBase = o.rBase == null ? 1.2 : o.rBase;
+    const rDepth = o.rDepth == null ? 1.8 : o.rDepth;
+
+    const dots = [];
+    const ghostN = o.ghostN == null ? 150 : o.ghostN;
+    for (let i = 0; i < ghostN; i++) {
+      const d = C.fibDir(i, ghostN);
+      const p = pt(d[0] * R, d[1] * R, d[2] * R);
+      const depth = (p[2] / R + 1) / 2;
+      dots.push({ x: p[0], y: p[1], z: p[2], r: 0.8 * rs, white: 0.78, a: 0.1 + 0.22 * depth });
+    }
+
+    const strandN = o.strandN == null ? 52 : o.strandN;
+    const turns = o.turns == null ? 3 : o.turns;
+    for (let s = 0; s < 3; s++) {
+      const phase = (s / 3) * 2 * Math.PI;
+      for (let i = 0; i < strandN; i++) {
+        const u = (C.frac(i / strandN + t * 0.045) * 2 - 1) * 0.96;
+        const surf = Math.sqrt(Math.max(0, 1 - u * u));
+        const endFade = Math.min(1, (1 - Math.abs(u)) / 0.1);
+        const a = u * Math.PI * turns + phase;
+        const weave = 1 + 0.075 * Math.sin(u * Math.PI * turns * 2 + phase * 2 + t * 0.8);
+        const rr = surf * R * weave;
+        const p = pt(Math.cos(a) * rr, u * R * weave, Math.sin(a) * rr);
+        const zr = p[2];
+        const depth = (zr / R + 1) / 2;
+        dots.push({
+          x: p[0], y: p[1], z: zr,
+          r: (rBase + rDepth * depth) * rs,
+          white: 0.55 - 0.45 * depth,
+          a: endFade * (0.45 + 0.55 * depth)
+        });
+      }
+    }
+    return C.finalizeFrame(dots, [], o.rMin);
+  };
+
+  C.define('orb-weaving', { state: 'weaving', label: 'Weaving…', frame: frameBraid, presets: { 64: { speed: 1.625, opts: { strandN: 26, turns: 3, ghostN: 75, rBase: 1.2, rDepth: 1.8, rsPow: 0.6, rMin: 0.3 } }, 20: { speed: 2.75, opts: { strandN: 6, turns: 3, ghostN: 17, rBase: 1.6320000000000001, rDepth: 2.4480000000000004, rsPow: 0.6, rMin: 0.3, rSizeMul: 1.36 } } } });
+})(window.OrbCore);
+</script>
+
+<!-- 3. alleen voor deze demopagina -->
+<script>
+(function () {
+  var orbs = document.querySelectorAll('[data-orb]');
+  var speed = document.getElementById('speed');
+  var speedOut = document.getElementById('speed-out');
+  var paused = document.getElementById('paused');
+  var theme = document.getElementById('theme');
+  function apply() {
+    orbs.forEach(function (el) {
+      el.setAttribute('speed', speed.value);
+      if (paused.checked) el.setAttribute('paused', ''); else el.removeAttribute('paused');
+    });
+    speedOut.textContent = Number(speed.value).toFixed(2) + '×';
+  }
+  speed.addEventListener('input', apply);
+  paused.addEventListener('change', apply);
+  // de panelen dragen data-theme; 'auto' laat ze staan, anders forceert de
+  // pagina één thema via het theme-attribuut (hoger dan de voorouder-detectie)
+  theme.addEventListener('change', function () {
+    orbs.forEach(function (el) {
+      if (theme.value === 'auto') el.removeAttribute('theme'); else el.setAttribute('theme', theme.value);
+    });
+  });
+  apply();
+})();
+</script>
+</body>
+</html>
