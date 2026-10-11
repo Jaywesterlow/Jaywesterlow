@@ -34,3 +34,8 @@ Correcties t.o.v. v1: clear zone is suggestie, contrast via HTML-overlay; still-
 - Hero: full-bleed portret, bewegende wireframe-helm overlay, bewegende contourlijnen, nav en "Next Race" in vrije hoeken.
 - Na scroll: achtergrond donker, portret krimpt tot gecentreerde kaart, nav blijft, hoekinfo verdwijnt, marquee-tekst erachter. Handtekening is Lando-specifiek.
 - Ontbrekend library-component: "hero shrinks into card" (omgekeerde van circle-grow).
+
+## Correcties v3 (2026-10-11, tweede feedbackronde)
+- "2–3 hoeken per beat" is geen harde regel. Veel sites loopen een paar shots; Rancho Santana's 37 s systeem werkt alleen voor hen.
+- Belemmering (regen, mist, donker) moet een bron hebben in het shot: omgeving, camerahoek, focus. Nooit een willekeurige obstructie erbij. Een close-up die een deel toont (benen en wielen van een fietser) is zo'n gemotiveerde belemmering.
+- Niet volledig autonoom genereren: Higgsfield kost credits en Jaymar wil de takes zien om bij te sturen. Loop: genereren → bekijken → prompt aanpassen (bv. "beide wielen even snel") → opnieuw. Leer van elke correctie zodat die prompt-regel blijft.
