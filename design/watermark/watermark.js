@@ -19,15 +19,28 @@ const opt = {
   recipient: a.recipient || '[RECIPIENT]', purpose: a.purpose || 'rental verification',
   date: a.date || new Date().toISOString().slice(0, 10),
   mark: a.mark || path.join(__dirname, '..', 'brand', 'export', 'mark.svg'),
-  color: a.color || '#132340', accent: '#2F6FD6', opacity: +(a.opacity || 0.42), angle: +(a.angle || -28),
-  quality: +(a.quality || 92), overlayOnly: !!a['overlay-only'], width: +(a.width || 2000), height: +(a.height || 1400),
+  color: a.color || '#132340', accent: a.accent || '#2F6FD6', opacity: +(a.opacity || 0.42), angle: +(a.angle || -28),
+  quality: +(a.quality || 92), bandY: +(a['band-y'] || 0.5), overlayOnly: !!a['overlay-only'], width: +(a.width || 2000), height: +(a.height || 1400),
 };
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
 const fmtDate = (d) => new Date(d + 'T00:00:00').toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }).toUpperCase();
 
-const markSvg = fs.readFileSync(opt.mark, 'utf8').replace(/<\?xml[^>]*>/, '');
-const markInner = markSvg.replace(/^[\s\S]*?<svg[^>]*>/, '').replace(/<\/svg>\s*$/, '');
-const markVB = (markSvg.match(/viewBox="([^"]+)"/) || [, '0 0 128 128'])[1];
+// Logo: SVG (single colour, recoloured to white in the band) or PNG/JPG (pass --mark-white for the band).
+const isRaster = /\.(png|jpe?g)$/i.test(opt.mark);
+let markVB = '0 0 128 128', markInner = '', markAR = 1, markTag;
+if (isRaster) {
+  const b64 = (f) => `data:image/${f.match(/png$/i) ? 'png' : 'jpeg'};base64,${fs.readFileSync(f).toString('base64')}`;
+  const dark = b64(opt.mark), white = a['mark-white'] ? b64(a['mark-white']) : dark;
+  const dim = require('child_process').execSync(`identify -format "%w %h" "${opt.mark}"`).toString().trim().split(' ').map(Number);
+  markAR = dim[0] / dim[1];
+  markTag = (x, y, h, w) => `<image x="${x}" y="${y}" width="${h * markAR}" height="${h}" href="${w ? white : dark}" preserveAspectRatio="xMidYMid meet"/>`;
+} else {
+  const markSvg = fs.readFileSync(opt.mark, 'utf8').replace(/<\?xml[^>]*>/, '');
+  markInner = markSvg.replace(/^[\s\S]*?<svg[^>]*>/, '').replace(/<\/svg>\s*$/, '');
+  markVB = (markSvg.match(/viewBox="([^"]+)"/) || [, markVB])[1];
+  const vb = markVB.split(/\s+/).map(Number); markAR = vb[2] / vb[3];
+  markTag = (x, y, h, w) => `<svg x="${x}" y="${y}" width="${h * markAR}" height="${h}" viewBox="${markVB}">${w ? markInner.replace(new RegExp(opt.color, 'gi'), '#ffffff') : markInner}</svg>`;
+}
 
 function overlay(W, H) {
   const line = `COPY FOR ${opt.purpose.toUpperCase()} ONLY  ·  ${opt.recipient.toUpperCase()}  ·  ${fmtDate(opt.date)}  ·  NOT VALID FOR ANY OTHER USE`;
@@ -37,19 +50,18 @@ function overlay(W, H) {
   for (let y = -diag, i = 0; y < diag; y += rowGap, i++) {
     const shift = (i % 2) * fs_ * 14;
     rows += `<text x="${-diag + shift}" y="${y}" font-size="${fs_}">${esc((line + "        ").repeat(6))}</text>`;
-    if (i % 2 === 0) for (let x = -diag + shift - fs_ * 6; x < diag; x += fs_ * 22)
-      rows += `<svg x="${x}" y="${y - markSz * 0.78}" width="${markSz}" height="${markSz}" viewBox="${markVB}">${markInner}</svg>`;
+    if (i % 2 === 0) for (let x = -diag + shift - fs_ * 6; x < diag; x += fs_ * (16 + markSz * markAR / fs_))
+      rows += markTag(x, y - markSz * 0.78, markSz, false);
   }
-  const bandH = fs_ * 5.4, bandY = H / 2 - bandH / 2, bm = bandH * 0.68;
+  const bandH = fs_ * 5.0, bandY = H * opt.bandY - bandH / 2, bm = bandH * (markAR > 1.5 ? 0.5 : 0.68);
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" font-family="Inter, 'Instrument Sans', Arial, sans-serif" font-weight="700">
-  <defs><symbol id="m" viewBox="${markVB}">${markInner}</symbol></defs>
   <g opacity="${opt.opacity}" fill="${opt.color}" transform="rotate(${opt.angle} ${W / 2} ${H / 2})" letter-spacing="0.08em">${rows}</g>
   <g opacity="${Math.min(1, opt.opacity + 0.3)}">
     <rect x="0" y="${bandY}" width="${W}" height="${bandH}" fill="${opt.color}" opacity="0.55"/>
     <rect x="0" y="${bandY}" width="${fs_ * 0.35}" height="${bandH}" fill="${opt.accent}"/>
-    <svg x="${fs_ * 1.6}" y="${bandY + (bandH - bm) / 2}" width="${bm}" height="${bm}" viewBox="${markVB}">${markInner.replace(/#132340/gi, '#ffffff')}</svg>
-    <text x="${fs_ * 1.6 + bm + fs_ * 1.2}" y="${bandY + bandH * 0.42}" fill="#fff" font-size="${fs_ * 1.25}" letter-spacing="0.04em">COPY · ${esc(opt.purpose.toUpperCase())} ONLY · ${esc(opt.recipient.toUpperCase())}</text>
-    <text x="${fs_ * 1.6 + bm + fs_ * 1.2}" y="${bandY + bandH * 0.78}" fill="#fff" font-size="${fs_ * 0.95}" font-weight="500" letter-spacing="0.02em">Issued ${fmtDate(opt.date)} · Not valid for any other purpose · Do not forward or store beyond this check</text>
+    ${markTag(fs_ * 1.6, bandY + (bandH - bm) / 2, bm, true)}
+    <text x="${fs_ * 1.6 + bm * markAR + fs_ * 1.2}" y="${bandY + bandH * 0.42}" fill="#fff" font-size="${fs_ * 1.15}" letter-spacing="0.04em">COPY · ${esc(opt.purpose.toUpperCase())} ONLY · ${esc(opt.recipient.toUpperCase())}</text>
+    <text x="${fs_ * 1.6 + bm * markAR + fs_ * 1.2}" y="${bandY + bandH * 0.78}" fill="#fff" font-size="${fs_ * 0.88}" font-weight="500" letter-spacing="0.02em">Issued ${fmtDate(opt.date)} · Not valid for any other purpose · Do not forward or keep after this check</text>
   </g>
 </svg>`;
 }
