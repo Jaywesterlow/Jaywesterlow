@@ -1,0 +1,17 @@
+{
+  "name": "model-router",
+  "version": "0.1.0",
+  "description": "Sends easy prompts and search subagents to a cheaper model; hard work stays on the session's model.",
+  "types": "./types/index.d.ts",
+  "userConfig": {
+    "cheapModel": {
+      "type": "string",
+      "title": "Cheap model",
+      "description": "Model for easy turns and search subagents",
+      "default": "haiku"
+    }
+  },
+  "author": {
+    "name": "Jaymar Westerlow"
+  }
+}

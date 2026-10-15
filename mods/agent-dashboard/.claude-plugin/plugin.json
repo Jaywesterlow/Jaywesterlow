@@ -1,0 +1,23 @@
+{
+  "name": "agent-dashboard",
+  "version": "0.1.0",
+  "description": "A pane with your agents, context and cost, peer messages and the latest from your second brain.",
+  "types": "./types/index.d.ts",
+  "userConfig": {
+    "vaultServer": {
+      "type": "string",
+      "title": "Vault MCP server",
+      "description": "MCP server name as /mcp lists it",
+      "default": "JW AI Vault"
+    },
+    "vaultTool": {
+      "type": "string",
+      "title": "Vault tool",
+      "description": "Tool that returns the latest notes or room messages",
+      "default": "room_read"
+    }
+  },
+  "author": {
+    "name": "Jaymar Westerlow"
+  }
+}

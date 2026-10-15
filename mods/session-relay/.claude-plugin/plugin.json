@@ -1,0 +1,9 @@
+{
+  "name": "session-relay",
+  "version": "0.1.0",
+  "description": "Pass work between Claude Code sessions: /handoff writes a brief of this session and sends it to another one; incoming messages land in an inbox.",
+  "types": "./types/index.d.ts",
+  "author": {
+    "name": "Jaymar Westerlow"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "name": "jaywesterlow-mods",
+  "description": "Claude Code mods for multi-agent work: session handoffs, model routing, a dashboard pane",
+  "owner": { "name": "Jaymar Westerlow" },
+  "plugins": [
+    { "name": "session-relay", "source": "./mods/session-relay" },
+    { "name": "model-router", "source": "./mods/model-router" },
+    { "name": "agent-dashboard", "source": "./mods/agent-dashboard" }
+  ]
+}
